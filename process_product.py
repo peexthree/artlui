@@ -1,27 +1,23 @@
-from bs4 import BeautifulSoup
 import re
 
-def process_product():
-    with open('/app/product_detail.html', 'r', encoding='utf-8') as f:
-        soup = BeautifulSoup(f, 'html.parser')
+with open('product_detail.html', 'r') as f:
+    content = f.read()
 
-    # The main CTA button doesn't have text "Add to Cart" directly, it might have icon + text in spans
-    # Let's find the large primary buttons
-    for btn in soup.find_all('button'):
-        if 'bg-primary-container' in btn.get('class', []):
-            text = btn.get_text().strip()
-            if 'cart' in text.lower() or 'shopping' in text.lower() or 'bag' in text.lower() or 'Add to Bag' in text:
-                btn['onclick'] = "addToCart({id: 'mold_1', name: 'Premium Architectural Mold', price: 150}); return false;"
-            elif 'Checkout' in text or 'buy' in text.lower():
-                btn.name = 'a'
-                btn['href'] = 'checkout.html'
+# Fix the Add to Collection button
+old_button = r'''<button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-\[0\.98\] transition-all flex justify-center items-center space-x-3" onclick="addToCart\(\{id: 'mold_1', name: 'Premium Architectural Mold', price: 150\}\); window\.location\.href='checkout\.html'; return false;">'''
+new_button = '''<button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center space-x-3" onclick="addToCart({id: 'petal_texture_plate', name: 'Petal Texture Plate', price: 124.00}); return false;">'''
 
-    # Make sure we got it, let's just make the first one Add to Cart and the second Checkout if we can't be sure
-    ctas = soup.find_all('button', class_=lambda c: c and 'bg-primary-container' in c)
-    if ctas:
-        ctas[0]['onclick'] = "addToCart({id: 'mold_1', name: 'Premium Architectural Mold', price: 150}); window.location.href='checkout.html'; return false;"
+content = re.sub(old_button, new_button, content)
 
-    with open('/app/product_detail.html', 'w', encoding='utf-8') as f:
-        f.write(str(soup))
+# Also fix the top nav bar shopping bag to open drawer
+old_nav_cart = r'<button class="material-symbols-outlined hover:text-\[#D4AF37\] transition-colors">shopping_bag</button>'
+new_nav_cart = r'<button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors" data-icon="shopping_bag">shopping_bag</button>'
+content = content.replace(old_nav_cart, new_nav_cart)
 
-process_product()
+# Make sure Proceed to Checkout link is valid
+old_checkout = r'<a class="bg-primary-container w-full py-4 rounded-md text-on-primary-container font-headline font-bold text-sm tracking-widest active:translate-x-1 duration-200" href="checkout\.html">\s*Proceed to Checkout\s*</a>'
+new_checkout = r'<a class="flex justify-center bg-primary-container w-full py-4 rounded-md text-on-primary-container font-headline font-bold text-sm tracking-widest active:translate-x-1 duration-200" href="checkout.html">\n                    Proceed to Checkout\n                </a>'
+content = re.sub(old_checkout, new_checkout, content)
+
+with open('product_detail.html', 'w') as f:
+    f.write(content)
