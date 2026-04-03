@@ -139,43 +139,44 @@
 <div>
 <h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Categories</h3>
 <div class="flex flex-col space-y-3 items-start">
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Architectural</button>
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Organic Forms</button>
-<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">Geometric Series</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="category" data-filter-value="Architectural">Architectural</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="category" data-filter-value="Organic Forms">Organic Forms</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="category" data-filter-value="Geometric Series">Geometric Series</button>
 </div>
 </div>
 <!-- Price Range -->
 <div>
 <h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Price Range</h3>
 <div class="flex flex-col space-y-3 items-start">
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Under $100</button>
-<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">$100 - $200</button>
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Over $200</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="price" data-filter-value="under-100">Under $100</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="price" data-filter-value="100-200">$100 - $200</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="price" data-filter-value="over-200">Over $200</button>
 </div>
 </div>
 <!-- Mold Hardness -->
 <div>
 <h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Shore Hardness</h3>
 <div class="flex flex-col space-y-3 items-start">
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Soft (15A)</button>
-<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">Mid (25A)</button>
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Firm (40A)</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="hardness" data-filter-value="15A">Soft (15A)</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="hardness" data-filter-value="25A">Mid (25A)</button>
+<button class="filter-btn font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5" data-filter-type="hardness" data-filter-value="40A">Firm (40A)</button>
 </div>
 </div>
 <!-- Clear Filters -->
-<button class="text-[10px] font-bold uppercase tracking-tighter text-primary/60 hover:text-primary transition-colors underline underline-offset-4">Reset all filters</button>
+<button id="reset-filters" class="text-[10px] font-bold uppercase tracking-tighter text-primary/60 hover:text-primary transition-colors underline underline-offset-4">Reset all filters</button>
 </div>
 </aside>
 <!-- Product Grid -->
 <div class="flex-grow">
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-16">
 <!-- Product Card 1 -->
-<div class="group">
+<div class="group product-card" data-category="Architectural" data-price="100-200" data-hardness="25A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Architectural mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a high-detail architectural silicone mold with fluted textures sitting on a minimalist white stone surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkgxbIw5PaNVOK0nxj0g6bUiXo6a5xdEf1KP9wCTSlC-iTUfKcQO2Dm0x2B-sbFuuZ1zvXRLF7nN2UBSKpdY5AB6kseowQnQYHEz52rfArS4m_ipgTZ9DybnBox2rwrRPH9rdLiHCxEgLR7H8RvY60Jp_XO4TE7fANm9uvwrbJVJUerMTW0II-70XhkTYQ6LMQnG1Pot92dSjUwjFCintpBH67cHqrTTIGsmp5plZvJ4ZM4FEiSKfNsygqrHlNnhNjrxfQvbFiq4"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'fluted_column', name: 'The Fluted Column', price: 124.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -186,12 +187,13 @@
 </div>
 </div>
 <!-- Product Card 2 -->
-<div class="group">
+<div class="group product-card" data-category="Organic Forms" data-price="100-200" data-hardness="15A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Organic mold result" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="artisanal ceramic vase with organic flowing ripples placed next to the textured silicone mold that created it on an ivory background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0p93s1qiqnobFBxgtRv6izk9IX9Y0i4m2YoLzTcOjq7u7kBoNJ-OakDh1PfC6mYubjtINmcw6P_ubRY8JXcsS9nCb2CpG1u7Rg6Ka0URBv4m9C56bjSM53T-B2OicOnsjxNPqk0RKNn6tORJdWKn9-7O7g-bU0mIPP3aTcHrx3MkTDvwu3fcTclf9LEb2quQ43dtJ4xVZkuZGmKjJja3jEvq7iNABoOH9kt5ulmG3O7Qey6hI89c91eXnMbMFUk1n1Y1MztS-ULY"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'lichen_basin', name: 'Lichen Basin', price: 189.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -202,12 +204,13 @@
 </div>
 </div>
 <!-- Product Card 3 -->
-<div class="group">
+<div class="group product-card" data-category="Geometric Series" data-price="under-100" data-hardness="40A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Geometric mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract geometric concrete sculpture with sharp angles and clean lines shown alongside its translucent high-grade silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaO3fxNZcYd4byILMvdg2oECwEMBdPSn91AefxI6IoniKydCV3Yy_Wo1vFNPtVGBDSq32THT-DVj8HvWLQp8TUSefdowpRxIdomqqgTRNAr4kQbmhxKDq3JxR1xvxBgdjF6IRjzg2Rqlws5FDPB_sBbiJRkiUvUkJowLK58V1PiDrpBij-Oz5oh9VkDWq0yOxY3Y4prMsVLmUwBqy8ISA-0xaeYv7m0eOQqwD7UFbYwG14mohc-wL1HqoZA9lNeGz8NLsnamp3Xzw"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'prism_totem', name: 'Prism Totem', price: 95.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -218,12 +221,13 @@
 </div>
 </div>
 <!-- Product Card 4 -->
-<div class="group">
+<div class="group product-card" data-category="Architectural" data-price="over-200" data-hardness="40A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Brutalist mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="dramatic lighting on a brutalist style concrete candle holder and its heavy-duty industrial silicone mold on a textured paper surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd6qOipfZb3lkIVxcNankUnaKbmY_FwbutXk1Z-e8puq8Qt4rR-m-kHzA6rFCArKIVv0mGfD86_-cPnXIm7Fq9yiEDrvh7-YOgwe_IhlU_ejxXIut6n9qiBmZOe3o232rsZrP4vkpThRkgDo4wEPWQwcrv2E2PzzfQ9s6wBg0R8H0RSuZpHWLXlsNLPlIUMZxJmMhfT37ZQzWYuSVDbwOPk5lsewueqLyRxAmWyw0D52Pac7HAPpEgRPu6AfZa7iw81cIoTy6fOHU"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'the_monolith', name: 'The Monolith', price: 210.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -234,12 +238,13 @@
 </div>
 </div>
 <!-- Product Card 5 -->
-<div class="group">
+<div class="group product-card" data-category="Architectural" data-price="100-200" data-hardness="25A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Corinthian mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="highly detailed plaster casting of a classical corinthian capital with intricate leaf details showing the precision of the silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvTl3wb2QrYK1mikRrMl8SeIAhrB-hxbEg2vHcWOmhqQHO9_OgXUzJEplPCeVRG0ACTm0aojN-Sp1At1zvz18SSVNko4_bMQWngdihMvo9xnsvvTVUNiVCRm2ycoMcT7_rclLkPOqk1i0KHj0lv-FnceozIm-3gJ4SUcqWaJvVVaWKixw1yrGFBS_Tm5P8Dt4bNaNAnfwDNAoTd0PjBpaEWXRTWcLXZPYArvpgheXyCwzcVglVeh6CFUxSajmFh7h4SwOK3Lt-xO8"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'doric_pillar', name: 'Doric Pillar', price: 155.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -250,12 +255,13 @@
 </div>
 </div>
 <!-- Product Card 6 -->
-<div class="group">
+<div class="group product-card" data-category="Organic Forms" data-price="under-100" data-hardness="15A">
 <div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
 <img alt="Tear drop mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a pair of elegant teardrop-shaped resin sculptures with gold leaf inclusions and the clear silicone mold used for casting them" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClxCMP2j0Jg0YWzUxqabhDzyMpPc5OCFUa8KLkcJEX3N9_7HoKZbUwbVllwUlzwmYcHhE_b-r5x6I7L3LVEcvXqIetnzp9u3uPq6ReXt9mHvk-izYgZxNf8BYIZQrhssnBWzPLsficjMflFsPBN6thGV8C2GujPQgJsO5Ow-jV4Cfc3kHkykjqS6vVj3P6WtWLodkccAswp9slGP8H4_jKnmt6Z7dTHkvdQoWJk_yam2yfGBGO5M_MwlvN_e-V3BYEq6vMbXYgRzQ"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-2">
+<a href="product_detail.html" class="bg-surface text-on-surface px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">View</a>
+<button onclick="addToCart({id: 'aqueous_curve', name: 'Aqueous Curve', price: 78.0}); return false;" class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Add to Cart</button>
+</div>
 </div>
 <div class="space-y-1.5">
 <div class="flex justify-between items-start">
@@ -279,37 +285,30 @@
 </div>
 </div>
 </main>
+
 <!-- Side Cart (SideNavBar) -->
-<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full lg:hidden">
-<div class="flex justify-between items-start">
-<div>
-<h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
-<p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
-</div>
-<button class="material-symbols-outlined text-xl">close</button>
-</div>
-<div class="flex-grow space-y-6 py-6 overflow-y-auto">
-<div class="flex items-center space-x-4">
-<div class="w-14 h-18 bg-surface-container rounded-sm overflow-hidden">
-<img data-alt="small thumbnail of a silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Eu9LujnuDG1_yArLRRU_38lMSkwN7ko-GQ_8xj0J2Gxi5tzo3kt0j2_A6msLcVOJamybkwqYruL6gfK8RPv4__r-JsyKCJQ76e8NrZeMQdeTiW3T2BTk49KPgd8JXrV_6iiyltwQBfmIqBFKJjgfI9aU1VJ5nJgXjEkOgmVSaX_z5DAcEFhblym_pjnJQfZJmcuF1AvfiqEYWFXdvMhFnO54_Qcy5YifdHwe_OB4PFgxmvosi3SMzyU1LRJfao9_g47xLRY2QnM"/>
-</div>
-<div class="flex-grow">
-<p class="text-xs font-bold font-headline">The Fluted Column</p>
-<p class="text-[10px] text-primary font-light">$124.00</p>
-</div>
-<button class="material-symbols-outlined text-xs opacity-30">close</button>
-</div>
-</div>
-<div class="pt-6 border-t border-outline-variant/15">
-<div class="flex justify-between mb-4 font-headline text-xs">
-<span>Subtotal</span>
-<span class="font-bold">$124.00</span>
-</div>
-<button class="w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
-                Proceed to Checkout
-            </button>
-</div>
+<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-start">
+        <div>
+            <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
+            <p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+        </div>
+        <button class="material-symbols-outlined text-xl">close</button>
+    </div>
+    <div class="flex-grow space-y-6 py-6 overflow-y-auto">
+        <!-- JS populated items -->
+    </div>
+    <div class="pt-6 border-t border-outline-variant/15">
+        <div class="flex justify-between mb-4 font-headline text-xs">
+            <span>Subtotal</span>
+            <span class="font-bold">$0.00</span>
+        </div>
+        <a href="checkout.html" class="flex justify-center w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
+            Proceed to Checkout
+        </a>
+    </div>
 </aside>
+
 <!-- Footer -->
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-12 w-full max-w-[1920px] mx-auto">

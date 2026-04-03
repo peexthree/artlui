@@ -1,22 +1,35 @@
-from bs4 import BeautifulSoup
+import re
 
-def fix_heading():
-    with open('/app/index.html', 'r', encoding='utf-8') as f:
-        soup = BeautifulSoup(f, 'html.parser')
+with open('catalog.html', 'r') as f:
+    content = f.read()
 
-    # Try to find the main heading (likely an h1 or something looking like a title)
-    h1 = soup.find('h1')
-    if h1:
-        h1.string = "Welcome to ArtLui Molds - Premium Architectural Forms"
-    else:
-        # Look for text that might be the title
-        for el in soup.find_all(['h2', 'div', 'p']):
-            if el.string and ('molds' in el.string.lower() or 'catalog' in el.string.lower()):
-                if 'class' in el.attrs and ('text-3xl' in el['class'] or 'text-4xl' in el['class']):
-                    el.string = "Welcome to ArtLui Molds - Premium Architectural Forms"
-                    break
+side_cart_html = """
+<!-- Side Cart (SideNavBar) -->
+<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-start">
+        <div>
+            <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
+            <p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+        </div>
+        <button class="material-symbols-outlined text-xl">close</button>
+    </div>
+    <div class="flex-grow space-y-6 py-6 overflow-y-auto">
+        <!-- JS populated items -->
+    </div>
+    <div class="pt-6 border-t border-outline-variant/15">
+        <div class="flex justify-between mb-4 font-headline text-xs">
+            <span>Subtotal</span>
+            <span class="font-bold">$0.00</span>
+        </div>
+        <a href="checkout.html" class="flex justify-center w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
+            Proceed to Checkout
+        </a>
+    </div>
+</aside>
+"""
 
-    with open('/app/index.html', 'w', encoding='utf-8') as f:
-        f.write(str(soup))
+old_side_cart = r'<!-- Side Cart \(SideNavBar\) -->.*?</aside>'
+content = re.sub(old_side_cart, side_cart_html, content, flags=re.DOTALL)
 
-fix_heading()
+with open('catalog.html', 'w') as f:
+    f.write(content)

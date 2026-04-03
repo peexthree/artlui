@@ -1,78 +1,43 @@
-import glob
-from bs4 import BeautifulSoup
 import re
-import uuid
 
-def process_file(filename):
-    with open(filename, 'r', encoding='utf-8') as f:
-        soup = BeautifulSoup(f, 'html.parser')
+files = ['catalog.html', 'index.html', 'checkout.html', 'order_confirmation.html', 'product_detail.html']
 
-    # 1. Inject script
-    if not soup.find('script', src='src/js/main.js'):
-        script = soup.new_tag('script', src='src/js/main.js')
-        if soup.body:
-            soup.body.append(script)
+for file in files:
+    with open(file, 'r') as f:
+        content = f.read()
 
-    # 2. Update catalog "Quick View" and products
-    if 'catalog.html' in filename or 'index.html' in filename:
-        for btn in soup.find_all('button', string=re.compile('Quick View', re.I)):
-            # Create link to product_detail.html
-            parent_a = soup.new_tag('a', href='product_detail.html')
-            btn.parent.insert_before(parent_a)
-            parent_a.append(btn.parent.extract())
+    # Update product_detail to ensure proper side cart
+    if file == 'product_detail.html':
+        side_cart_html = """
+<!-- Side Cart (SideNavBar) -->
+<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-start">
+        <div>
+            <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
+            <p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+        </div>
+        <button class="material-symbols-outlined text-xl">close</button>
+    </div>
+    <div class="flex-grow space-y-6 py-6 overflow-y-auto">
+        <!-- JS populated items -->
+    </div>
+    <div class="pt-6 border-t border-outline-variant/15">
+        <div class="flex justify-between mb-4 font-headline text-xs">
+            <span>Subtotal</span>
+            <span class="font-bold">$0.00</span>
+        </div>
+        <a href="checkout.html" class="flex justify-center w-full bg-primary-container text-on-primary-container py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
+            Proceed to Checkout
+        </a>
+    </div>
+</aside>
+"""
+        old_side_cart = r'<!-- SideNavBar \(Hidden Cart Trigger\) -->.*?</aside>'
+        content = re.sub(old_side_cart, side_cart_html, content, flags=re.DOTALL)
 
-    # 3. Update Product Detail "Add to Cart"
-    if 'product_detail.html' in filename:
-        # Find Add to Cart button
-        for btn in soup.find_all('button', string=re.compile('Add to Cart', re.I)):
-            btn['onclick'] = "addToCart({id: 'mold_1', name: 'Premium Architectural Mold', price: 150}); return false;"
-        for btn in soup.find_all('button', string=re.compile('Buy Now', re.I)):
-            btn.name = 'a'
-            btn['href'] = 'checkout.html'
+    # Update script tag correctly
+    if '<script src="src/js/main.js"></script>' not in content:
+        content = content.replace('</body>', '<script src="src/js/main.js"></script></body>')
 
-    # 4. Update checkout.html to have containers
-    if 'checkout.html' in filename:
-        # We need to find where the order summary is and inject the containers
-        # The summary is usually on the right side.
-        # Let's look for "Order Summary"
-        summary_h2 = soup.find(string=re.compile('Order Summary', re.I))
-        if summary_h2 and summary_h2.parent:
-            container_div = summary_h2.parent.parent
-            # Clear contents after the header
-            for el in container_div.find_all(recursive=False):
-                if el != summary_h2.parent and el.name != 'button': # keep header and place order btn
-                    el.decompose()
-
-            # Insert our containers
-            items_container = soup.new_tag('div', id='checkout-items-container')
-            items_container['class'] = 'mb-6'
-
-            totals_container = soup.new_tag('div', id='checkout-totals-container')
-
-            summary_h2.parent.insert_after(items_container)
-            items_container.insert_after(totals_container)
-
-        # Update Form action and Place Order button
-        form = soup.find('form')
-        if form:
-            form['action'] = 'order_confirmation.html'
-            form['onsubmit'] = "clearCart(); return true;"
-        else:
-            # Maybe place order is a button
-            for btn in soup.find_all('button', string=re.compile('Place Order', re.I)):
-                btn.name = 'a'
-                btn['href'] = 'order_confirmation.html'
-                btn['onclick'] = "clearCart();"
-
-    # 5. Order confirmation
-    if 'order_confirmation.html' in filename:
-        for a in soup.find_all('a', string=re.compile('Continue Shopping', re.I)):
-            a['href'] = 'catalog.html'
-
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(str(soup))
-    print(f"Processed {filename}")
-
-for f in glob.glob('/app/*.html'):
-    if 'design_system' not in f:
-        process_file(f)
+    with open(file, 'w') as f:
+        f.write(content)

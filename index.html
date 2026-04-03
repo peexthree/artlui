@@ -272,37 +272,30 @@
 </div>
 </div>
 </main>
+
 <!-- Side Cart (SideNavBar) -->
-<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full lg:hidden">
-<div class="flex justify-between items-start">
-<div>
-<h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
-<p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
-</div>
-<button class="material-symbols-outlined text-xl">close</button>
-</div>
-<div class="flex-grow space-y-6 py-6 overflow-y-auto">
-<div class="flex items-center space-x-4">
-<div class="w-14 h-18 bg-surface-container rounded-sm overflow-hidden">
-<img data-alt="small thumbnail of a silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Eu9LujnuDG1_yArLRRU_38lMSkwN7ko-GQ_8xj0J2Gxi5tzo3kt0j2_A6msLcVOJamybkwqYruL6gfK8RPv4__r-JsyKCJQ76e8NrZeMQdeTiW3T2BTk49KPgd8JXrV_6iiyltwQBfmIqBFKJjgfI9aU1VJ5nJgXjEkOgmVSaX_z5DAcEFhblym_pjnJQfZJmcuF1AvfiqEYWFXdvMhFnO54_Qcy5YifdHwe_OB4PFgxmvosi3SMzyU1LRJfao9_g47xLRY2QnM"/>
-</div>
-<div class="flex-grow">
-<p class="text-xs font-bold font-headline">The Fluted Column</p>
-<p class="text-[10px] text-primary font-light">$124.00</p>
-</div>
-<button class="material-symbols-outlined text-xs opacity-30">close</button>
-</div>
-</div>
-<div class="pt-6 border-t border-outline-variant/15">
-<div class="flex justify-between mb-4 font-headline text-xs">
-<span>Subtotal</span>
-<span class="font-bold">$124.00</span>
-</div>
-<button class="w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
-                Proceed to Checkout
-            </button>
-</div>
+<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full lg:translate-x-full transition-transform duration-300">
+    <div class="flex justify-between items-start">
+        <div>
+            <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
+            <p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+        </div>
+        <button class="material-symbols-outlined text-xl">close</button>
+    </div>
+    <div class="flex-grow space-y-6 py-6 overflow-y-auto">
+        <!-- JS populated items -->
+    </div>
+    <div class="pt-6 border-t border-outline-variant/15">
+        <div class="flex justify-between mb-4 font-headline text-xs">
+            <span>Subtotal</span>
+            <span class="font-bold">$0.00</span>
+        </div>
+        <a href="checkout.html" class="flex justify-center w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
+            Proceed to Checkout
+        </a>
+    </div>
 </aside>
+
 <!-- Footer -->
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-12 w-full max-w-[1920px] mx-auto">
