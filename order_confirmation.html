@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Order Confirmed | ArtLui Molds</title>
+<title>Order Confirmed | Lui molds</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -86,12 +86,76 @@
             backdrop-filter: blur(20px);
         }
     </style>
+
+<style id="preloader-style">
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #faf9f6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+        .dark #preloader { background-color: #1a1c1a; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3); /* D4AF37 */
+            border-radius: 50%;
+            border-top-color: #d4af37;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        body.preloader-active {
+            overflow: hidden;
+        }
+    </style>
+
 </head>
-<body class="bg-background text-on-background font-body selection:bg-primary-container/30">
+<body class="bg-background text-on-background font-body selection:bg-primary-container/30 preloader-active">
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] dark:bg-[#1A1C1A] z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col px-6 py-8">
+    <div class="flex justify-between items-center mb-12">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">Lui molds</a>
+        <button id="close-mobile-menu" class="text-[#1A1C1A] dark:text-[#FAF9F6]">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col space-y-8 font-headline font-light tracking-tight text-xl">
+        <a href="catalog.html" class="text-[#735C00] dark:text-[#D4AF37] border-b border-[#D4AF37]/30 pb-2">Catalog</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">New Arrivals</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Best Sellers</a>
+        <a href="#support" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Support/Care</a>
+    </div>
+    <div class="mt-auto pb-8">
+        <div class="flex gap-6">
+            <a href="checkout.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Cart</span>
+            </a>
+            <a href="index.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">person</span>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
 <!-- TopNavBar: Fixed Shell -->
 <nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-[#1A1C1A]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
-<div class="flex justify-between items-center px-12 py-6 max-w-[1920px] mx-auto">
-<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6]">ArtLui Molds</div>
+<div class="flex justify-between items-center px-5 md:px-12 py-6 max-w-[1920px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6]">Lui molds</div>
 <div class="hidden md:flex items-center space-x-10 font-['Manrope'] font-light tracking-tight">
 <a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html">Catalog</a>
 <a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">New Arrivals</a>
@@ -102,11 +166,16 @@
 <button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="shopping_bag">shopping_bag<sup class="bg-primary text-on-primary rounded-full px-1.5 py-0.5 text-[10px] ml-1" id="cart-count">0</sup></button>
 <button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="person">person</button>
 </div>
+
+<button id="mobile-menu-btn" class="md:hidden text-[#1A1C1A] dark:text-[#FAF9F6] focus:outline-none transition-transform active:scale-95 z-50">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+
 </div>
 </nav>
-<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+<main class="pt-32 pb-24 px-6 md:px-5 md:px-12 max-w-7xl mx-auto">
 <!-- Hero Section: Asymmetric Layout -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-24">
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:p-12 items-end mb-24">
 <div class="lg:col-span-7">
 <span class="font-label font-bold text-xs uppercase tracking-[0.2em] text-primary mb-4 block">Order Successful</span>
 <h1 class="font-headline text-5xl md:text-7xl font-light tracking-tighter leading-[1.1] text-on-surface mb-8">
@@ -115,7 +184,7 @@
 <p class="text-lg text-on-surface-variant max-w-xl leading-relaxed mb-10">
                     Your request for our artisanal molds has been received. We are currently preparing your collection with the same precision you bring to your craft.
                 </p>
-<div class="flex flex-wrap gap-12">
+<div class="flex flex-wrap gap-6 md:p-12">
 <div>
 <p class="font-label text-[10px] uppercase tracking-widest text-outline mb-1">Order Number</p>
 <p class="font-headline font-bold text-xl text-on-surface">AL-2948502</p>
@@ -198,7 +267,7 @@
 <ul class="space-y-4 text-xs font-medium text-on-surface/80">
 <li class="flex gap-3">
 <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">1</span>
-<span>Check your inbox for "Payment Request from ArtLui".</span>
+<span>Check your inbox for "Payment Request from Lui molds".</span>
 </li>
 <li class="flex gap-3">
 <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">2</span>
@@ -262,10 +331,10 @@
 </aside>
 <!-- Footer -->
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-[1920px] mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-12 py-16 w-full max-w-[1920px] mx-auto">
 <div class="col-span-2 md:col-span-1">
-<div class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] mb-6">ArtLui Molds</div>
-<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] opacity-50">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+<div class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] mb-6">Lui molds</div>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] opacity-50">© 2024 Lui molds. Crafted for Artistry.</p>
 </div>
 <div class="flex flex-col space-y-3 font-['Inter'] text-xs font-medium uppercase tracking-widest">
 <a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Shipping Policy</a>

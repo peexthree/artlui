@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SILICONE STUDIO | ArtLui Molds</title>
+<title>SILICONE STUDIO | Lui molds</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -97,8 +97,37 @@
     </style>
 </head>
 <body class="bg-background text-on-background font-body selection:bg-primary-container/30">
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] dark:bg-[#1A1C1A] z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col px-6 py-8">
+    <div class="flex justify-between items-center mb-12">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">Lui molds</a>
+        <button id="close-mobile-menu" class="text-[#1A1C1A] dark:text-[#FAF9F6]">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col space-y-8 font-headline font-light tracking-tight text-xl">
+        <a href="catalog.html" class="text-[#735C00] dark:text-[#D4AF37] border-b border-[#D4AF37]/30 pb-2">Catalog</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">New Arrivals</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Best Sellers</a>
+        <a href="#support" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Support/Care</a>
+    </div>
+    <div class="mt-auto pb-8">
+        <div class="flex gap-6">
+            <a href="checkout.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Cart</span>
+            </a>
+            <a href="index.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">person</span>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md flex justify-between items-center px-12 py-6 max-w-full shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md flex justify-between items-center px-5 md:px-12 py-6 max-w-full shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
 <div class="flex items-center gap-4">
 <span class="text-xl font-bold tracking-[0.2em] text-[#1A1C1A]">SILICONE STUDIO</span>
 </div>
@@ -118,7 +147,7 @@
 <!-- SideNavBar (Quick View / Cart Shell Drawer) - Positioned hidden by default in real app, shown here as structure -->
 <aside class="fixed right-0 h-full w-full md:w-[450px] bg-[#FAF9F6] shadow-[-10px_0_40px_rgba(26,28,26,0.06)] z-[60] flex flex-col translate-x-full transition-transform duration-500 ease-out" id="cart-drawer">
 <div class="flex flex-col h-full p-10">
-<div class="flex justify-between items-center mb-12">
+<div class="flex justify-between items-center mb-8 md:mb-12">
 <div>
 <h2 class="text-lg font-semibold text-[#1A1C1A] font-headline">Artisan Selection</h2>
 <p class="text-xs text-outline font-label uppercase tracking-widest mt-1">Curated for your craft</p>
@@ -155,7 +184,7 @@
 </div>
 </div>
 </aside>
-<main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+<main class="pt-32 pb-20 px-6 md:px-5 md:px-12 max-w-7xl mx-auto">
 <!-- Hero Section -->
 <header class="mb-20 space-y-4 max-w-3xl">
 <span class="text-primary-container font-label font-bold uppercase tracking-[0.3em] text-xs">Exquisite Artistry</span>
@@ -228,9 +257,9 @@
 <p class="text-outline max-w-sm">Every mold in our collection is hand-vetted for structural integrity and surface precision.</p>
 <a class="inline-block text-primary font-bold uppercase tracking-widest text-xs border-b-2 border-primary-container pb-1 hover:text-primary-container transition-colors" href="#">Learn Our Process</a>
 </div>
-<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container/5 rounded-full blur-3xl"></div>
+<div class="absolute -right-20 -bottom-20 w-full max-w-[320px] h-80 bg-primary-container/5 rounded-full blur-3xl"></div>
 </div>
-<div class="md:col-span-5 aspect-square bg-on-background rounded-md flex items-center justify-center p-12 text-center text-surface group hover:bg-primary transition-colors duration-500">
+<div class="md:col-span-5 aspect-square bg-on-background rounded-md flex items-center justify-center p-6 md:p-12 text-center text-surface group hover:bg-primary transition-colors duration-500">
 <div class="space-y-6">
 <span class="material-symbols-outlined text-5xl text-primary-container font-variation-settings-'FILL'-1">auto_awesome</span>
 <h3 class="text-2xl font-headline font-light">Custom Commission</h3>
@@ -241,7 +270,7 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] flex flex-col md:flex-row justify-between items-center px-12 py-12 mt-20">
+<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] flex flex-col md:flex-row justify-between items-center px-5 md:px-12 py-8 md:py-12 mt-20">
 <div class="mb-8 md:mb-0">
 <span class="text-sm font-black text-[#1A1C1A] tracking-widest">SILICONE STUDIO</span>
 <p class="text-[10px] text-[#7F7663] font-medium mt-2 tracking-widest">© 2024 SILICONE STUDIO</p>
@@ -260,7 +289,7 @@
 <img class="w-full h-full object-cover" data-alt="High-resolution close-up of a translucent silicone mold showing architectural geometric details in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRtFhwmG6iMUMIxAdh4VgV6mxE21lWAu93AT5ni-CqMScj3pw-z2m18c4UdafQgYwn_gMPd7jQl7RBM2g8t5vBhubsysWBh9vIRf1gBxyRHH_hi0q8u_1CB4zDXrBVpfnqTXoeCJp94qDID5hdFnSTV3Qq_f60G_Oy1vrobh0QroMrxJz5rtYscYGhTCc-7_gcST3lu_lsIm6lsRTtfnyxHJgkuZyMFq-42WwUftg6y2H3GcmUEogTJQtNB32mRSMjGBaFTiyqfmQ"/>
 <button class="absolute top-6 left-6 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg material-symbols-outlined">chevron_left</button>
 </div>
-<div class="w-1/2 p-12 flex flex-col justify-center">
+<div class="w-1/2 p-6 md:p-12 flex flex-col justify-center">
 <div class="mb-8">
 <span class="text-primary-container font-bold uppercase tracking-widest text-[10px]">In Stock</span>
 <h2 class="text-3xl font-headline font-light tracking-tight text-on-surface mt-2">Architectural Hex Mold</h2>
