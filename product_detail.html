@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e5",
+                    "surface-container": "#efeeeb",
+                    "tertiary-container": "#d3ad65",
+                    "background": "#faf9f6",
+                    "outline": "#7f7663",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary-fixed": "#261900",
+                    "tertiary-fixed": "#ffdea5",
+                    "surface-variant": "#e3e2e0",
+                    "surface-container-highest": "#e3e2e0",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-dim": "#dbdad7",
+                    "tertiary": "#775a19",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#f2f1ee",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#1a1c1a",
+                    "primary": "#735c00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "on-primary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#d4af37",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#faf9f6",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-tint": "#735c00",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-container": "#5b4000",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "secondary-container": "#e2dfde",
+                    "inverse-primary": "#e9c349",
+                    "on-surface-variant": "#4d4635",
+                    "on-secondary-container": "#636262",
+                    "surface-container-low": "#f4f3f1",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#faf9f6",
+                    "outline-variant": "#d0c5af",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<div class="flex justify-between items-center px-12 py-3 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-3">
+<svg class="h-10 w-10 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+  <path d="M2 17l10 5 10-5"></path>
+  <path d="M2 12l10 5 10-5"></path>
+</svg>
+<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] font-headline">ArtLui Molds</div>
+</div>
+<nav class="hidden md:flex items-center space-x-10 font-headline font-light tracking-tight">
+<a class="text-[#735C00] border-b-2 border-[#D4AF37] pb-1 hover:text-[#D4AF37] transition-colors duration-300" href="#">Catalog</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Best Sellers</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Support/Care</a>
+</nav>
+<div class="flex items-center space-x-6 text-[#735C00]">
+<button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors">shopping_bag</button>
+<button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors">person</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-16">
+<!-- Product Section: Curated Asymmetry -->
+<section class="max-w-[1920px] mx-auto px-12 lg:grid lg:grid-cols-12 lg:gap-16">
+<!-- Gallery: Magazine Style -->
+<div class="lg:col-span-7 space-y-8">
+<div class="relative aspect-[4/5] overflow-hidden rounded-md bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Close-up of a highly detailed silicone mold with delicate organic petal textures, soft neutral lighting highlighting the intricate ridges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxb6O2GDvqt7BNMAMkb4Y8ARouFDiS6XwhYa2zyQGgSotdB9icL-SXQd3W3oATblfpKBfvJMH0V5mep4v-a2Q7doUpv3TtLlpk6oi8HvO5qP_d2EDZCXu5F7nKvc_rsOxdjvPF75BwqacjSpwxoHeHKgDgj2K3y56AAbt6yVFtdK_DV_L9wUtVMslP7u_9XuMvrgWOLVRXFyGeSuApeQVewtu7jT6USedQFLekiKgCkJocZXePKmDsvu0pnmz4HBkAXGPxJnm3sRU"/>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Artisanal clay plate cast from a petal mold sitting on a linen cloth, warm afternoon sunlight casting long soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCERHjZ8vlkwWqr8kEkpDDh8S5X7s97D3_FNzUglBNyE1CYOxaihQ17ltRGNLjpz5_ZACsjjjcT5ZYcaMEkn2N3yi3uhfqTdkdgawlb7ZuQvW-Fw8bEDPf8XhAzHe-7tYibqqMuVhmP5TI7NS_6p6qv0qm-lo7cUUWLs1cvronNJyPQJsnYbspYwZMb7lR1uJky_VD1Omaqwfh9zq5NQDsZGmS7JYBShgrh5sOaqInwPaGp3ZyZgJ8n3SUcgqex2QoAkhvgf6gs_Eo"/>
+</div>
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Macro detail of translucent platinum grade silicone material showing flexible edge and precise petal vein indentations" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Rib5kgFcBnQkzCWhUYOwduJE_eyZC39FJaZ__qyCfzhlXpF_DFHzTa7ROeVGy5qSd1SW014aLGUE9TA7MY-wt-WaSrrSa-7Zycp2dsjmUMXWCnYCGfsUH1nl8snbTJmf65jaBeWw9-JeBEJqdpSe8sf5V7yUz045VjqFxQ0Ji1DVJWDLaPpywIRvhSpWSmQSBaCUYjBgBY2pl-4OIEDa_hdQFK3TxFrnnv-bqeg24wuw_PWQysTN5cTDLOYEeE0Ht6wp-7SMuOo"/>
+</div>
+</div>
+</div>
+<!-- Content Panel: Warm Minimalism -->
+<div class="lg:col-span-5 mt-12 lg:mt-0 flex flex-col justify-start">
+<div class="sticky top-40">
+<span class="font-label text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4 block">Botanical Series No. 04</span>
+<h1 class="font-headline text-5xl font-light tracking-tight text-on-background mb-6 leading-tight">Petal Texture Plate</h1>
+<p class="font-body text-lg text-secondary leading-relaxed mb-10 max-w-md">
+                        A masterful reproduction of organic flora. This texture plate captures the ephemeral beauty of a falling peony petal, allowing artisans to transfer lifelike veins and delicate curves to ceramic, wax, or resin.
+                    </p>
+<div class="flex items-baseline space-x-4 mb-12">
+<span class="text-3xl font-headline font-normal text-on-background">$124.00</span>
+<span class="text-sm font-label text-outline uppercase tracking-widest">In Stock / Limited Edition</span>
+</div>
+<!-- CTA Section -->
+<div class="space-y-4 mb-12">
+<button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center space-x-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span>Add to Collection</span>
+</button>
+<p class="text-center text-xs font-label text-outline italic">Includes complimentary Curator's Guide for platinum silicone care.</p>
+</div>
+<!-- Specs: Tonal Layering -->
+<div class="space-y-6">
+<div class="border-t border-outline-variant/15 pt-6">
+<h3 class="font-label text-[10px] font-bold uppercase tracking-[0.15em] text-on-background mb-4">Artisanal Specifications</h3>
+<dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+<div class="flex justify-between border-b border-outline-variant/5 pb-2">
+<dt class="text-outline">Dimensions</dt>
+<dd class="text-on-background font-medium">180mm x 145mm x 12mm</dd>
+</div>
+<div class="flex justify-between border-b border-outline-variant/5 pb-2">
+<dt class="text-outline">Material</dt>
+<dd class="text-on-background font-medium">Platinum Grade Silicone</dd>
+</div>
+<div class="flex justify-between border-b border-outline-variant/5 pb-2">
+<dt class="text-outline">Heat Resistance</dt>
+<dd class="text-on-background font-medium">230°C (446°F)</dd>
+</div>
+<div class="flex justify-between border-b border-outline-variant/5 pb-2">
+<dt class="text-outline">Shore Hardness</dt>
+<dd class="text-on-background font-medium">25A</dd>
+</div>
+</dl>
+</div>
+<div class="bg-surface-container-low p-6 rounded-md">
+<div class="flex items-center space-x-3 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">eco</span>
+<h4 class="font-headline font-bold text-xs">Care Instructions</h4>
+</div>
+<p class="text-[13px] text-secondary leading-relaxed">
+                                Wash with mild pH-neutral soap and warm water. Air dry completely before storage to preserve texture fidelity.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Often Paired With: Bento Grid Style -->
+<section class="max-w-[1920px] mx-auto px-12 mt-40">
+<div class="mb-10">
+<h2 class="font-headline text-3xl font-light tracking-tight text-on-background">Often paired with</h2>
+<div class="w-24 h-0.5 bg-primary-container mt-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Item 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-md bg-surface-container-low transition-all duration-500 group-hover:shadow-[0_10px_40px_rgba(26,28,26,0.06)]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Handcrafted bamboo sculpting tools arranged neatly on a clean workshop table, soft minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD67vHmjHS-4wPMyChYcQnzjnM6Zc--TwRu_0fasSrxZ43lQYQk61UihFo2LKgOwL5Dm5lmt-BbBtw0QC_dcUeIOzvkEd0JiUMzR4CjYAevbUMs6AUcp7PJ4DVb3frcmo_1GU3DiBJ2zzeO2BFLpJSbHz-CFgX6mJ6nAZoss-1l7KTCXrSXQGLRBEjbcbGu9wqi_PmT2BWBxC0xouQp_4kz_5t-gItDL99Wj16cYI-ukLe_oK6tX7HUIJF5JcXzikc5nLZAfFi9eJY"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="mt-6">
+<h4 class="font-headline font-bold text-lg">Curator Tool Set</h4>
+<p class="text-outline text-sm uppercase tracking-widest mt-1">$48.00</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-md bg-surface-container-low transition-all duration-500 group-hover:shadow-[0_10px_40px_rgba(26,28,26,0.06)]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High quality white porcelain clay slab being prepared for molding, clean white-on-white composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsq5i0QZU9NZzFbGv-NjVKzGk7CpBiACJ9_JBLmt4CMJMlxhJrkN_HMTFndn4T-aDSAG9Q_D9eO9KiFMwBRh4u7sgbLPhZaKsYhEznlSnRj4jCfcbeOQJyPbvjRFG82H6KXFr6PNTAJDnziTfcHuTLur04L1QBNr-4Pjzgddqpd2eklNbXzEpDECmiV1HV3ziCwvruXNuQxR_mlNRjAzTJAt5iQkocCw0YgMZxDvd494ZcC7-VCgnHWJXIeLgWiy4KeXc68SF1YKM"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="mt-6">
+<h4 class="font-headline font-bold text-lg">Artisan Porcelain Clay</h4>
+<p class="text-outline text-sm uppercase tracking-widest mt-1">$32.00</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden rounded-md bg-surface-container-low transition-all duration-500 group-hover:shadow-[0_10px_40px_rgba(26,28,26,0.06)]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Matte ceramic glaze bottles with gold labels sitting on a marble shelf, luxury studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC94z_pkeXFX-C2QAoloriN2ohntlH1Boc3cf-iIah1faRqPZkELX1haZedlVg2zfh4agiqsYmR0s60CJ9edVuX_Bkjk4HO51zohInKHW2g_zVUcncQLhPvGNHbKljoKzA0vVbGs5YQ5ZQHtSvPpt9vfIBSOktnikuuBB32EtSekeSF8WWuWXog0r8kaxQI-i0jGB1fBLMuUvJUEHZidG1rU5skWp3Eu-Db9XgwgbphOHdks3r7ACB4oxJuoiwKNKOnH-pghcX5LP4"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="mt-6">
+<h4 class="font-headline font-bold text-lg">Matte Pearl Glaze</h4>
+<p class="text-outline text-sm uppercase tracking-widest mt-1">$22.00</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-[1920px] mx-auto">
+<div class="col-span-2">
+<div class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline mb-6">ArtLui Molds</div>
+<p class="font-body text-sm text-secondary max-w-xs mb-8">Elevating the standard of artisanal craft through precision-engineered silicone tools.</p>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label text-xs font-bold uppercase tracking-widest text-primary mb-2">Service</h5>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Shipping Policy</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Returns &amp; Exchanges</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Payoneer Info</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label text-xs font-bold uppercase tracking-widest text-primary mb-2">Legal &amp; Contact</h5>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline hover:underline-offset-4 transition-all" href="#">Contact Boutique</a>
+</div>
+</div>
+</footer>
+<!-- SideNavBar (Hidden Cart Trigger) -->
+<aside class="fixed right-0 h-full w-96 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 translate-x-full transition-transform duration-500 shadow-[0_10px_40px_rgba(26,28,26,0.06)]" id="cart-drawer">
+<div class="flex flex-col p-8 h-full">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-lg font-bold text-[#D4AF37] font-headline">Your Selection</h2>
+<p class="font-['Inter'] text-sm leading-relaxed text-secondary">Artisanal Mold Collection</p>
+</div>
+<button class="material-symbols-outlined" onclick="document.getElementById('cart-drawer').classList.add('translate-x-full')">close</button>
+</div>
+<div class="flex-grow space-y-6 overflow-y-auto">
+<!-- Cart Item Mock -->
+<div class="flex space-x-4 items-center p-4 rounded-md hover:bg-[#F4F3F1] transition-all group">
+<div class="w-16 h-16 rounded bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small thumbnail of the petal mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO39uHEoyjthr9Q8u1tBvJY-Oo2fl2snlArenJVCFF2MsO9kpug0xuBWcXcV5MYGZjAyRmfuihSpVanPdgqnQN4snt36vhGCcHqCUZTTVxBGsBU9TvMEhy1DgM74o3xzBe2v8WXz0UuE6om_reqazhE9RCflP9QWSt-xr6dg18MrHRLB3IcfsgsmZ3zvphCQ1bTl4SYeRxlDNPhNivtu4TGVuS-GWo5RP8XBVzryka3KttO8gBylt_7imtsP5EbIDfpWNnCifp_T0"/>
+</div>
+<div class="flex-grow">
+<h4 class="text-sm font-bold">Petal Texture Plate</h4>
+<p class="text-xs text-outline">$124.00</p>
+</div>
+<span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity">delete</span>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/15 space-y-4">
+<div class="flex justify-between items-center font-headline font-bold">
+<span>Subtotal</span>
+<span>$124.00</span>
+</div>
+<button class="bg-primary-container w-full py-4 rounded-md text-on-primary-container font-headline font-bold text-sm tracking-widest active:translate-x-1 duration-200">
+                    Proceed to Checkout
+                </button>
+</div>
+</div>
+</aside>
+</body></html>
