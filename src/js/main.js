@@ -1,4 +1,4 @@
-const CART_KEY = 'artlui_cart';
+const CART_KEY = 'lui_molds_cart';
 
 function getCart() {
     const cart = localStorage.getItem(CART_KEY);
@@ -287,5 +287,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSideCarts();
     if (window.location.pathname.includes('checkout')) {
         renderCheckout();
+    }
+});
+
+
+// Preloader logic
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        document.body.classList.remove('preloader-active');
+        setTimeout(() => {
+            preloader.remove();
+        }, 600);
+    }
+});
+
+// Mobile Menu logic
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && closeMobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+
+        closeMobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = '';
+        });
     }
 });

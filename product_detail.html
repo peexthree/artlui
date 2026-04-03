@@ -84,18 +84,82 @@
             -webkit-backdrop-filter: blur(20px);
         }
     </style>
+
+<style id="preloader-style">
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #faf9f6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+        .dark #preloader { background-color: #1a1c1a; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3); /* D4AF37 */
+            border-radius: 50%;
+            border-top-color: #d4af37;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        body.preloader-active {
+            overflow: hidden;
+        }
+    </style>
+
 </head>
-<body class="bg-background text-on-background font-body antialiased">
+<body class="bg-background text-on-background font-body antialiased preloader-active">
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] dark:bg-[#1A1C1A] z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col px-6 py-8">
+    <div class="flex justify-between items-center mb-12">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">Lui molds</a>
+        <button id="close-mobile-menu" class="text-[#1A1C1A] dark:text-[#FAF9F6]">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col space-y-8 font-headline font-light tracking-tight text-xl">
+        <a href="catalog.html" class="text-[#735C00] dark:text-[#D4AF37] border-b border-[#D4AF37]/30 pb-2">Catalog</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">New Arrivals</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Best Sellers</a>
+        <a href="#support" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Support/Care</a>
+    </div>
+    <div class="mt-auto pb-8">
+        <div class="flex gap-6">
+            <a href="checkout.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Cart</span>
+            </a>
+            <a href="index.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">person</span>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
 <!-- TopNavBar -->
 <header class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
-<div class="flex justify-between items-center px-12 py-3 max-w-[1920px] mx-auto">
+<div class="flex justify-between items-center px-5 md:px-12 py-3 max-w-[1920px] mx-auto">
 <div class="flex items-center gap-3">
 <svg class="h-10 w-10 text-[#D4AF37]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
 <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
 <path d="M2 17l10 5 10-5"></path>
 <path d="M2 12l10 5 10-5"></path>
 </svg>
-<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] font-headline" href="index.html">ArtLui Molds</a>
+<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] font-headline" href="index.html">Lui molds</a>
 </div>
 <nav class="hidden md:flex items-center space-x-10 font-headline font-light tracking-tight">
 <a class="text-[#735C00] border-b-2 border-[#D4AF37] pb-1 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html">Catalog</a>
@@ -107,11 +171,16 @@
 <button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors">shopping_bag</button>
 <button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors">person</button>
 </div>
+
+<button id="mobile-menu-btn" class="md:hidden text-[#1A1C1A] dark:text-[#FAF9F6] focus:outline-none transition-transform active:scale-95 z-50">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+
 </div>
 </header>
 <main class="pt-32 pb-16">
 <!-- Product Section: Curated Asymmetry -->
-<section class="max-w-[1920px] mx-auto px-12 lg:grid lg:grid-cols-12 lg:gap-16">
+<section class="max-w-[1920px] mx-auto px-5 md:px-12 lg:grid lg:grid-cols-12 lg:gap-16">
 <!-- Gallery: Magazine Style -->
 <div class="lg:col-span-7 space-y-8">
 <div class="relative aspect-[4/5] overflow-hidden rounded-md bg-surface-container-low">
@@ -134,12 +203,12 @@
 <p class="font-body text-lg text-secondary leading-relaxed mb-10 max-w-md">
                         A masterful reproduction of organic flora. This texture plate captures the ephemeral beauty of a falling peony petal, allowing artisans to transfer lifelike veins and delicate curves to ceramic, wax, or resin.
                     </p>
-<div class="flex items-baseline space-x-4 mb-12">
+<div class="flex items-baseline space-x-4 mb-8 md:mb-12">
 <span class="text-3xl font-headline font-normal text-on-background">$124.00</span>
 <span class="text-sm font-label text-outline uppercase tracking-widest">In Stock / Limited Edition</span>
 </div>
 <!-- CTA Section -->
-<div class="space-y-4 mb-12">
+<div class="space-y-4 mb-8 md:mb-12">
 <button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center space-x-3" onclick="addToCart({id: 'petal_texture_plate', name: 'Petal Texture Plate', price: 124.00}); return false;">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
 <span>Add to Collection</span>
@@ -183,7 +252,7 @@
 </div>
 </section>
 <!-- Often Paired With: Bento Grid Style -->
-<section class="max-w-[1920px] mx-auto px-12 mt-40">
+<section class="max-w-[1920px] mx-auto px-5 md:px-12 mt-40">
 <div class="mb-10">
 <h2 class="font-headline text-3xl font-light tracking-tight text-on-background">Often paired with</h2>
 <div class="w-24 h-0.5 bg-primary-container mt-4"></div>
@@ -227,11 +296,11 @@
 </main>
 <!-- Footer -->
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-[1920px] mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-12 py-16 w-full max-w-[1920px] mx-auto">
 <div class="col-span-2">
-<a class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline mb-6" href="index.html">ArtLui Molds</a>
+<a class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline mb-6" href="index.html">Lui molds</a>
 <p class="font-body text-sm text-secondary max-w-xs mb-8">Elevating the standard of artisanal craft through precision-engineered silicone tools.</p>
-<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50">© 2024 Lui molds. Crafted for Artistry.</p>
 </div>
 <div class="flex flex-col space-y-4">
 <h5 class="font-label text-xs font-bold uppercase tracking-widest text-primary mb-2">Service</h5>
@@ -249,7 +318,7 @@
 </footer>
 
 <!-- Side Cart (SideNavBar) -->
-<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
+<aside class="fixed right-0 h-full w-full max-w-[320px] z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
     <div class="flex justify-between items-start">
         <div>
             <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>

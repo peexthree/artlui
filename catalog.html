@@ -87,12 +87,76 @@
             color: #1a1c1a;
         }
     </style>
+
+<style id="preloader-style">
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #faf9f6;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+        }
+        .dark #preloader { background-color: #1a1c1a; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3); /* D4AF37 */
+            border-radius: 50%;
+            border-top-color: #d4af37;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        body.preloader-active {
+            overflow: hidden;
+        }
+    </style>
+
 </head>
-<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container preloader-active">
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] dark:bg-[#1A1C1A] z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col px-6 py-8">
+    <div class="flex justify-between items-center mb-12">
+        <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">Lui molds</a>
+        <button id="close-mobile-menu" class="text-[#1A1C1A] dark:text-[#FAF9F6]">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col space-y-8 font-headline font-light tracking-tight text-xl">
+        <a href="catalog.html" class="text-[#735C00] dark:text-[#D4AF37] border-b border-[#D4AF37]/30 pb-2">Catalog</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">New Arrivals</a>
+        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Best Sellers</a>
+        <a href="#support" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Support/Care</a>
+    </div>
+    <div class="mt-auto pb-8">
+        <div class="flex gap-6">
+            <a href="checkout.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <span>Cart</span>
+            </a>
+            <a href="index.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
+                <span class="material-symbols-outlined">person</span>
+                <span>Account</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
 <!-- Top Navigation Bar -->
 <nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-[#1A1C1A]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
-<div class="flex justify-between items-center px-12 py-5 max-w-[1920px] mx-auto">
-<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase" href="index.html">ArtLui Molds</a>
+<div class="flex justify-between items-center px-5 md:px-12 py-5 max-w-[1920px] mx-auto">
+<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase" href="index.html">Lui molds</a>
 <div class="hidden md:flex items-center space-x-12 font-headline font-light tracking-tight">
 <a class="text-[#735C00] dark:text-[#D4AF37] border-b-2 border-[#D4AF37] pb-1 transition-colors duration-300" href="catalog.html">Catalog</a>
 <a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">New Arrivals</a>
@@ -107,12 +171,17 @@
 <span class="material-symbols-outlined">person</span>
 </a>
 </div>
+
+<button id="mobile-menu-btn" class="md:hidden text-[#1A1C1A] dark:text-[#FAF9F6] focus:outline-none transition-transform active:scale-95 z-50">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+
 </div>
 </nav>
 <!-- Main Content Wrapper -->
-<main class="pt-24 pb-16 px-12 max-w-[1920px] mx-auto min-h-screen">
+<main class="pt-24 pb-16 px-5 md:px-12 max-w-[1920px] mx-auto min-h-screen">
 <!-- Header Section -->
-<header class="mb-12 text-center md:text-left">
+<header class="mb-8 md:mb-12 text-center md:text-left">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
 <div class="max-w-2xl">
 <span class="font-label text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-3 block">The Collection</span>
@@ -131,7 +200,7 @@
 </div>
 </div>
 </header>
-<div class="flex flex-col lg:flex-row gap-12">
+<div class="flex flex-col lg:flex-row gap-6 md:p-12">
 <!-- Filters Sidebar -->
 <aside class="w-full lg:w-60 flex-shrink-0">
 <div class="sticky top-24 space-y-8">
@@ -273,7 +342,7 @@
 </div>
 </div>
 <!-- Pagination -->
-<div class="mt-16 flex items-center justify-center space-x-6">
+<div class="mt-10 md:mt-16 flex items-center justify-center space-x-6">
 <button class="font-headline text-xs font-bold uppercase tracking-widest opacity-20 cursor-not-allowed">Previous</button>
 <div class="flex space-x-5">
 <button class="font-headline text-xs font-bold text-primary">01</button>
@@ -287,7 +356,7 @@
 </main>
 
 <!-- Side Cart (SideNavBar) -->
-<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
+<aside class="fixed right-0 h-full w-full max-w-[320px] z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full transition-transform duration-300">
     <div class="flex justify-between items-start">
         <div>
             <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
@@ -311,9 +380,9 @@
 
 <!-- Footer -->
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-12 w-full max-w-[1920px] mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-12 py-8 md:py-12 w-full max-w-[1920px] mx-auto">
 <div class="col-span-2">
-<a class="text-lg font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase tracking-tighter mb-4" href="index.html">ArtLui Molds</a>
+<a class="text-lg font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase tracking-tighter mb-4" href="index.html">Lui molds</a>
 <p class="text-[9px] font-body text-on-surface/50 leading-relaxed max-w-xs uppercase tracking-widest">
                     Crafted for Artistry. Precision silicone tools for independent sculptors and industrial designers.
                 </p>
@@ -335,8 +404,8 @@
 </ul>
 </div>
 </div>
-<div class="px-12 py-6 border-t border-outline-variant/10 text-center">
-<p class="font-['Inter'] text-[9px] font-medium uppercase tracking-[0.3em] opacity-30">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+<div class="px-5 md:px-12 py-6 border-t border-outline-variant/10 text-center">
+<p class="font-['Inter'] text-[9px] font-medium uppercase tracking-[0.3em] opacity-30">© 2024 Lui molds. Crafted for Artistry.</p>
 </div>
 </footer>
 <script src="src/js/main.js"></script></body></html>
