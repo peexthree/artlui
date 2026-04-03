@@ -90,18 +90,18 @@
 <header class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
 <div class="flex justify-between items-center px-12 py-3 max-w-[1920px] mx-auto">
 <div class="flex items-center gap-3">
-<svg class="h-10 w-10 text-[#D4AF37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-  <path d="M2 17l10 5 10-5"></path>
-  <path d="M2 12l10 5 10-5"></path>
+<svg class="h-10 w-10 text-[#D4AF37]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+<path d="M2 17l10 5 10-5"></path>
+<path d="M2 12l10 5 10-5"></path>
 </svg>
-<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] font-headline">ArtLui Molds</div>
+<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] font-headline" href="index.html">ArtLui Molds</a>
 </div>
 <nav class="hidden md:flex items-center space-x-10 font-headline font-light tracking-tight">
-<a class="text-[#735C00] border-b-2 border-[#D4AF37] pb-1 hover:text-[#D4AF37] transition-colors duration-300" href="#">Catalog</a>
-<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">New Arrivals</a>
-<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Best Sellers</a>
-<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Support/Care</a>
+<a class="text-[#735C00] border-b-2 border-[#D4AF37] pb-1 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html">Catalog</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">New Arrivals</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">Best Sellers</a>
+<a class="text-[#1A1C1A] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#support">Support/Care</a>
 </nav>
 <div class="flex items-center space-x-6 text-[#735C00]">
 <button class="material-symbols-outlined hover:text-[#D4AF37] transition-colors">shopping_bag</button>
@@ -140,7 +140,7 @@
 </div>
 <!-- CTA Section -->
 <div class="space-y-4 mb-12">
-<button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center space-x-3">
+<button class="bg-primary-container w-full py-5 rounded-md text-on-primary-container font-headline font-bold tracking-wide shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center space-x-3" onclick="addToCart({id: 'mold_1', name: 'Premium Architectural Mold', price: 150}); window.location.href='checkout.html'; return false;">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
 <span>Add to Collection</span>
 </button>
@@ -229,7 +229,7 @@
 <footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-[1920px] mx-auto">
 <div class="col-span-2">
-<div class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline mb-6">ArtLui Molds</div>
+<a class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline mb-6" href="index.html">ArtLui Molds</a>
 <p class="font-body text-sm text-secondary max-w-xs mb-8">Elevating the standard of artisanal craft through precision-engineered silicone tools.</p>
 <p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50">© 2024 ArtLui Molds. Crafted for Artistry.</p>
 </div>
@@ -275,10 +275,10 @@
 <span>Subtotal</span>
 <span>$124.00</span>
 </div>
-<button class="bg-primary-container w-full py-4 rounded-md text-on-primary-container font-headline font-bold text-sm tracking-widest active:translate-x-1 duration-200">
+<a class="bg-primary-container w-full py-4 rounded-md text-on-primary-container font-headline font-bold text-sm tracking-widest active:translate-x-1 duration-200" href="checkout.html">
                     Proceed to Checkout
-                </button>
+                </a>
 </div>
 </div>
 </aside>
-</body></html>
+<script src="src/js/main.js"></script></body></html>

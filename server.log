@@ -1,0 +1,14 @@
+127.0.0.1 - - [03/Apr/2026 21:55:19] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:55:31] "GET /src/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:56:20] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:56:20] "GET /src/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:56:24] "GET /catalog.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:57:11] "GET /product_detail.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:57:11] "GET /src/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:57:12] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:57:33] "GET /product_detail.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:57:45] "GET /product_detail.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:58:00] "GET /product_detail.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:59:05] "GET /product_detail.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:59:05] "GET /src/js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Apr/2026 21:59:06] "GET /index.html HTTP/1.1" 200 -
