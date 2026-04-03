@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmed | ArtLui Molds</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e5",
+                    "surface-container": "#efeeeb",
+                    "tertiary-container": "#d3ad65",
+                    "background": "#faf9f6",
+                    "outline": "#7f7663",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary-fixed": "#261900",
+                    "tertiary-fixed": "#ffdea5",
+                    "surface-variant": "#e3e2e0",
+                    "surface-container-highest": "#e3e2e0",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-dim": "#dbdad7",
+                    "tertiary": "#775a19",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#f2f1ee",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#1a1c1a",
+                    "primary": "#735c00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "on-primary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#d4af37",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#faf9f6",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-tint": "#735c00",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-container": "#5b4000",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "secondary-container": "#e2dfde",
+                    "inverse-primary": "#e9c349",
+                    "on-surface-variant": "#4d4635",
+                    "on-secondary-container": "#636262",
+                    "surface-container-low": "#f4f3f1",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#faf9f6",
+                    "outline-variant": "#d0c5af",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(250, 249, 246, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container/30">
+<!-- TopNavBar: Fixed Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-[#1A1C1A]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<div class="flex justify-between items-center px-12 py-6 max-w-[1920px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6]">ArtLui Molds</div>
+<div class="hidden md:flex items-center space-x-10 font-['Manrope'] font-light tracking-tight">
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Catalog</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Best Sellers</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Support/Care</a>
+</div>
+<div class="flex items-center space-x-6 text-[#735C00] dark:text-[#D4AF37]">
+<button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="person">person</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Section: Asymmetric Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-24">
+<div class="lg:col-span-7">
+<span class="font-label font-bold text-xs uppercase tracking-[0.2em] text-primary mb-4 block">Order Successful</span>
+<h1 class="font-headline text-5xl md:text-7xl font-light tracking-tighter leading-[1.1] text-on-surface mb-8">
+                    Thank you for <br/><span class="italic font-normal text-primary">your artistry</span>.
+                </h1>
+<p class="text-lg text-on-surface-variant max-w-xl leading-relaxed mb-10">
+                    Your request for our artisanal molds has been received. We are currently preparing your collection with the same precision you bring to your craft.
+                </p>
+<div class="flex flex-wrap gap-12">
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-outline mb-1">Order Number</p>
+<p class="font-headline font-bold text-xl text-on-surface">AL-2948502</p>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest text-outline mb-1">Estimated Arrival</p>
+<p class="font-headline font-bold text-xl text-on-surface">Oct 24 — Oct 28</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative group">
+<div class="aspect-[4/5] overflow-hidden rounded-md shadow-[0_10px_40px_rgba(26,28,26,0.06)] transition-transform duration-700 group-hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="Close-up of a high-end silicone mold for artisan pottery, soft studio lighting, organic textures and warm minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwdIuc_37KqYV1o4dSj1NIKq1i2B5If5QUDDTMtYa69uH1-aTOBR7_OyrXNb7unrvD58rxeg-njQauGaoZ-w2LpAyDHdrheuP5Vyeb3su4jhOQ8fx_UWWAvS8kh75Dcx0FxqlkTI6LeQ8h3RN4WxHagW5k3klDmELzFNxAM6_yT7SWFkuZ_4eAuTq7rTyz1hW7sM-pzoW3FHBr8dnHesBJ2uDuljb_SUpTjWNgnPCX3tMg1wqQ0uK-98G43ucuL7oY8o_1vnN6Lzc"/>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-surface-bright p-8 shadow-xl rounded-md max-w-[240px] border-t-2 border-primary">
+<p class="font-label text-xs font-bold text-primary mb-2 uppercase">Pro Tip</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Read our <a class="text-primary underline underline-offset-4 decoration-primary-container" href="#">Care Guide</a> to ensure your mold lasts for a lifetime of creations.</p>
+</div>
+</div>
+</section>
+<!-- Bento Grid for Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Detailed Summary -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-md p-10 shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<h2 class="font-headline text-2xl font-bold mb-10 tracking-tight">Order Summary</h2>
+<div class="space-y-8">
+<!-- Item 1 -->
+<div class="flex items-center justify-between pb-8 border-b border-outline-variant/15 last:border-0">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-surface-container rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Detail of a sculptural white plaster mold, architectural geometry, soft shadows on cream background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt1OgY2eBzuh3S71in0MEQPuTb1rzhmBezfF2b4RicaLJ-PfYel10IA22nEd8N_tSq9JNF4Uyz2Kg3CEQTsYQHY-mQu5CKXAe2qatikkTbK0kos4FrRpqBJrFFCKAHer77Dj_5ZmCIbU6WIC6ocfamMGDuBJa7yt28oOzBHJJG5IOcVPnmNih2mHHg40c_xcz11dkFTgqpSyetz9H3oX5ZyQrlfWYJ9nV34HPQ_0us8-9JX5HG0eCVCfHT7wArqf-Tc9rDRdwZu_E"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Meander Arch Mold</p>
+<p class="text-sm text-outline">Size: Large / Artisanal Finish</p>
+</div>
+</div>
+<p class="font-headline font-medium text-on-surface">$124.00</p>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between pb-8 border-b border-outline-variant/15 last:border-0">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-surface-container rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Abstract silicone mold with organic ripple texture, soft cinematic lighting, beige color palette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEHu5RoSZeDw4lFYaSXYEcx6Zw1i1cuQ-vpEWgPwOppTgzdfr4D18LFdf6xSiAael3mg3wEEG1tqzN5NQVzw89a1qqYib0M9ojYJbglK9ktP_E6hLEqS4VcrOQo7PhLn3BwJTSeRU_rR_h-n0aBjCFM2RChI_s1MajVwKQeDbk6F0RIQjxOF6PI9VOWq-0SBsdsnN4bWGiFujqprKsWw4AZOb4ihqzft7UkP9efgMj0Mxle4gDm0N4lpududbeBlW0S-QDQ5duxFo"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Organic Ripple Tray</p>
+<p class="text-sm text-outline">Size: Medium / Professional Series</p>
+</div>
+</div>
+<p class="font-headline font-medium text-on-surface">$89.00</p>
+</div>
+</div>
+<div class="mt-12 pt-10 border-t border-on-surface/5">
+<div class="flex justify-between items-center mb-4">
+<p class="text-on-surface-variant">Subtotal</p>
+<p class="font-medium">$213.00</p>
+</div>
+<div class="flex justify-between items-center mb-4">
+<p class="text-on-surface-variant">Complimentary Shipping</p>
+<p class="font-medium text-primary">$0.00</p>
+</div>
+<div class="flex justify-between items-center mt-8 text-xl">
+<p class="font-headline font-bold">Total Investment</p>
+<p class="font-headline font-extrabold text-primary">$213.00</p>
+</div>
+</div>
+</div>
+<!-- Payoneer & Care Guide Block -->
+<div class="flex flex-col gap-8">
+<!-- Payoneer Instruction -->
+<div class="bg-surface-container-low p-8 rounded-md border-b-4 border-tertiary-container shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<h3 class="font-headline font-bold text-lg">Payoneer Processing</h3>
+</div>
+<p class="text-sm leading-relaxed text-on-surface-variant mb-6">
+                        We use Payoneer to ensure secure global transactions. You will receive a separate email with a payment request link within 2-4 hours.
+                    </p>
+<ul class="space-y-4 text-xs font-medium text-on-surface/80">
+<li class="flex gap-3">
+<span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">1</span>
+<span>Check your inbox for "Payment Request from ArtLui".</span>
+</li>
+<li class="flex gap-3">
+<span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">2</span>
+<span>Complete the transaction via Credit Card or Local Bank Transfer.</span>
+</li>
+<li class="flex gap-3">
+<span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[10px] font-bold text-primary shadow-sm">3</span>
+<span>Shipment commences immediately upon verification.</span>
+</li>
+</ul>
+</div>
+<!-- Care Guide Promo -->
+<div class="relative overflow-hidden bg-on-surface text-surface-bright p-8 rounded-md group">
+<div class="relative z-10">
+<h3 class="font-headline text-xl font-light mb-4">Protect the Craft</h3>
+<p class="text-sm opacity-70 mb-8 leading-relaxed">
+                            Our molds are designed for high-repetition artistry. Learn the unique cleaning and storage protocols to maintain surface integrity.
+                        </p>
+<a class="inline-flex items-center gap-2 font-label text-xs font-bold uppercase tracking-widest text-primary-container hover:translate-x-2 transition-transform duration-300" href="#">
+                            Explore Care Guide
+                            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Aesthetic background texture/element -->
+<div class="absolute -right-8 -bottom-8 w-40 h-40 bg-primary/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-20 flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t border-outline-variant/15">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<p class="text-sm text-outline">Boutique Verified Artisan Supplies</p>
+</div>
+<div class="flex gap-6">
+<button class="px-8 py-4 bg-surface-container-lowest text-on-surface font-label text-xs font-bold uppercase tracking-widest rounded-md border border-outline-variant/15 hover:bg-surface-container transition-all">
+                    Print Receipt
+                </button>
+<button class="px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-label text-xs font-bold uppercase tracking-widest rounded-md shadow-lg shadow-primary-container/20 active:scale-95 transition-all">
+                    Continue Exploring
+                </button>
+</div>
+</div>
+</main>
+<!-- SideNavBar (Cart Drawer - Static State) -->
+<aside class="fixed right-0 h-full w-96 z-[60] border-l border-[#D0C5AF]/15 bg-[#FFFFFF] dark:bg-[#1A1C1A] flex flex-col p-8 space-y-6 transform translate-x-full lg:translate-x-full">
+<!-- Hidden by default, included for structure as per JSON -->
+<div class="flex justify-between items-center mb-8">
+<span class="text-lg font-bold text-[#D4AF37]">Your Selection</span>
+<button class="material-symbols-outlined">close</button>
+</div>
+<nav class="flex flex-col space-y-4 font-['Inter'] text-sm leading-relaxed">
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-60 hover:bg-[#F4F3F1] p-4 rounded-md" href="#">Cart Items</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-60 hover:bg-[#F4F3F1] p-4 rounded-md" href="#">Checkout</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-60 hover:bg-[#F4F3F1] p-4 rounded-md" href="#">Shipping Info</a>
+<a class="text-[#735C00] dark:text-[#D4AF37] font-bold border-r-4 border-[#D4AF37] pr-4 p-4 bg-[#F4F3F1]" href="#">Review</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full bg-[#D4AF37] text-white py-4 font-bold rounded-md">Proceed to Checkout</button>
+</div>
+</aside>
+<!-- Footer -->
+<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-[1920px] mx-auto">
+<div class="col-span-2 md:col-span-1">
+<div class="text-xl font-light text-[#1A1C1A] dark:text-[#FAF9F6] mb-6">ArtLui Molds</div>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-[#1A1C1A] opacity-50">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+</div>
+<div class="flex flex-col space-y-3 font-['Inter'] text-xs font-medium uppercase tracking-widest">
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Shipping Policy</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Returns &amp; Exchanges</a>
+</div>
+<div class="flex flex-col space-y-3 font-['Inter'] text-xs font-medium uppercase tracking-widest">
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Payoneer Info</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col space-y-3 font-['Inter'] text-xs font-medium uppercase tracking-widest">
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Privacy Policy</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-50 hover:opacity-100 hover:underline underline-offset-4 transition-all" href="#">Contact Boutique</a>
+</div>
+</div>
+</footer>
+</body></html>

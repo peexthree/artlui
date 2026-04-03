@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SILICONE STUDIO | ArtLui Molds</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#e9c176",
+                    "surface-container": "#efeeeb",
+                    "outline": "#7f7663",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#e2dfde",
+                    "on-tertiary-container": "#5b4000",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "background": "#faf9f6",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#775a19",
+                    "primary-container": "#d4af37",
+                    "surface-variant": "#e3e2e0",
+                    "tertiary-fixed": "#ffdea5",
+                    "surface-container-low": "#f4f3f1",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "primary": "#735c00",
+                    "on-primary-container": "#554300",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#241a00",
+                    "on-surface-variant": "#4d4635",
+                    "surface": "#faf9f6",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "inverse-surface": "#2f312f",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "surface-dim": "#dbdad7",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-primary-fixed-variant": "#574500",
+                    "inverse-primary": "#e9c349",
+                    "surface-container-high": "#e9e8e5",
+                    "on-tertiary-fixed": "#261900",
+                    "outline-variant": "#d0c5af",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-surface": "#1a1c1a",
+                    "on-background": "#1a1c1a",
+                    "surface-bright": "#faf9f6",
+                    "primary-fixed": "#ffe088",
+                    "secondary": "#5f5e5e",
+                    "on-secondary-container": "#636262",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#735c00",
+                    "tertiary-container": "#d3ad65",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-secondary-fixed-variant": "#474746"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-bg {
+            background-color: rgba(250, 249, 246, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .no-border { border: none !important; }
+        .slide-in-from-right {
+            transform: translateX(100%);
+            transition: transform 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 backdrop-blur-md flex justify-between items-center px-12 py-6 max-w-full shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-[0.2em] text-[#1A1C1A]">SILICONE STUDIO</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-[#D4AF37] border-b-2 border-[#D4AF37] pb-1 font-headline font-light tracking-tight transition-colors duration-300" href="#">Molds</a>
+<a class="text-[#1A1C1A] opacity-70 font-headline font-light tracking-tight hover:text-[#D4AF37] transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-[#1A1C1A] opacity-70 font-headline font-light tracking-tight hover:text-[#D4AF37] transition-colors duration-300" href="#">Best Sellers</a>
+<a class="text-[#1A1C1A] opacity-70 font-headline font-light tracking-tight hover:text-[#D4AF37] transition-colors duration-300" href="#">Support</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative group">
+<span class="material-symbols-outlined text-[#1A1C1A] group-hover:text-[#D4AF37] transition-colors">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-[#D4AF37] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Quick View / Cart Shell Drawer) - Positioned hidden by default in real app, shown here as structure -->
+<aside class="fixed right-0 h-full w-full md:w-[450px] bg-[#FAF9F6] shadow-[-10px_0_40px_rgba(26,28,26,0.06)] z-[60] flex flex-col translate-x-full transition-transform duration-500 ease-out" id="cart-drawer">
+<div class="flex flex-col h-full p-10">
+<div class="flex justify-between items-center mb-12">
+<div>
+<h2 class="text-lg font-semibold text-[#1A1C1A] font-headline">Artisan Selection</h2>
+<p class="text-xs text-outline font-label uppercase tracking-widest mt-1">Curated for your craft</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:rotate-90 transition-transform duration-300">close</button>
+</div>
+<div class="flex-grow overflow-y-auto space-y-8">
+<!-- Cart Item -->
+<div class="flex gap-6 group">
+<div class="w-24 h-32 bg-surface-container-low overflow-hidden rounded-md">
+<img class="w-full h-full object-cover" data-alt="Close-up of a detailed architectural silicone mold for resin casting on a clean neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAxtyOvMpxWJymXKFBwx80icD152mhkd-ZDw_LgXTPku_ntZlTfoM4-ZlAyKwT0fV4-tYnNTbmqhG_Obm1tzBYmHVDzZGCBJ51sSRzTfFP8ZSBx1rx-6vPuiV0yh3buDRNByfhiVkxMzdRNVeAJWuNNcfK5XLINLQvCprY6LUCncYge6OUhvupaEbGSGJI8cgJd2_B_O-oz-jh9i5059jPTMS0y0Z3blj0O50cD3pKyWkS4XJyJ0Jrp1CGThld3zvN6JttXmW8s_I"/>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h4 class="font-headline font-medium text-on-surface uppercase text-sm tracking-wider">Geometric Pillar Mold</h4>
+<p class="text-outline text-xs mt-1">Premium Grade Silicone</p>
+</div>
+<span class="text-primary-container font-semibold">$45.00</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-10 border-t border-outline-variant/20">
+<div class="flex justify-between items-end mb-8">
+<span class="text-outline uppercase text-[10px] font-bold tracking-[0.2em]">Subtotal</span>
+<span class="text-2xl font-headline font-light text-on-surface">$45.00</span>
+</div>
+<button class="w-full bg-on-background text-white py-5 rounded-md font-label font-bold uppercase tracking-widest hover:bg-primary transition-all duration-300">
+                    Checkout
+                </button>
+<div class="flex items-center justify-center gap-2 mt-6 opacity-40">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span class="text-[10px] font-medium tracking-widest uppercase">Secure checkout powered by Payoneer</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Section -->
+<header class="mb-20 space-y-4 max-w-3xl">
+<span class="text-primary-container font-label font-bold uppercase tracking-[0.3em] text-xs">Exquisite Artistry</span>
+<h1 class="text-5xl md:text-7xl font-headline font-light tracking-tight text-on-surface leading-tight">
+                Premium Silicone Molds
+            </h1>
+<p class="text-outline font-body font-light text-lg max-w-xl leading-relaxed">
+                Elevate your creative process with our architectural-grade silicone forms, designed for the modern artisan.
+            </p>
+</header>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Product 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-low rounded-md overflow-hidden relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Detailed translucent silicone mold with intricate floral patterns set against a soft ivory marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAREvzRxO1A1oAldgrbBTHCdnoIxnW17qxUWHeTaOISJ0J7_9D_3sxoXvvVSpPikcdLKnGQFMmx5OzfmPFM0Cqd-1FWvqNYo66m_woQuhvqZPQHtaHUAMOwkaRxp1CDWLNuBoQrsu1gM7pBl1BYt_a-eUZWvfJla3qsPvkybPudSx-6GXPC7nN_llI1YIChGIwm7YxgpYKU9_0qLzfCHnvyki-T2cJdSQ-gSO7Ke6-VzcQKc5-_G1VjzsRtEUqwcrSr6d1mDp75VQY"/>
+<div class="absolute inset-0 bg-primary-container/0 group-hover:bg-primary-container/5 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest shadow-xl">Quick View</button>
+</div>
+</div>
+<div class="flex justify-between items-start px-1">
+<div>
+<h3 class="font-headline text-lg font-light tracking-tight text-on-surface">Petal Texture Plate</h3>
+<p class="text-xs text-outline uppercase tracking-widest mt-1">Fine Detail Series</p>
+</div>
+<span class="text-primary-container font-medium text-lg">$58.00</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-low rounded-md overflow-hidden relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modernist geometric sphere silicone mold on a minimalist stone pedestal with soft warm shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35Kb5lXWknVr-v8GOeXIhr-SsZg6G-IiS44-MHAVLEjui_IKZ3NGFneeZWVA86TaBQ5ykZ-iyzSwICnb-Uga3EETvDzIK-s4vA__wcdsj2Y1aiZWdR28-i-WgHkR9IWpOmhPRWq3oi1gt3MHfTDBtu_-z57FfVgxVkDdntbSKufsuMn_8S06-xvJOJrpVQ4IKENAMCOJCPis-uzUXLlqY3HKxsJmpiOgFjl9MW6dM3xi2QMT29uwg5d3aykzgs24JWbSPzYlxIfI"/>
+<div class="absolute inset-0 bg-primary-container/0 group-hover:bg-primary-container/5 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest shadow-xl">Quick View</button>
+</div>
+</div>
+<div class="flex justify-between items-start px-1">
+<div>
+<h3 class="font-headline text-lg font-light tracking-tight text-on-surface">Ionic Sphere Mold</h3>
+<p class="text-xs text-outline uppercase tracking-widest mt-1">Sculptural Forms</p>
+</div>
+<span class="text-primary-container font-medium text-lg">$72.00</span>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-low rounded-md overflow-hidden relative mb-6">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Stacked artisanal silicone molds for soap or resin casting with clean edges and smooth matte finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGqtwU49WT5cE2MhlRa3TeASXzQjMtPAdEVWKNMUiBfdjowC6pdB5XQUD37VdJ4x3SwaFNtuwn5MAp6mlmau8DX7g37EyX5S7_jZb7UhzyQc5o0hYBqNiTHqxK2W_oDvmlHH5BsF8e9WiQSRJ6IvO1sKlsLP0vZqEpIPbU3ASQanAJbMLt7T5RTEeT2hV6wXk14LqdugY0dpJGw3Hl1Pp1nZvWrFsfbMfRCzmtsTPmB9udZZEggTXwzwRxqTRzZ7X2dL24-mjatrc"/>
+<div class="absolute inset-0 bg-primary-container/0 group-hover:bg-primary-container/5 transition-colors duration-500"></div>
+<div class="absolute bottom-6 left-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<button class="bg-surface-container-lowest text-on-surface px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest shadow-xl">Quick View</button>
+</div>
+</div>
+<div class="flex justify-between items-start px-1">
+<div>
+<h3 class="font-headline text-lg font-light tracking-tight text-on-surface">Minimalist Vessel Set</h3>
+<p class="text-xs text-outline uppercase tracking-widest mt-1">Studio Essentials</p>
+</div>
+<span class="text-primary-container font-medium text-lg">$120.00</span>
+</div>
+</div>
+</div>
+<!-- Call to Action / Bento Style Section -->
+<section class="mt-40 grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-7 bg-surface-container-low rounded-md p-16 flex flex-col justify-center relative overflow-hidden">
+<div class="relative z-10 space-y-6">
+<h2 class="text-4xl font-headline font-light tracking-tight max-w-md">Bespoke Molds for the Visionary Artist</h2>
+<p class="text-outline max-w-sm">Every mold in our collection is hand-vetted for structural integrity and surface precision.</p>
+<a class="inline-block text-primary font-bold uppercase tracking-widest text-xs border-b-2 border-primary-container pb-1 hover:text-primary-container transition-colors" href="#">Learn Our Process</a>
+</div>
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container/5 rounded-full blur-3xl"></div>
+</div>
+<div class="md:col-span-5 aspect-square bg-on-background rounded-md flex items-center justify-center p-12 text-center text-surface group hover:bg-primary transition-colors duration-500">
+<div class="space-y-6">
+<span class="material-symbols-outlined text-5xl text-primary-container font-variation-settings-'FILL'-1">auto_awesome</span>
+<h3 class="text-2xl font-headline font-light">Custom Commission</h3>
+<p class="text-surface-variant text-sm font-light leading-relaxed">Work directly with our design studio to create unique geometry tailored to your brand's aesthetic.</p>
+<button class="bg-surface-container-lowest text-on-background px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest mt-4">Inquire Now</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] flex flex-col md:flex-row justify-between items-center px-12 py-12 mt-20">
+<div class="mb-8 md:mb-0">
+<span class="text-sm font-black text-[#1A1C1A] tracking-widest">SILICONE STUDIO</span>
+<p class="text-[10px] text-[#7F7663] font-medium mt-2 tracking-widest">© 2024 SILICONE STUDIO</p>
+</div>
+<div class="flex gap-10">
+<a class="text-xs font-medium tracking-widest text-[#7F7663] uppercase hover:text-[#D4AF37] underline-offset-4 hover:underline transition-all" href="#">Privacy</a>
+<a class="text-xs font-medium tracking-widest text-[#7F7663] uppercase hover:text-[#D4AF37] underline-offset-4 hover:underline transition-all" href="#">Terms</a>
+<a class="text-xs font-medium tracking-widest text-[#7F7663] uppercase hover:text-[#D4AF37] underline-offset-4 hover:underline transition-all" href="#">Shipping</a>
+<a class="text-xs font-medium tracking-widest text-[#7F7663] uppercase hover:text-[#D4AF37] underline-offset-4 hover:underline transition-all" href="#">Payoneer Payment Info</a>
+</div>
+</footer>
+<!-- Quick View Drawer (Product Interaction) -->
+<aside class="fixed right-0 h-full w-full md:w-[600px] bg-background shadow-2xl z-[70] flex flex-col translate-x-full transition-transform duration-500 ease-out hidden" id="product-quick-view">
+<div class="flex h-full">
+<div class="w-1/2 bg-surface-container-low relative">
+<img class="w-full h-full object-cover" data-alt="High-resolution close-up of a translucent silicone mold showing architectural geometric details in soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRtFhwmG6iMUMIxAdh4VgV6mxE21lWAu93AT5ni-CqMScj3pw-z2m18c4UdafQgYwn_gMPd7jQl7RBM2g8t5vBhubsysWBh9vIRf1gBxyRHH_hi0q8u_1CB4zDXrBVpfnqTXoeCJp94qDID5hdFnSTV3Qq_f60G_Oy1vrobh0QroMrxJz5rtYscYGhTCc-7_gcST3lu_lsIm6lsRTtfnyxHJgkuZyMFq-42WwUftg6y2H3GcmUEogTJQtNB32mRSMjGBaFTiyqfmQ"/>
+<button class="absolute top-6 left-6 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg material-symbols-outlined">chevron_left</button>
+</div>
+<div class="w-1/2 p-12 flex flex-col justify-center">
+<div class="mb-8">
+<span class="text-primary-container font-bold uppercase tracking-widest text-[10px]">In Stock</span>
+<h2 class="text-3xl font-headline font-light tracking-tight text-on-surface mt-2">Architectural Hex Mold</h2>
+<p class="text-2xl text-primary font-light mt-4">$64.00</p>
+</div>
+<ul class="space-y-4 mb-10 text-sm text-outline font-light list-none border-t border-outline-variant/20 pt-8">
+<li class="flex items-start gap-3">
+<span class="w-1 h-1 bg-primary-container rounded-full mt-2"></span>
+                        Premium 40A Shore Hardness Silicone
+                    </li>
+<li class="flex items-start gap-3">
+<span class="w-1 h-1 bg-primary-container rounded-full mt-2"></span>
+                        High-polish mirror finish interior
+                    </li>
+<li class="flex items-start gap-3">
+<span class="w-1 h-1 bg-primary-container rounded-full mt-2"></span>
+                        Heat resistant up to 230°C
+                    </li>
+</ul>
+<button class="w-full bg-on-background text-white py-5 rounded-md font-label font-bold uppercase tracking-widest hover:bg-primary transition-all duration-300">
+                    ADD TO COLLECTION
+                </button>
+</div>
+</div>
+</aside>
+</body></html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e5",
+                    "surface-container": "#efeeeb",
+                    "tertiary-container": "#d3ad65",
+                    "background": "#faf9f6",
+                    "outline": "#7f7663",
+                    "secondary": "#5f5e5e",
+                    "on-tertiary-fixed": "#261900",
+                    "tertiary-fixed": "#ffdea5",
+                    "surface-variant": "#e3e2e0",
+                    "surface-container-highest": "#e3e2e0",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-dim": "#dbdad7",
+                    "tertiary": "#775a19",
+                    "on-primary-container": "#554300",
+                    "inverse-on-surface": "#f2f1ee",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#1a1c1a",
+                    "primary": "#735c00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "on-primary-fixed": "#241a00",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#d4af37",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#faf9f6",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-tint": "#735c00",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-container": "#5b4000",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "secondary-container": "#e2dfde",
+                    "inverse-primary": "#e9c349",
+                    "on-surface-variant": "#4d4635",
+                    "on-secondary-container": "#636262",
+                    "surface-container-low": "#f4f3f1",
+                    "primary-fixed": "#ffe088",
+                    "surface": "#faf9f6",
+                    "outline-variant": "#d0c5af",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .luxury-gradient {
+            background: linear-gradient(135deg, #735c00 0%, #d4af37 100%);
+        }
+        body {
+            background-color: #faf9f6;
+            color: #1a1c1a;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-[#1A1C1A]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
+<div class="flex justify-between items-center px-12 py-5 max-w-[1920px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">ArtLui Molds</div>
+<div class="hidden md:flex items-center space-x-12 font-headline font-light tracking-tight">
+<a class="text-[#735C00] dark:text-[#D4AF37] border-b-2 border-[#D4AF37] pb-1 transition-colors duration-300" href="#">Catalog</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Best Sellers</a>
+<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#">Support/Care</a>
+</div>
+<div class="flex items-center space-x-6 text-[#1A1C1A]">
+<button class="hover:text-[#D4AF37] transition-colors duration-300 active:scale-95 duration-150">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="hover:text-[#D4AF37] transition-colors duration-300 active:scale-95 duration-150">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="pt-24 pb-16 px-12 max-w-[1920px] mx-auto min-h-screen">
+<!-- Header Section -->
+<header class="mb-12 text-center md:text-left">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-3 block">The Collection</span>
+<h1 class="font-headline text-5xl md:text-6xl font-light tracking-tight leading-[1.05] text-on-surface mb-4">
+                        Artisanal Molds for the <br/><span class="font-bold italic">Refined Creator</span>
+</h1>
+<p class="font-body text-secondary text-base leading-relaxed max-w-lg">
+                        Explore our curated selection of silicone masterworks, designed for architectural precision and organic fluidity.
+                    </p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center space-x-2 bg-surface-container-low px-5 py-2.5 rounded-md text-xs font-medium hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-sm">sort</span>
+<span>Sort: Featured</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Filters Sidebar -->
+<aside class="w-full lg:w-60 flex-shrink-0">
+<div class="sticky top-24 space-y-8">
+<!-- Categories -->
+<div>
+<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Categories</h3>
+<div class="flex flex-col space-y-3 items-start">
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Architectural</button>
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Organic Forms</button>
+<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">Geometric Series</button>
+</div>
+</div>
+<!-- Price Range -->
+<div>
+<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Price Range</h3>
+<div class="flex flex-col space-y-3 items-start">
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Under $100</button>
+<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">$100 - $200</button>
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Over $200</button>
+</div>
+</div>
+<!-- Mold Hardness -->
+<div>
+<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Shore Hardness</h3>
+<div class="flex flex-col space-y-3 items-start">
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Soft (15A)</button>
+<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">Mid (25A)</button>
+<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Firm (40A)</button>
+</div>
+</div>
+<!-- Clear Filters -->
+<button class="text-[10px] font-bold uppercase tracking-tighter text-primary/60 hover:text-primary transition-colors underline underline-offset-4">Reset all filters</button>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-16">
+<!-- Product Card 1 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Architectural mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a high-detail architectural silicone mold with fluted textures sitting on a minimalist white stone surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkgxbIw5PaNVOK0nxj0g6bUiXo6a5xdEf1KP9wCTSlC-iTUfKcQO2Dm0x2B-sbFuuZ1zvXRLF7nN2UBSKpdY5AB6kseowQnQYHEz52rfArS4m_ipgTZ9DybnBox2rwrRPH9rdLiHCxEgLR7H8RvY60Jp_XO4TE7fANm9uvwrbJVJUerMTW0II-70XhkTYQ6LMQnG1Pot92dSjUwjFCintpBH67cHqrTTIGsmp5plZvJ4ZM4FEiSKfNsygqrHlNnhNjrxfQvbFiq4"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">The Fluted Column</h4>
+<span class="font-body text-primary font-extralight text-base">$124.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 25A</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Organic mold result" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="artisanal ceramic vase with organic flowing ripples placed next to the textured silicone mold that created it on an ivory background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0p93s1qiqnobFBxgtRv6izk9IX9Y0i4m2YoLzTcOjq7u7kBoNJ-OakDh1PfC6mYubjtINmcw6P_ubRY8JXcsS9nCb2CpG1u7Rg6Ka0URBv4m9C56bjSM53T-B2OicOnsjxNPqk0RKNn6tORJdWKn9-7O7g-bU0mIPP3aTcHrx3MkTDvwu3fcTclf9LEb2quQ43dtJ4xVZkuZGmKjJja3jEvq7iNABoOH9kt5ulmG3O7Qey6hI89c91eXnMbMFUk1n1Y1MztS-ULY"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">Lichen Basin</h4>
+<span class="font-body text-primary font-extralight text-base">$189.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Organic • Shore 15A</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Geometric mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract geometric concrete sculpture with sharp angles and clean lines shown alongside its translucent high-grade silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaO3fxNZcYd4byILMvdg2oECwEMBdPSn91AefxI6IoniKydCV3Yy_Wo1vFNPtVGBDSq32THT-DVj8HvWLQp8TUSefdowpRxIdomqqgTRNAr4kQbmhxKDq3JxR1xvxBgdjF6IRjzg2Rqlws5FDPB_sBbiJRkiUvUkJowLK58V1PiDrpBij-Oz5oh9VkDWq0yOxY3Y4prMsVLmUwBqy8ISA-0xaeYv7m0eOQqwD7UFbYwG14mohc-wL1HqoZA9lNeGz8NLsnamp3Xzw"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">Prism Totem</h4>
+<span class="font-body text-primary font-extralight text-base">$95.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Geometric • Shore 40A</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Brutalist mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="dramatic lighting on a brutalist style concrete candle holder and its heavy-duty industrial silicone mold on a textured paper surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd6qOipfZb3lkIVxcNankUnaKbmY_FwbutXk1Z-e8puq8Qt4rR-m-kHzA6rFCArKIVv0mGfD86_-cPnXIm7Fq9yiEDrvh7-YOgwe_IhlU_ejxXIut6n9qiBmZOe3o232rsZrP4vkpThRkgDo4wEPWQwcrv2E2PzzfQ9s6wBg0R8H0RSuZpHWLXlsNLPlIUMZxJmMhfT37ZQzWYuSVDbwOPk5lsewueqLyRxAmWyw0D52Pac7HAPpEgRPu6AfZa7iw81cIoTy6fOHU"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">The Monolith</h4>
+<span class="font-body text-primary font-extralight text-base">$210.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 40A</p>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Corinthian mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="highly detailed plaster casting of a classical corinthian capital with intricate leaf details showing the precision of the silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvTl3wb2QrYK1mikRrMl8SeIAhrB-hxbEg2vHcWOmhqQHO9_OgXUzJEplPCeVRG0ACTm0aojN-Sp1At1zvz18SSVNko4_bMQWngdihMvo9xnsvvTVUNiVCRm2ycoMcT7_rclLkPOqk1i0KHj0lv-FnceozIm-3gJ4SUcqWaJvVVaWKixw1yrGFBS_Tm5P8Dt4bNaNAnfwDNAoTd0PjBpaEWXRTWcLXZPYArvpgheXyCwzcVglVeh6CFUxSajmFh7h4SwOK3Lt-xO8"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">Doric Pillar</h4>
+<span class="font-body text-primary font-extralight text-base">$155.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 25A</p>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
+<img alt="Tear drop mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a pair of elegant teardrop-shaped resin sculptures with gold leaf inclusions and the clear silicone mold used for casting them" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClxCMP2j0Jg0YWzUxqabhDzyMpPc5OCFUa8KLkcJEX3N9_7HoKZbUwbVllwUlzwmYcHhE_b-r5x6I7L3LVEcvXqIetnzp9u3uPq6ReXt9mHvk-izYgZxNf8BYIZQrhssnBWzPLsficjMflFsPBN6thGV8C2GujPQgJsO5Ow-jV4Cfc3kHkykjqS6vVj3P6WtWLodkccAswp9slGP8H4_jKnmt6Z7dTHkvdQoWJk_yam2yfGBGO5M_MwlvN_e-V3BYEq6vMbXYgRzQ"/>
+<div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
+</div>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-start">
+<h4 class="font-headline text-base font-bold">Aqueous Curve</h4>
+<span class="font-body text-primary font-extralight text-base">$78.00</span>
+</div>
+<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Organic • Shore 15A</p>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex items-center justify-center space-x-6">
+<button class="font-headline text-xs font-bold uppercase tracking-widest opacity-20 cursor-not-allowed">Previous</button>
+<div class="flex space-x-5">
+<button class="font-headline text-xs font-bold text-primary">01</button>
+<button class="font-headline text-xs font-bold text-on-background opacity-30 hover:opacity-100 transition-opacity">02</button>
+<button class="font-headline text-xs font-bold text-on-background opacity-30 hover:opacity-100 transition-opacity">03</button>
+</div>
+<button class="font-headline text-xs font-bold uppercase tracking-widest text-on-background hover:text-primary transition-colors">Next</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Side Cart (SideNavBar) -->
+<aside class="fixed right-0 h-full w-80 z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full lg:hidden">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
+<p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+</div>
+<button class="material-symbols-outlined text-xl">close</button>
+</div>
+<div class="flex-grow space-y-6 py-6 overflow-y-auto">
+<div class="flex items-center space-x-4">
+<div class="w-14 h-18 bg-surface-container rounded-sm overflow-hidden">
+<img data-alt="small thumbnail of a silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1Eu9LujnuDG1_yArLRRU_38lMSkwN7ko-GQ_8xj0J2Gxi5tzo3kt0j2_A6msLcVOJamybkwqYruL6gfK8RPv4__r-JsyKCJQ76e8NrZeMQdeTiW3T2BTk49KPgd8JXrV_6iiyltwQBfmIqBFKJjgfI9aU1VJ5nJgXjEkOgmVSaX_z5DAcEFhblym_pjnJQfZJmcuF1AvfiqEYWFXdvMhFnO54_Qcy5YifdHwe_OB4PFgxmvosi3SMzyU1LRJfao9_g47xLRY2QnM"/>
+</div>
+<div class="flex-grow">
+<p class="text-xs font-bold font-headline">The Fluted Column</p>
+<p class="text-[10px] text-primary font-light">$124.00</p>
+</div>
+<button class="material-symbols-outlined text-xs opacity-30">close</button>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/15">
+<div class="flex justify-between mb-4 font-headline text-xs">
+<span>Subtotal</span>
+<span class="font-bold">$124.00</span>
+</div>
+<button class="w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
+                Proceed to Checkout
+            </button>
+</div>
+</aside>
+<!-- Footer -->
+<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-12 py-12 w-full max-w-[1920px] mx-auto">
+<div class="col-span-2">
+<div class="text-lg font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase tracking-tighter mb-4">ArtLui Molds</div>
+<p class="text-[9px] font-body text-on-surface/50 leading-relaxed max-w-xs uppercase tracking-widest">
+                    Crafted for Artistry. Precision silicone tools for independent sculptors and industrial designers.
+                </p>
+</div>
+<div>
+<h5 class="font-headline text-[9px] font-bold uppercase tracking-[0.2em] mb-5 text-primary">The Boutique</h5>
+<ul class="space-y-3 font-['Inter'] text-[9px] font-medium uppercase tracking-[0.15em]">
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Shipping Policy</a></li>
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Returns &amp; Exchanges</a></li>
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-headline text-[9px] font-bold uppercase tracking-[0.2em] mb-5 text-primary">Connection</h5>
+<ul class="space-y-3 font-['Inter'] text-[9px] font-medium uppercase tracking-[0.15em]">
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Contact Boutique</a></li>
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Payoneer Info</a></li>
+</ul>
+</div>
+</div>
+<div class="px-12 py-6 border-t border-outline-variant/10 text-center">
+<p class="font-['Inter'] text-[9px] font-medium uppercase tracking-[0.3em] opacity-30">© 2024 ArtLui Molds. Crafted for Artistry.</p>
+</div>
+</footer>
+</body></html>
