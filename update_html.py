@@ -49,8 +49,9 @@ def modify_card(match):
 card_pattern = r'<div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="[^"]+" data-slug="[^"]+">.*?(?=<div class="preview-card|</div>\s*</main>)'
 html = re.sub(card_pattern, modify_card, html, flags=re.DOTALL)
 
-# Add Modal HTML before Toast
-modal_html = """
+# Add Modal HTML before Toast only if not present
+if 'id="activation-modal"' not in html:
+    modal_html = """
   <!-- Модальное окно активации Kwork -->
   <div id="activation-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl transform scale-95 transition-transform duration-300 id-modal-box">
@@ -86,10 +87,9 @@ modal_html = """
     </div>
   </div>
 """
+    html = html.replace('<!-- Уведомление -->', modal_html + '\n  <!-- Уведомление -->')
 
-html = html.replace('<!-- Уведомление -->', modal_html + '\n  <!-- Уведомление -->')
-
-# Now rewrite JS script section
+# Now rewrite JS script section preserving ALL functions
 encrypted_js_str = json.dumps(encrypted_data)
 
 js_replacement = f"""<script>
@@ -198,21 +198,105 @@ js_replacement = f"""<script>
       }}
     }}
 
-    // Фильтрация карточек по категориям
-    function filterCategory(cat, btn) {{
-      document.querySelectorAll('.filter-btn').forEach(b => {{
-        b.className = 'filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition';
-      }});
-      btn.className = 'filter-btn active px-2.5 py-1 rounded-md font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition';
+    let currentCategory = 'all';
+    let currentSearch = '';
 
+    function filterCategory(cat, btn) {{
+      currentCategory = cat;
+      document.querySelectorAll('#category-filters .filter-btn').forEach(b => {{
+        b.className = 'filter-btn px-2.5 py-1 rounded-lg font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition';
+      }});
+      btn.className = 'filter-btn active px-2.5 py-1 rounded-lg font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition';
+      applyFilters();
+    }}
+
+    function filterSearch(val) {{
+      currentSearch = val.toLowerCase().trim();
+      applyFilters();
+    }}
+
+    function applyFilters() {{
       const cards = document.querySelectorAll('#cards-container > div');
+      let visible = 0;
       cards.forEach(card => {{
-        if (cat === 'all' || card.getAttribute('data-cat') === cat) {{
+        const cat = card.getAttribute('data-cat');
+        const slug = (card.getAttribute('data-slug') || '').toLowerCase();
+        const text = card.innerText.toLowerCase();
+
+        const matchCat = (currentCategory === 'all' || cat === currentCategory);
+        const matchSearch = (!currentSearch || slug.includes(currentSearch) || text.includes(currentSearch));
+
+        if (matchCat && matchSearch) {{
           card.style.display = 'flex';
+          visible++;
         }} else {{
           card.style.display = 'none';
         }}
       }});
+      const countEl = document.getElementById('cards-count');
+      if (countEl) countEl.innerText = visible;
+    }}
+
+    let currentSpeedFactor = 1;
+    function setSpeed(factor, btn) {{
+      currentSpeedFactor = factor;
+      document.querySelectorAll('.speed-btn').forEach(b => {{
+        b.className = 'speed-btn px-2 py-0.5 text-[11px] rounded font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 transition';
+      }});
+      btn.className = 'speed-btn active px-2 py-0.5 text-[11px] rounded font-semibold bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-300 shadow-xs transition';
+
+      document.querySelectorAll('.svg-stage svg').forEach(svg => {{
+        const styleTag = svg.querySelector('style');
+        if (!styleTag) return;
+        if (!svg.dataset.origStyle) {{
+          svg.dataset.origStyle = styleTag.textContent;
+        }}
+        let orig = svg.dataset.origStyle;
+        if (factor === 1) {{
+          styleTag.textContent = orig;
+        }} else {{
+          styleTag.textContent = orig.replace(/([0-9\\.]+)s/g, (m, p1) => {{
+            return (parseFloat(p1) / factor).toFixed(2) + 's';
+          }});
+        }}
+      }});
+      showToast('Скорость анимации: ' + factor + 'x');
+    }}
+
+    function setZoom(scale, btn) {{
+      document.querySelectorAll('.zoom-btn').forEach(b => {{
+        b.className = 'zoom-btn px-2 py-0.5 text-[11px] rounded font-medium text-slate-600 dark:text-slate-400 transition';
+      }});
+      btn.className = 'zoom-btn active px-2 py-0.5 text-[11px] rounded font-semibold bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-300 shadow-xs transition';
+
+      document.querySelectorAll('.svg-stage svg').forEach(svg => {{
+        svg.style.transform = `scale(${{scale}})`;
+        svg.style.transformOrigin = 'center center';
+        svg.style.transition = 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+      }});
+      showToast('Масштаб иконок: ' + Math.round(scale * 100) + '%');
+    }}
+
+    function setStageBg(type, btn) {{
+      document.querySelectorAll('.bg-btn').forEach(b => {{
+        b.className = 'bg-btn px-2 py-0.5 text-[11px] rounded font-medium text-slate-600 dark:text-slate-400 transition';
+      }});
+      btn.className = 'bg-btn active px-2 py-0.5 text-[11px] rounded font-semibold bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-300 shadow-xs transition';
+
+      const stages = document.querySelectorAll('.svg-stage');
+      stages.forEach(st => {{
+        st.classList.remove('bg-checkerboard', 'bg-slate-900', 'bg-white', 'bg-slate-50/50', 'dark:bg-slate-950/40');
+        if (type === 'checkerboard') {{
+          st.classList.add('bg-checkerboard');
+        }} else if (type === 'dark') {{
+          st.classList.add('bg-slate-900');
+        }} else if (type === 'light') {{
+          st.classList.add('bg-white');
+        }} else {{
+          st.classList.add('bg-slate-50/50', 'dark:bg-slate-950/40');
+        }}
+      }});
+      showToast('Фон сцены обновлен');
     }}
 
     // Извлечение чистого XML-кода SVG
