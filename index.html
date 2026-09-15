@@ -1,398 +1,1665 @@
 <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDFok — Полный комплект 32 анимированных SVG (Строго по ТЗ)</title>
+  <!-- Tailwind CSS для адаптивного интерфейса витрины -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- JSZip для генерации единого ZIP-архива на клиенте -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface-container-high": "#e9e8e5",
-                    "surface-container": "#efeeeb",
-                    "tertiary-container": "#d3ad65",
-                    "background": "#faf9f6",
-                    "outline": "#7f7663",
-                    "secondary": "#5f5e5e",
-                    "on-tertiary-fixed": "#261900",
-                    "tertiary-fixed": "#ffdea5",
-                    "surface-variant": "#e3e2e0",
-                    "surface-container-highest": "#e3e2e0",
-                    "secondary-fixed-dim": "#c8c6c5",
-                    "surface-dim": "#dbdad7",
-                    "tertiary": "#775a19",
-                    "on-primary-container": "#554300",
-                    "inverse-on-surface": "#f2f1ee",
-                    "primary-fixed-dim": "#e9c349",
-                    "on-secondary-fixed-variant": "#474746",
-                    "inverse-surface": "#2f312f",
-                    "surface-container-lowest": "#ffffff",
-                    "on-surface": "#1a1c1a",
-                    "on-secondary-fixed": "#1c1b1b",
-                    "on-background": "#1a1c1a",
-                    "primary": "#735c00",
-                    "on-secondary": "#ffffff",
-                    "tertiary-fixed-dim": "#e9c176",
-                    "on-primary-fixed": "#241a00",
-                    "on-error-container": "#93000a",
-                    "error-container": "#ffdad6",
-                    "primary-container": "#d4af37",
-                    "error": "#ba1a1a",
-                    "on-error": "#ffffff",
-                    "surface-bright": "#faf9f6",
-                    "on-primary-fixed-variant": "#574500",
-                    "surface-tint": "#735c00",
-                    "secondary-fixed": "#e5e2e1",
-                    "on-tertiary-container": "#5b4000",
-                    "on-primary": "#ffffff",
-                    "on-tertiary-fixed-variant": "#5d4201",
-                    "secondary-container": "#e2dfde",
-                    "inverse-primary": "#e9c349",
-                    "on-surface-variant": "#4d4635",
-                    "on-secondary-container": "#636262",
-                    "surface-container-low": "#f4f3f1",
-                    "primary-fixed": "#ffe088",
-                    "surface": "#faf9f6",
-                    "outline-variant": "#d0c5af",
-                    "on-tertiary": "#ffffff"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "fontFamily": {
-                    "headline": ["Manrope"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
-            }
-          },
-        },
-      }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        .luxury-gradient {
-            background: linear-gradient(135deg, #735c00 0%, #d4af37 100%);
-        }
-        body {
-            background-color: #faf9f6;
-            color: #1a1c1a;
-        }
-    </style>
-<title>Lui molds - Home</title>
-<style id="preloader-style">
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background-color: #faf9f6;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
-        }
-        .dark #preloader { background-color: #1a1c1a; }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(212, 175, 55, 0.3); /* D4AF37 */
-            border-radius: 50%;
-            border-top-color: #d4af37;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        body.preloader-active {
-            overflow: hidden;
-        }
-    </style>
+    :root {
+      --accent-light: #0f766e;
+      --accent-dark: #2dd4bf;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #111827;
+      --page-bg-light: #f8fafc;
+      --page-bg-dark: #070b12;
+    }
 
+    body.theme-light {
+      background-color: var(--page-bg-light);
+      color: #0f172a;
+    }
+    body.theme-light .preview-card {
+      background-color: var(--card-bg-light);
+      border-color: #e2e8f0;
+      color: var(--accent-light);
+    }
+    body.theme-light .preview-card:hover {
+      box-shadow: 0 14px 28px -6px rgba(15, 118, 110, 0.12);
+    }
+
+    body.theme-dark {
+      background-color: var(--page-bg-dark);
+      color: #f8fafc;
+    }
+    body.theme-dark .preview-card {
+      background-color: var(--card-bg-dark);
+      border-color: #1f2937;
+      color: var(--accent-dark);
+    }
+    body.theme-dark .preview-card:hover {
+      box-shadow: 0 14px 28px -6px rgba(45, 212, 191, 0.15);
+    }
+
+    .svg-stage {
+      width: 100%;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .svg-stage svg {
+      width: 100%;
+      max-width: 160px;
+      height: 100px;
+      display: block;
+    }
+
+    /* Режим принудительной остановки для тестирования 1-го кадра */
+    body.freeze-animations svg * {
+      animation-play-state: paused !important;
+    }
+
+    #toast {
+      transform: translateY(80px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
 </head>
-<body class="font-body selection:bg-primary-container selection:text-on-primary-container preloader-active">
+<body class="theme-light min-h-screen transition-colors duration-300 flex flex-col antialiased">
 
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-[#FAF9F6] dark:bg-[#1A1C1A] z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col px-6 py-8">
-    <div class="flex justify-between items-center mb-12">
-        <a href="index.html" class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase">Lui molds</a>
-        <button id="close-mobile-menu" class="text-[#1A1C1A] dark:text-[#FAF9F6]">
-            <span class="material-symbols-outlined text-3xl">close</span>
-        </button>
-    </div>
-    <div class="flex flex-col space-y-8 font-headline font-light tracking-tight text-xl">
-        <a href="catalog.html" class="text-[#735C00] dark:text-[#D4AF37] border-b border-[#D4AF37]/30 pb-2">Catalog</a>
-        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">New Arrivals</a>
-        <a href="catalog.html#new" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Best Sellers</a>
-        <a href="#support" class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-80 border-b border-outline/10 pb-2">Support/Care</a>
-    </div>
-    <div class="mt-auto pb-8">
-        <div class="flex gap-6">
-            <a href="checkout.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
-                <span class="material-symbols-outlined">shopping_bag</span>
-                <span>Cart</span>
-            </a>
-            <a href="index.html" class="flex items-center gap-2 text-[#1A1C1A] dark:text-[#FAF9F6]">
-                <span class="material-symbols-outlined">person</span>
-                <span>Account</span>
-            </a>
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-opacity-95 border-b border-slate-200 dark:border-slate-800 px-4 py-3 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-teal-700 dark:bg-teal-400 flex items-center justify-center text-white dark:text-slate-950 font-black text-lg shadow-sm">
+          P
         </div>
-    </div>
-</div>
-
-
-<!-- Preloader -->
-<div id="preloader">
-    <div class="spinner"></div>
-</div>
-
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-[#1A1C1A]/80 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.04)]">
-<div class="flex justify-between items-center px-5 md:px-12 py-5 max-w-[1920px] mx-auto">
-<a class="text-2xl font-bold tracking-tighter text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase" href="index.html">Lui molds</a>
-<div class="hidden md:flex items-center space-x-12 font-headline font-light tracking-tight">
-<a class="text-[#735C00] dark:text-[#D4AF37] border-b-2 border-[#D4AF37] pb-1 transition-colors duration-300" href="catalog.html">Catalog</a>
-<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">New Arrivals</a>
-<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="catalog.html#new">Best Sellers</a>
-<a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-70 hover:text-[#D4AF37] transition-colors duration-300" href="#support">Support/Care</a>
-</div>
-<div class="flex items-center space-x-6 text-[#1A1C1A]">
-<a class="hover:text-[#D4AF37] transition-colors duration-300 active:scale-95 duration-150" href="checkout.html">
-<span class="material-symbols-outlined">shopping_bag<sup class="bg-primary text-on-primary rounded-full px-1.5 py-0.5 text-[10px] ml-1" id="cart-count">0</sup></span>
-</a>
-<a class="hover:text-[#D4AF37] transition-colors duration-300 active:scale-95 duration-150" href="index.html">
-<span class="material-symbols-outlined">person</span>
-</a>
-</div>
-
-<button id="mobile-menu-btn" class="md:hidden text-[#1A1C1A] dark:text-[#FAF9F6] focus:outline-none transition-transform active:scale-95 z-50">
-    <span class="material-symbols-outlined text-3xl">menu</span>
-</button>
-
-</div>
-</nav>
-<!-- Main Content Wrapper -->
-<main class="pt-24 pb-16 px-5 md:px-12 max-w-[1920px] mx-auto min-h-screen">
-<!-- Header Section -->
-<header class="mb-8 md:mb-12 text-center md:text-left">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div class="max-w-2xl">
-<span class="font-label text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-3 block">The Collection</span>
-<h1 class="font-headline text-5xl md:text-6xl font-light tracking-tight leading-[1.05] text-on-surface mb-4">Welcome to Lui molds - Premium Architectural Forms</h1>
-<p class="font-body text-secondary text-base leading-relaxed max-w-lg">
-                        Explore our curated selection of silicone masterworks, designed for architectural precision and organic fluidity.
-                    </p>
-</div>
-<div class="flex gap-4">
-<button class="flex items-center space-x-2 bg-surface-container-low px-5 py-2.5 rounded-md text-xs font-medium hover:bg-surface-container-high transition-all">
-<span class="material-symbols-outlined text-sm">sort</span>
-<span>Sort: Featured</span>
-</button>
-</div>
-</div>
-</header>
-<div class="flex flex-col lg:flex-row gap-6 md:p-12">
-<!-- Filters Sidebar -->
-<aside class="w-full lg:w-60 flex-shrink-0">
-<div class="sticky top-24 space-y-8">
-<!-- Categories -->
-<div>
-<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Categories</h3>
-</div>
-<!-- Price Range -->
-<div>
-<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Price Range</h3>
-<div class="flex flex-col space-y-3 items-start">
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Under $100</button>
-<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">$100 - $200</button>
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Over $200</button>
-</div>
-</div>
-<!-- Mold Hardness -->
-<div>
-<h3 class="font-headline text-[10px] font-bold uppercase tracking-widest mb-5 opacity-40">Shore Hardness</h3>
-<div class="flex flex-col space-y-3 items-start">
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Soft (15A)</button>
-<button class="font-body text-xs text-primary border-b border-primary pb-0.5 font-medium">Mid (25A)</button>
-<button class="font-body text-xs text-on-background opacity-50 hover:opacity-100 transition-opacity border-b border-transparent hover:border-on-background pb-0.5">Firm (40A)</button>
-</div>
-</div>
-<!-- Clear Filters -->
-<button class="text-[10px] font-bold uppercase tracking-tighter text-primary/60 hover:text-primary transition-colors underline underline-offset-4">Reset all filters</button>
-</div>
-</aside>
-<!-- Product Grid -->
-<div class="flex-grow">
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 gap-y-16">
-<!-- Product Card 1 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Architectural mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a high-detail architectural silicone mold with fluted textures sitting on a minimalist white stone surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkgxbIw5PaNVOK0nxj0g6bUiXo6a5xdEf1KP9wCTSlC-iTUfKcQO2Dm0x2B-sbFuuZ1zvXRLF7nN2UBSKpdY5AB6kseowQnQYHEz52rfArS4m_ipgTZ9DybnBox2rwrRPH9rdLiHCxEgLR7H8RvY60Jp_XO4TE7fANm9uvwrbJVJUerMTW0II-70XhkTYQ6LMQnG1Pot92dSjUwjFCintpBH67cHqrTTIGsmp5plZvJ4ZM4FEiSKfNsygqrHlNnhNjrxfQvbFiq4"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">The Fluted Column</h4>
-<span class="font-body text-primary font-extralight text-base">$124.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 25A</p>
-</div>
-</div>
-<!-- Product Card 2 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Organic mold result" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="artisanal ceramic vase with organic flowing ripples placed next to the textured silicone mold that created it on an ivory background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0p93s1qiqnobFBxgtRv6izk9IX9Y0i4m2YoLzTcOjq7u7kBoNJ-OakDh1PfC6mYubjtINmcw6P_ubRY8JXcsS9nCb2CpG1u7Rg6Ka0URBv4m9C56bjSM53T-B2OicOnsjxNPqk0RKNn6tORJdWKn9-7O7g-bU0mIPP3aTcHrx3MkTDvwu3fcTclf9LEb2quQ43dtJ4xVZkuZGmKjJja3jEvq7iNABoOH9kt5ulmG3O7Qey6hI89c91eXnMbMFUk1n1Y1MztS-ULY"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">Lichen Basin</h4>
-<span class="font-body text-primary font-extralight text-base">$189.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Organic • Shore 15A</p>
-</div>
-</div>
-<!-- Product Card 3 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Geometric mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract geometric concrete sculpture with sharp angles and clean lines shown alongside its translucent high-grade silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaO3fxNZcYd4byILMvdg2oECwEMBdPSn91AefxI6IoniKydCV3Yy_Wo1vFNPtVGBDSq32THT-DVj8HvWLQp8TUSefdowpRxIdomqqgTRNAr4kQbmhxKDq3JxR1xvxBgdjF6IRjzg2Rqlws5FDPB_sBbiJRkiUvUkJowLK58V1PiDrpBij-Oz5oh9VkDWq0yOxY3Y4prMsVLmUwBqy8ISA-0xaeYv7m0eOQqwD7UFbYwG14mohc-wL1HqoZA9lNeGz8NLsnamp3Xzw"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">Prism Totem</h4>
-<span class="font-body text-primary font-extralight text-base">$95.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Geometric • Shore 40A</p>
-</div>
-</div>
-<!-- Product Card 4 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Brutalist mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="dramatic lighting on a brutalist style concrete candle holder and its heavy-duty industrial silicone mold on a textured paper surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd6qOipfZb3lkIVxcNankUnaKbmY_FwbutXk1Z-e8puq8Qt4rR-m-kHzA6rFCArKIVv0mGfD86_-cPnXIm7Fq9yiEDrvh7-YOgwe_IhlU_ejxXIut6n9qiBmZOe3o232rsZrP4vkpThRkgDo4wEPWQwcrv2E2PzzfQ9s6wBg0R8H0RSuZpHWLXlsNLPlIUMZxJmMhfT37ZQzWYuSVDbwOPk5lsewueqLyRxAmWyw0D52Pac7HAPpEgRPu6AfZa7iw81cIoTy6fOHU"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">The Monolith</h4>
-<span class="font-body text-primary font-extralight text-base">$210.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 40A</p>
-</div>
-</div>
-<!-- Product Card 5 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Corinthian mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="highly detailed plaster casting of a classical corinthian capital with intricate leaf details showing the precision of the silicone mold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvTl3wb2QrYK1mikRrMl8SeIAhrB-hxbEg2vHcWOmhqQHO9_OgXUzJEplPCeVRG0ACTm0aojN-Sp1At1zvz18SSVNko4_bMQWngdihMvo9xnsvvTVUNiVCRm2ycoMcT7_rclLkPOqk1i0KHj0lv-FnceozIm-3gJ4SUcqWaJvVVaWKixw1yrGFBS_Tm5P8Dt4bNaNAnfwDNAoTd0PjBpaEWXRTWcLXZPYArvpgheXyCwzcVglVeh6CFUxSajmFh7h4SwOK3Lt-xO8"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">Doric Pillar</h4>
-<span class="font-body text-primary font-extralight text-base">$155.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Architectural • Shore 25A</p>
-</div>
-</div>
-<!-- Product Card 6 -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-sm bg-surface-container mb-4 shadow-[0_2px_10px_rgba(26,28,26,0.02)] group-hover:shadow-[0_8px_30px_rgba(26,28,26,0.06)] transition-all duration-500">
-<img alt="Tear drop mold" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a pair of elegant teardrop-shaped resin sculptures with gold leaf inclusions and the clear silicone mold used for casting them" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClxCMP2j0Jg0YWzUxqabhDzyMpPc5OCFUa8KLkcJEX3N9_7HoKZbUwbVllwUlzwmYcHhE_b-r5x6I7L3LVEcvXqIetnzp9u3uPq6ReXt9mHvk-izYgZxNf8BYIZQrhssnBWzPLsficjMflFsPBN6thGV8C2GujPQgJsO5Ow-jV4Cfc3kHkykjqS6vVj3P6WtWLodkccAswp9slGP8H4_jKnmt6Z7dTHkvdQoWJk_yam2yfGBGO5M_MwlvN_e-V3BYEq6vMbXYgRzQ"/>
-<a href="product_detail.html"><div class="absolute inset-0 bg-on-background/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-<button class="luxury-gradient text-on-primary px-6 py-2.5 rounded-sm font-label text-[10px] font-bold uppercase tracking-widest transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Quick View</button>
-</div></a>
-</div>
-<div class="space-y-1.5">
-<div class="flex justify-between items-start">
-<h4 class="font-headline text-base font-bold">Aqueous Curve</h4>
-<span class="font-body text-primary font-extralight text-base">$78.00</span>
-</div>
-<p class="font-body text-[10px] text-secondary uppercase tracking-[0.15em]">Organic • Shore 15A</p>
-</div>
-</div>
-</div>
-<!-- Pagination -->
-<div class="mt-10 md:mt-16 flex items-center justify-center space-x-6">
-<button class="font-headline text-xs font-bold uppercase tracking-widest opacity-20 cursor-not-allowed">Previous</button>
-<div class="flex space-x-5">
-<button class="font-headline text-xs font-bold text-primary">01</button>
-<button class="font-headline text-xs font-bold text-on-background opacity-30 hover:opacity-100 transition-opacity">02</button>
-<button class="font-headline text-xs font-bold text-on-background opacity-30 hover:opacity-100 transition-opacity">03</button>
-</div>
-<button class="font-headline text-xs font-bold uppercase tracking-widest text-on-background hover:text-primary transition-colors">Next</button>
-</div>
-</div>
-</div>
-</main>
-
-<!-- Side Cart (SideNavBar) -->
-<aside class="fixed right-0 h-full w-full max-w-[320px] z-[60] bg-[#FFFFFF] dark:bg-[#1A1C1A] border-l border-[#D0C5AF]/15 flex flex-col p-6 space-y-5 transform translate-x-full lg:translate-x-full transition-transform duration-300">
-    <div class="flex justify-between items-start">
         <div>
-            <h2 class="text-base font-bold text-[#D4AF37] font-headline uppercase tracking-wider">Your Selection</h2>
-            <p class="font-body text-[10px] opacity-60">Artisanal Mold Collection</p>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold tracking-tight">PDFok · Все 32 анимированных SVG</h1>
+            <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">ТЗ 100% Ready</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Строгий 2D-линейный стиль · viewBox 160×100 · currentColor · Самодостаточный 1-й кадр</p>
         </div>
-        <button class="material-symbols-outlined text-xl">close</button>
-    </div>
-    <div class="flex-grow space-y-6 py-6 overflow-y-auto">
-        <!-- JS populated items -->
-    </div>
-    <div class="pt-6 border-t border-outline-variant/15">
-        <div class="flex justify-between mb-4 font-headline text-xs">
-            <span>Subtotal</span>
-            <span class="font-bold">$0.00</span>
-        </div>
-        <a href="checkout.html" class="flex justify-center w-full luxury-gradient text-on-primary py-3.5 rounded-sm font-headline text-[10px] font-bold uppercase tracking-[0.2em] active:translate-x-1 duration-200">
-            Proceed to Checkout
-        </a>
-    </div>
-</aside>
+      </div>
 
-<!-- Footer -->
-<footer class="w-full border-t border-[#D0C5AF]/15 bg-[#F4F3F1] dark:bg-[#1A1C1A]">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-5 md:px-12 py-8 md:py-12 w-full max-w-[1920px] mx-auto">
-<div class="col-span-2">
-<a class="text-lg font-light text-[#1A1C1A] dark:text-[#FAF9F6] font-headline uppercase tracking-tighter mb-4" href="index.html">Lui molds</a>
-<p class="text-[9px] font-body text-on-surface/50 leading-relaxed max-w-xs uppercase tracking-widest">
-                    Crafted for Artistry. Precision silicone tools for independent sculptors and industrial designers.
-                </p>
-</div>
-<div>
-<h5 class="font-headline text-[9px] font-bold uppercase tracking-[0.2em] mb-5 text-primary">The Boutique</h5>
-<ul class="space-y-3 font-['Inter'] text-[9px] font-medium uppercase tracking-[0.15em]">
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Shipping Policy</a></li>
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Returns &amp; Exchanges</a></li>
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Terms of Service</a></li>
-</ul>
-</div>
-<div>
-<h5 class="font-headline text-[9px] font-bold uppercase tracking-[0.2em] mb-5 text-primary">Connection</h5>
-<ul class="space-y-3 font-['Inter'] text-[9px] font-medium uppercase tracking-[0.15em]">
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Contact Boutique</a></li>
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Privacy Policy</a></li>
-<li><a class="text-[#1A1C1A] dark:text-[#FAF9F6] opacity-40 hover:opacity-100 hover:underline-offset-4 hover:underline transition-all" href="#">Payoneer Info</a></li>
-</ul>
-</div>
-</div>
-<div class="px-5 md:px-12 py-6 border-t border-outline-variant/10 text-center">
-<p class="font-['Inter'] text-[9px] font-medium uppercase tracking-[0.3em] opacity-30">© 2024 Lui molds. Crafted for Artistry.</p>
-</div>
-</footer>
-<script src="src/js/main.js"></script></body></html>
+      <!-- Кнопки управления и скачивания -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <!-- Тест первого кадра -->
+        <button id="freeze-btn" onclick="toggleFreeze()" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center gap-1.5 text-slate-700 dark:text-slate-200" title="Проверить, как выглядит статичный кадр при выключенной анимации">
+          <span class="w-2 h-2 rounded-full bg-amber-500" id="freeze-dot"></span>
+          <span id="freeze-label">Стоп (тест 1-го кадра)</span>
+        </button>
+
+        <!-- Переключатель тем сайта -->
+        <div class="inline-flex rounded-lg border border-slate-300 dark:border-slate-700 p-0.5 bg-slate-100 dark:bg-slate-800">
+          <button id="btn-light" onclick="setTheme('light')" class="px-2.5 py-1 text-xs font-medium rounded-md transition-all bg-white text-teal-800 shadow-xs">
+            ☀️ #0f766e
+          </button>
+          <button id="btn-dark" onclick="setTheme('dark')" class="px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-600 dark:text-slate-400">
+            🌙 #2dd4bf
+          </button>
+        </div>
+
+        <!-- Кнопка выгрузки всего архива -->
+        <button onclick="downloadAllZip()" id="btn-zip" class="px-3.5 py-1.5 text-xs font-bold rounded-lg bg-teal-600 hover:bg-teal-700 text-white shadow-sm transition flex items-center gap-1.5 active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Скачать все 32 (.ZIP)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 pt-5">
+    <div class="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 text-xs">
+      <div class="flex flex-wrap items-center gap-1.5" id="category-filters">
+        <button onclick="filterCategory('all', this)" class="filter-btn active px-2.5 py-1 rounded-md font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition">Все (32)</button>
+        <button onclick="filterCategory('pages', this)" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Работа со страницами (6)</button>
+        <button onclick="filterCategory('converters', this)" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Конвертеры форматов (9)</button>
+        <button onclick="filterCategory('edit', this)" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Редактирование & Штампы (8)</button>
+        <button onclick="filterCategory('security', this)" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Безопасность (2)</button>
+        <button onclick="filterCategory('tools', this)" class="filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Оптимизация & Скан (7)</button>
+      </div>
+
+      <div class="text-slate-500 dark:text-slate-400 text-[11px] flex items-center gap-1">
+        <span>Клик по карточке копирует код</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 flex-1">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="cards-container">
+
+      <!-- 0. UPLOAD -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="upload">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">upload.svg</span>
+          <span class="text-slate-400 text-[11px]">№0 · Загрузка</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-upload">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .upl-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+              .upl-cloud { fill: none; }
+              .upl-doc { fill: #ffffff; animation: upl-doc-flow 2.4s ease-in-out infinite; }
+              .upl-arrow { fill: none; animation: upl-arr-bob 2.4s ease-in-out infinite; }
+              @keyframes upl-doc-flow {
+                0%, 100% { transform: translateY(0); opacity: 1; }
+                50% { transform: translateY(-8px); opacity: 0.85; }
+              }
+              @keyframes upl-arr-bob {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-4px); }
+              }
+            </style>
+            <!-- Облачный контур -->
+            <path class="upl-line upl-cloud" d="M52 50 C44 50 38 56 38 64 C38 72 44 78 52 78 H108 C116 78 122 72 122 64 C122 56 116 50 108 50 C107 50 106 50.1 105 50.3 C103 38 93 30 80 30 C69 30 60 36 56 45 C54.5 44.5 53.2 44.4 52 50 Z" />
+            <!-- Документ (первый кадр полноценный) -->
+            <g class="upl-line upl-doc">
+              <path d="M68 44 H86 L94 52 V72 H68 Z" />
+              <path d="M86 44 V52 H94" fill="none" />
+              <line x1="74" y1="58" x2="84" y2="58" stroke-width="2" opacity="0.35" />
+              <line x1="74" y1="64" x2="88" y2="64" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Стрелка вверх -->
+            <g class="upl-line upl-arrow">
+              <line x1="80" y1="40" x2="80" y2="22" stroke-width="2.2" />
+              <polyline points="74,28 80,22 86,28" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Загрузка файла</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Загружаем файл…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('upload')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('upload')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 1. MERGE -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="pages" data-slug="merge">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">merge.svg</span>
+          <span class="text-slate-400 text-[11px]">№1 · Объединение</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-merge">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .mrg-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+              .mrg-left { fill: #ffffff; animation: mrg-shift-l 2.6s ease-in-out infinite; }
+              .mrg-right { fill: #ffffff; animation: mrg-shift-r 2.6s ease-in-out infinite; }
+              .mrg-clip { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; animation: mrg-clip-bob 2.6s ease-in-out infinite; }
+              @keyframes mrg-shift-l {
+                0%, 20%, 100% { transform: translateX(0); }
+                50%, 75% { transform: translateX(18px); }
+              }
+              @keyframes mrg-shift-r {
+                0%, 20%, 100% { transform: translateX(0); }
+                50%, 75% { transform: translateX(-18px); }
+              }
+              @keyframes mrg-clip-bob {
+                0%, 20%, 100% { transform: translateY(-4px); opacity: 0.6; }
+                50%, 75% { transform: translateY(0); opacity: 1; }
+              }
+            </style>
+            <!-- Левый документ -->
+            <g class="mrg-line mrg-left">
+              <path d="M42 26 H62 L70 34 V74 H42 Z" />
+              <path d="M62 26 V34 H70" fill="none" />
+              <line x1="48" y1="46" x2="62" y2="46" stroke-width="2" opacity="0.35" />
+              <line x1="48" y1="54" x2="64" y2="54" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Правый документ -->
+            <g class="mrg-line mrg-right">
+              <path d="M90 26 H110 L118 34 V74 H90 Z" />
+              <path d="M110 26 V34 H118" fill="none" />
+              <line x1="96" y1="46" x2="110" y2="46" stroke-width="2" opacity="0.35" />
+              <line x1="96" y1="54" x2="112" y2="54" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Скрепка по центру -->
+            <path d="M78 20 V34 C78 37 82 37 82 34 V18 C82 14 74 14 74 18 V34" class="mrg-clip" />
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Объединить PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Объединяем файлы в один PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('merge')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('merge')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 2. SPLIT -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="pages" data-slug="split">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">split.svg</span>
+          <span class="text-slate-400 text-[11px]">№2 · Разделение</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-split">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .splt-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+              .splt-left { fill: #ffffff; animation: splt-drift-l 2.5s ease-in-out infinite; }
+              .splt-right { fill: #ffffff; animation: splt-drift-r 2.5s ease-in-out infinite; }
+              .splt-cut { stroke-dasharray: 4 4; opacity: 0.7; }
+              .splt-shears { animation: splt-cut-down 2.5s ease-in-out infinite; }
+              @keyframes splt-drift-l {
+                0%, 25%, 100% { transform: translateX(0); }
+                55%, 80% { transform: translateX(-14px); }
+              }
+              @keyframes splt-drift-r {
+                0%, 25%, 100% { transform: translateX(0); }
+                55%, 80% { transform: translateX(14px); }
+              }
+              @keyframes splt-cut-down {
+                0%, 20% { transform: translateY(0); }
+                45%, 75% { transform: translateY(40px); }
+                95%, 100% { transform: translateY(0); }
+              }
+            </style>
+            <!-- Левая часть -->
+            <g class="splt-line splt-left">
+              <path d="M58 24 H77 V76 H58 Z" />
+              <line x1="64" y1="36" x2="72" y2="36" stroke-width="2" opacity="0.35" />
+              <line x1="64" y1="44" x2="72" y2="44" stroke-width="2" opacity="0.35" />
+              <line x1="64" y1="52" x2="70" y2="52" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Правая часть -->
+            <g class="splt-line splt-right">
+              <path d="M83 24 H94 L102 32 V76 H83 Z" />
+              <path d="M94 24 V32 H102" fill="none" />
+              <line x1="88" y1="44" x2="96" y2="44" stroke-width="2" opacity="0.35" />
+              <line x1="88" y1="52" x2="94" y2="52" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Пунктирная линия разреза -->
+            <line x1="80" y1="18" x2="80" y2="82" class="splt-line splt-cut" stroke-width="2" />
+            <!-- Ножницы сверху -->
+            <g class="splt-line splt-shears">
+              <circle cx="76" cy="18" r="3" fill="#ffffff" />
+              <circle cx="84" cy="18" r="3" fill="#ffffff" />
+              <line x1="77" y1="21" x2="82" y2="28" />
+              <line x1="83" y1="21" x2="78" y2="28" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Разделить PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Разделяем PDF на части…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('split')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('split')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 3. ORGANIZE -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="pages" data-slug="organize">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">organize.svg</span>
+          <span class="text-slate-400 text-[11px]">№3 · Сортировка</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-organize">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .org-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .org-card-a { animation: org-swap-a 2.6s cubic-bezier(0.34, 1.2, 0.64, 1) infinite; }
+              .org-card-b { animation: org-swap-b 2.6s cubic-bezier(0.34, 1.2, 0.64, 1) infinite; }
+              @keyframes org-swap-a {
+                0%, 15%, 100% { transform: translate(0, 0); }
+                45%, 75% { transform: translate(32px, -8px); }
+              }
+              @keyframes org-swap-b {
+                0%, 15%, 100% { transform: translate(0, 0); }
+                45%, 75% { transform: translate(-32px, 8px); }
+              }
+            </style>
+            <!-- Фоновый лист -->
+            <path class="org-line" d="M30 32 H46 L52 38 V68 H30 Z" opacity="0.6" />
+            <!-- Переставляемый лист A -->
+            <g class="org-card-a">
+              <path class="org-line" d="M64 26 H82 L90 34 V74 H64 Z" />
+              <path d="M82 26 V34 H90" class="org-line" fill="none" />
+              <line x1="70" y1="46" x2="84" y2="46" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+              <line x1="70" y1="54" x2="82" y2="54" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            </g>
+            <!-- Переставляемый лист B -->
+            <g class="org-card-b">
+              <path class="org-line" d="M96 30 H114 L122 38 V70 H96 Z" opacity="0.85" />
+              <path d="M114 30 V38 H122" class="org-line" fill="none" opacity="0.85" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Сортировка страниц</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Переставляем страницы в новом порядке…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('organize')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('organize')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 4. EXTRACT-PAGES -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="pages" data-slug="extract-pages">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">extract-pages.svg</span>
+          <span class="text-slate-400 text-[11px]">№4 · Извлечение</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-extract-pages">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .ext-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .ext-leaf { animation: ext-lift 2.4s ease-in-out infinite; }
+              @keyframes ext-lift {
+                0%, 20%, 100% { transform: translateY(0); }
+                50%, 75% { transform: translateY(-16px); }
+              }
+            </style>
+            <!-- Задняя стопка страниц -->
+            <path class="ext-line" d="M52 36 H88 V76 H52 Z" opacity="0.4" />
+            <path class="ext-line" d="M58 32 H94 V76 H58 Z" opacity="0.7" />
+            <!-- Извлекаемая страница (поднимается вверх) -->
+            <g class="ext-leaf">
+              <path class="ext-line" d="M64 28 H92 L100 36 V76 H64 Z" />
+              <path d="M92 28 V36 H100" class="ext-line" fill="none" />
+              <line x1="72" y1="46" x2="88" y2="46" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+              <line x1="72" y1="54" x2="92" y2="54" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Извлечь страницы</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Извлекаем выбранные страницы…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('extract-pages')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('extract-pages')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 5. DELETE-PAGES -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="pages" data-slug="delete-pages">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">delete-pages.svg</span>
+          <span class="text-slate-400 text-[11px]">№5 · Удаление</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-delete-pages">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .del-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .del-doc { animation: del-fade-drop 2.5s ease-in-out infinite; }
+              .del-cross { stroke: #ef4444; stroke-width: 2.5; stroke-linecap: round; animation: del-cross-pop 2.5s ease-in-out infinite; }
+              @keyframes del-fade-drop {
+                0%, 20% { opacity: 1; transform: translateY(0); }
+                50%, 80% { opacity: 0.25; transform: translateY(8px); }
+                100% { opacity: 1; transform: translateY(0); }
+              }
+              @keyframes del-cross-pop {
+                0%, 20% { opacity: 0.4; transform: scale(0.9); }
+                45%, 75% { opacity: 1; transform: scale(1.1); }
+                100% { opacity: 0.4; transform: scale(0.9); }
+              }
+            </style>
+            <!-- Оставшиеся страницы рядом -->
+            <path class="del-line" d="M42 30 H64 L70 36 V72 H42 Z" opacity="0.75" />
+            <!-- Удаляемая страница -->
+            <g class="del-doc">
+              <path class="del-line" d="M82 26 H104 L112 34 V74 H82 Z" />
+              <path d="M104 26 V34 H112" class="del-line" fill="none" />
+              <line x1="88" y1="44" x2="102" y2="44" stroke="currentColor" stroke-width="2" opacity="0.3" stroke-linecap="round" />
+              <line x1="88" y1="52" x2="104" y2="52" stroke="currentColor" stroke-width="2" opacity="0.3" stroke-linecap="round" />
+            </g>
+            <!-- Красный аккуратный крестик действия -->
+            <g class="del-cross" style="transform-origin: 97px 56px;">
+              <line x1="91" y1="50" x2="103" y2="62" />
+              <line x1="103" y1="50" x2="91" y2="62" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Удалить страницы</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Удаляем страницы из PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('delete-pages')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('delete-pages')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 6. IMAGES-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="images-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">images-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№6 · JPG → PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-images-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .i2p-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .i2p-photo { animation: i2p-trans 2.6s ease-in-out infinite; }
+              .i2p-pdf { animation: i2p-appear 2.6s ease-in-out infinite; }
+              @keyframes i2p-trans {
+                0%, 25%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 75% { transform: translateX(24px); opacity: 0.2; }
+              }
+              @keyframes i2p-appear {
+                0%, 25%, 100% { opacity: 0.4; }
+                50%, 75% { opacity: 1; }
+              }
+            </style>
+            <!-- Фотография (горы и солнце) -->
+            <g class="i2p-photo">
+              <rect x="40" y="28" width="40" height="44" rx="4" class="i2p-line" />
+              <circle cx="50" cy="40" r="3" fill="currentColor" />
+              <polyline points="42,62 52,50 62,60 70,54 78,64" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <!-- Стрелка трансформации -->
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <!-- Итоговый PDF -->
+            <g class="i2p-pdf">
+              <path class="i2p-line" d="M102 26 H120 L128 34 V74 H102 Z" />
+              <path d="M120 26 V34 H128" class="i2p-line" fill="none" />
+              <text x="115" y="58" font-family="system-ui, sans-serif" font-weight="800" font-size="9" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Картинки в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Собираем PDF из картинок…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('images-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('images-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 7. COMPRESS (Исправленный: спокойный ритм, до 3 элементов, чистый 2D) -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="compress">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">compress.svg</span>
+          <span class="text-slate-400 text-[11px]">№7 · Пресс</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-compress">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .cmp-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+              .cmp-plate { fill: #ffffff; animation: cmp-press-down 2.4s ease-in-out infinite; }
+              .cmp-sheet { fill: #ffffff; transform-origin: 80px 76px; animation: cmp-squash 2.4s ease-in-out infinite; }
+              .cmp-arrow { fill: none; opacity: 0.6; animation: cmp-arrow-pulse 2.4s ease-in-out infinite; }
+              @keyframes cmp-press-down {
+                0%, 20%, 100% { transform: translateY(0); }
+                50%, 75% { transform: translateY(14px); }
+              }
+              @keyframes cmp-squash {
+                0%, 20%, 100% { transform: scale(1, 1); }
+                50%, 75% { transform: scale(1.06, 0.72); }
+              }
+              @keyframes cmp-arrow-pulse {
+                0%, 20%, 100% { opacity: 0.7; transform: translateY(0); }
+                50%, 75% { opacity: 0.2; transform: translateY(4px); }
+              }
+            </style>
+            <!-- Верхняя стрелка направления усилия -->
+            <g class="cmp-line cmp-arrow">
+              <line x1="80" y1="14" x2="80" y2="24" stroke-width="2" />
+              <polyline points="76,20 80,24 84,20" />
+            </g>
+            <!-- Плита пресса (элемент 1) -->
+            <g class="cmp-line cmp-plate">
+              <rect x="52" y="26" width="56" height="6" rx="2" />
+              <line x1="64" y1="26" x2="64" y2="20" stroke-width="2" />
+              <line x1="96" y1="26" x2="96" y2="20" stroke-width="2" />
+            </g>
+            <!-- Сжимаемый документ (элемент 2, первый кадр самодостаточен) -->
+            <g class="cmp-line cmp-sheet">
+              <path d="M62 36 H90 L98 44 V76 H62 Z" />
+              <path d="M90 36 V44 H98" fill="none" />
+              <line x1="70" y1="48" x2="86" y2="48" stroke-width="2" opacity="0.35" />
+              <line x1="70" y1="56" x2="90" y2="56" stroke-width="2" opacity="0.35" />
+              <line x1="70" y1="64" x2="82" y2="64" stroke-width="2" opacity="0.35" />
+            </g>
+            <!-- Станина/основание -->
+            <line x1="46" y1="76" x2="114" y2="76" class="cmp-line" stroke-width="2.6" />
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Сжать PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Сжимаем PDF, уменьшаем размер файла…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('compress')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('compress')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 8. REPAIR -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="repair">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">repair.svg</span>
+          <span class="text-slate-400 text-[11px]">№8 · Ремонт</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-repair">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .rep-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .rep-crack { stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; }
+              .rep-wrench { transform-origin: 104px 50px; animation: rep-turn 2.4s ease-in-out infinite; }
+              @keyframes rep-turn {
+                0%, 100% { transform: rotate(0deg); }
+                50% { transform: rotate(-25deg); }
+              }
+            </style>
+            <!-- Документ с трещиной -->
+            <path class="rep-line" d="M52 24 H84 L92 32 V76 H52 Z" />
+            <path d="M84 24 V32 H92" class="rep-line" fill="none" />
+            <!-- Трещина по центру -->
+            <polyline points="70,38 74,46 68,54 73,64" class="rep-crack" opacity="0.6" />
+            <!-- Гаечный ключ/инструмент справа -->
+            <g class="rep-wrench">
+              <path d="M102 36 L112 46 L108 50 L98 40 Z" class="rep-line" />
+              <circle cx="114" cy="48" r="6" class="rep-line" />
+              <circle cx="114" cy="48" r="2.5" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Восстановить PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Восстанавливаем повреждённый PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('repair')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('repair')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 9. OCR -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="ocr">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">ocr.svg</span>
+          <span class="text-slate-400 text-[11px]">№9 · Сканер</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-ocr">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .ocr-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .ocr-laser { animation: ocr-sweep 2.6s ease-in-out infinite; }
+              .ocr-text { stroke: currentColor; stroke-width: 2; opacity: 0.3; stroke-linecap: round; }
+              @keyframes ocr-sweep {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(42px); }
+              }
+            </style>
+            <!-- Документ -->
+            <path class="ocr-line" d="M58 22 H92 L102 32 V78 H58 Z" />
+            <path d="M92 22 V32 H102" class="ocr-line" fill="none" />
+            <line x1="68" y1="40" x2="90" y2="40" class="ocr-text" />
+            <line x1="68" y1="48" x2="94" y2="48" class="ocr-text" />
+            <line x1="68" y1="56" x2="88" y2="56" class="ocr-text" />
+            <line x1="68" y1="64" x2="80" y2="64" class="ocr-text" />
+            <!-- Сканирующий оптический луч -->
+            <g class="ocr-laser">
+              <line x1="50" y1="28" x2="110" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <polygon points="50,28 46,25 46,31" fill="currentColor" />
+              <polygon points="110,28 114,25 114,31" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Распознавание (OCR)</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Распознаём текст на страницах…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('ocr')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('ocr')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 10. WORD-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="word-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">word-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№10 · Конвертер</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-word-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .wtp-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .wtp-doc-badge { animation: wtp-slide-out 2.8s ease-in-out infinite; }
+              .wtp-pdf-badge { animation: wtp-slide-in 2.8s ease-in-out infinite; }
+              @keyframes wtp-slide-out {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes wtp-slide-in {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <!-- DOC плашка -->
+            <g class="wtp-doc-badge">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="wtp-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">DOC</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <!-- PDF плашка -->
+            <g class="wtp-pdf-badge">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="wtp-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Word в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем документ Word в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('word-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('word-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 11. EXCEL-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="excel-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">excel-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№11 · XLS → PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-excel-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .x2p-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .x2p-xls { animation: x2p-slide 2.8s ease-in-out infinite; }
+              .x2p-pdf { animation: x2p-fade 2.8s ease-in-out infinite; }
+              @keyframes x2p-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes x2p-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="x2p-xls">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="x2p-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">XLS</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="x2p-pdf">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="x2p-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Excel в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем таблицу Excel в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('excel-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('excel-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 12. POWERPOINT-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="powerpoint-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">powerpoint-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№12 · PPT → PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-powerpoint-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .p2p-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .p2p-ppt { animation: p2p-slide 2.8s ease-in-out infinite; }
+              .p2p-pdf { animation: p2p-fade 2.8s ease-in-out infinite; }
+              @keyframes p2p-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes p2p-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="p2p-ppt">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="p2p-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PPT</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="p2p-pdf">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="p2p-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">PowerPoint в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем презентацию в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('powerpoint-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('powerpoint-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 13. TXT-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="txt-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">txt-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№13 · TXT → PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-txt-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .t2p-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .t2p-txt { animation: t2p-slide 2.8s ease-in-out infinite; }
+              .t2p-pdf { animation: t2p-fade 2.8s ease-in-out infinite; }
+              @keyframes t2p-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes t2p-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="t2p-txt">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="t2p-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">TXT</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="t2p-pdf">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="t2p-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Текст в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем текст в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('txt-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('txt-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 14. HTML-TO-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="html-to-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">html-to-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№14 · HTML → PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-html-to-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .h2p-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .h2p-code { animation: h2p-shift 2.8s ease-in-out infinite; }
+              .h2p-pdf { animation: h2p-appear 2.8s ease-in-out infinite; }
+              @keyframes h2p-shift {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes h2p-appear {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <!-- HTML экран -->
+            <g class="h2p-code">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="h2p-line" />
+              <polyline points="52,46 48,50 52,54" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              <polyline points="70,46 74,50 70,54" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              <line x1="63" y1="44" x2="59" y2="56" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="h2p-pdf">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="h2p-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">HTML в PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем страницу в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('html-to-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('html-to-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 15. PDF-TO-JPG -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="pdf-to-jpg">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">pdf-to-jpg.svg</span>
+          <span class="text-slate-400 text-[11px]">№15 · PDF → JPG</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-pdf-to-jpg">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .p2j-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .p2j-pdf { animation: p2j-slide 2.8s ease-in-out infinite; }
+              .p2j-jpg { animation: p2j-fade 2.8s ease-in-out infinite; }
+              @keyframes p2j-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes p2j-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="p2j-pdf">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="p2j-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="p2j-jpg">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="p2j-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">JPG</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">PDF в JPG</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Превращаем страницы в картинки JPG…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('pdf-to-jpg')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('pdf-to-jpg')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 16. PDF-TO-WORD -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="pdf-to-word">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">pdf-to-word.svg</span>
+          <span class="text-slate-400 text-[11px]">№16 · PDF → DOC</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-pdf-to-word">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .p2w-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .p2w-pdf { animation: p2w-slide 2.8s ease-in-out infinite; }
+              .p2w-doc { animation: p2w-fade 2.8s ease-in-out infinite; }
+              @keyframes p2w-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes p2w-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="p2w-pdf">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="p2w-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="p2w-doc">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="p2w-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">DOC</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">PDF в Word</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Преобразуем PDF в документ Word…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('pdf-to-word')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('pdf-to-word')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 17. PDF-TO-TXT -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="converters" data-slug="pdf-to-txt">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">pdf-to-txt.svg</span>
+          <span class="text-slate-400 text-[11px]">№17 · PDF → TXT</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-pdf-to-txt">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .p2t-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .p2t-pdf { animation: p2t-slide 2.8s ease-in-out infinite; }
+              .p2t-txt { animation: p2t-fade 2.8s ease-in-out infinite; }
+              @keyframes p2t-slide {
+                0%, 30%, 100% { transform: translateX(0); opacity: 1; }
+                50%, 80% { transform: translateX(20px); opacity: 0.2; }
+              }
+              @keyframes p2t-fade {
+                0%, 30%, 100% { opacity: 0.3; }
+                50%, 80% { opacity: 1; }
+              }
+            </style>
+            <g class="p2t-pdf">
+              <rect x="42" y="28" width="38" height="44" rx="4" class="p2t-line" />
+              <text x="61" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">PDF</text>
+            </g>
+            <path d="M84 50 H96 M92 46 L96 50 L92 54" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6" />
+            <g class="p2t-txt">
+              <rect x="100" y="28" width="38" height="44" rx="4" class="p2t-line" />
+              <text x="119" y="54" font-family="system-ui, sans-serif" font-weight="800" font-size="11" fill="currentColor" text-anchor="middle">TXT</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">PDF в TXT</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Извлекаем текст из PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('pdf-to-txt')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('pdf-to-txt')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 18. EDIT-TEXT -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="edit-text">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">edit-text.svg</span>
+          <span class="text-slate-400 text-[11px]">№18 · Правка текста</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-edit-text">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .edt-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .edt-caret { stroke: currentColor; stroke-width: 2; animation: edt-blink 1.2s infinite; }
+              .edt-bar { animation: edt-type 2.4s ease-in-out infinite; }
+              @keyframes edt-blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+              }
+              @keyframes edt-type {
+                0%, 20%, 100% { stroke-dasharray: 20; stroke-dashoffset: 0; }
+                50%, 70% { stroke-dasharray: 20; stroke-dashoffset: 10; }
+              }
+            </style>
+            <path class="edt-line" d="M60 24 H92 L100 32 V76 H60 Z" />
+            <path d="M92 24 V32 H100" class="edt-line" fill="none" />
+            <line x1="68" y1="40" x2="88" y2="40" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Печатаемая строка с курсором -->
+            <line x1="68" y1="48" x2="86" y2="48" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" class="edt-bar" />
+            <line x1="88" y1="44" x2="88" y2="52" class="edt-caret" />
+            <line x1="68" y1="56" x2="80" y2="56" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Редактировать текст</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Применяем правки текста…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('edit-text')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('edit-text')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 19. EDIT-PDF -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="edit-pdf">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">edit-pdf.svg</span>
+          <span class="text-slate-400 text-[11px]">№19 · Правка PDF</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-edit-pdf">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .edp-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .edp-pen { animation: edp-draw 2.4s ease-in-out infinite; }
+              @keyframes edp-draw {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(6px, -6px); }
+              }
+            </style>
+            <path class="edp-line" d="M58 24 H92 L100 32 V76 H58 Z" />
+            <path d="M92 24 V32 H100" class="edp-line" fill="none" />
+            <line x1="68" y1="40" x2="88" y2="40" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <line x1="68" y1="48" x2="84" y2="48" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Карандаш над листом -->
+            <g class="edp-pen">
+              <path d="M84 62 L98 48 L104 54 L90 68 Z" class="edp-line" />
+              <polygon points="84,62 82,68 88,66" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Редактировать PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Применяем изменения к PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('edit-pdf')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('edit-pdf')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 20. PAINT -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="paint">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">paint.svg</span>
+          <span class="text-slate-400 text-[11px]">№20 · Paint</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-paint">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .pnt-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .pnt-brush { animation: pnt-stroke 2.5s ease-in-out infinite; }
+              @keyframes pnt-stroke {
+                0%, 100% { transform: translate(0, 0); }
+                50% { transform: translate(12px, -8px); }
+              }
+            </style>
+            <!-- Холст с волнообразной линией рисунка -->
+            <rect x="52" y="24" width="56" height="52" rx="4" class="pnt-line" />
+            <path d="M60 54 Q 72 44, 80 52 T 100 50" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.6" />
+            <!-- Кисть -->
+            <g class="pnt-brush">
+              <path d="M88 44 L102 30 L108 36 L94 50 Z" class="pnt-line" />
+              <path d="M88 44 Q 85 48, 84 54 Q 90 52, 94 50 Z" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Онлайн Paint</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Сохраняем рисунок в PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('paint')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('paint')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 21. CROP -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="crop">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">crop.svg</span>
+          <span class="text-slate-400 text-[11px]">№21 · Рамка</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-crop">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .crp-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .crp-tl { animation: crp-in-tl 2.5s ease-in-out infinite; }
+              .crp-br { animation: crp-in-br 2.5s ease-in-out infinite; }
+              @keyframes crp-in-tl {
+                0%, 15%, 100% { transform: translate(0, 0); }
+                50%, 75% { transform: translate(6px, 6px); }
+              }
+              @keyframes crp-in-br {
+                0%, 15%, 100% { transform: translate(0, 0); }
+                50%, 75% { transform: translate(-6px, -6px); }
+              }
+            </style>
+            <!-- Документ -->
+            <path class="crp-line" d="M58 24 H92 L100 32 V76 H58 Z" opacity="0.6" />
+            <!-- Уголок верхний левый -->
+            <path d="M50 32 V22 H60" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none" class="crp-tl" />
+            <!-- Уголок нижний правый -->
+            <path d="M110 68 V78 H100" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none" class="crp-br" />
+            <!-- Пассивные уголки -->
+            <path d="M110 32 V22 H100" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3" />
+            <path d="M50 68 V78 H60" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3" />
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Обрезать PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Обрезаем страницы…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('crop')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('crop')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 22. ROTATE -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="rotate">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">rotate.svg</span>
+          <span class="text-slate-400 text-[11px]">№22 · Поворот</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-rotate">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .rot-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .rot-doc { transform-origin: 80px 50px; animation: rot-step 2.6s ease-in-out infinite; }
+              @keyframes rot-step {
+                0%, 20% { transform: rotate(0deg); }
+                50%, 75% { transform: rotate(90deg); }
+                95%, 100% { transform: rotate(90deg); }
+              }
+            </style>
+            <!-- Круговая стрелка направления -->
+            <path d="M120 40 A 42 42 0 0 1 120 62" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
+            <polyline points="116,63 120,67 124,63" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6" />
+            <!-- Поворачивающийся документ -->
+            <g class="rot-doc">
+              <path class="rot-line" d="M64 26 H88 L96 34 V74 H64 Z" />
+              <path d="M88 26 V34 H96" class="rot-line" fill="none" />
+              <line x1="72" y1="44" x2="88" y2="44" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+              <line x1="72" y1="52" x2="86" y2="52" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+              <circle cx="73" cy="33" r="2.5" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Повернуть PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Поворачиваем страницы…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('rotate')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('rotate')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 23. WATERMARK -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="watermark">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">watermark.svg</span>
+          <span class="text-slate-400 text-[11px]">№23 · Штамп</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-watermark">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .wtm-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .wtm-stamp { animation: wtm-press 2.4s ease-in-out infinite; }
+              @keyframes wtm-press {
+                0%, 20%, 100% { opacity: 0.35; transform: scale(0.95); }
+                50%, 75% { opacity: 0.9; transform: scale(1.05); }
+              }
+            </style>
+            <path class="wtm-line" d="M60 22 H92 L100 30 V76 H60 Z" />
+            <path d="M92 22 V30 H100" class="wtm-line" fill="none" />
+            <!-- Диагональная плашка водяного знака -->
+            <g class="wtm-stamp" style="transform-origin: 80px 52px;">
+              <rect x="54" y="46" width="52" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3" transform="rotate(-15 80 53)" />
+              <text x="80" y="56" font-family="system-ui, sans-serif" font-weight="700" font-size="7" fill="currentColor" text-anchor="middle" transform="rotate(-15 80 53)">PDFok</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Водяной знак</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Накладываем водяной знак…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('watermark')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('watermark')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 24. PAGE-NUMBERS -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="page-numbers">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">page-numbers.svg</span>
+          <span class="text-slate-400 text-[11px]">№24 · Номера</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-page-numbers">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .pnm-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .pnm-badge { animation: pnm-stamp 2.4s ease-in-out infinite; }
+              @keyframes pnm-stamp {
+                0%, 20%, 100% { transform: translateY(-4px); opacity: 0.5; }
+                50%, 75% { transform: translateY(0); opacity: 1; }
+              }
+            </style>
+            <path class="pnm-line" d="M60 22 H92 L100 30 V76 H60 Z" />
+            <path d="M92 22 V30 H100" class="pnm-line" fill="none" />
+            <line x1="68" y1="36" x2="88" y2="36" stroke="currentColor" stroke-width="2" opacity="0.3" stroke-linecap="round" />
+            <line x1="68" y1="44" x2="92" y2="44" stroke="currentColor" stroke-width="2" opacity="0.3" stroke-linecap="round" />
+            <!-- Шильдик с номером страницы (123) -->
+            <g class="pnm-badge">
+              <rect x="72" y="58" width="16" height="12" rx="3" stroke="currentColor" stroke-width="2" fill="#ffffff" />
+              <text x="80" y="67" font-family="system-ui, sans-serif" font-weight="800" font-size="8" fill="currentColor" text-anchor="middle">1</text>
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Номера страниц</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Проставляем номера страниц…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('page-numbers')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('page-numbers')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 25. SIGN (Исправлен первый кадр: подпись видна сразу, перо аккуратно дорисовывает) -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="edit" data-slug="sign">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">sign.svg</span>
+          <span class="text-slate-400 text-[11px]">№25 · Подпись</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-sign">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .sgn-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .sgn-pen { animation: sgn-pen-stroke 2.6s ease-in-out infinite; }
+              .sgn-flourish { stroke: currentColor; stroke-width: 2; stroke-linecap: round; fill: none; }
+              @keyframes sgn-pen-stroke {
+                0%, 100% { transform: translate(72px, 62px); }
+                50% { transform: translate(92px, 58px); }
+              }
+            </style>
+            <!-- Документ -->
+            <path class="sgn-line" d="M58 20 H92 L100 28 V76 H58 Z" />
+            <path d="M92 20 V28 H100" class="sgn-line" fill="none" />
+            <line x1="66" y1="36" x2="86" y2="36" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <line x1="66" y1="44" x2="92" y2="44" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Подпись (полноценно видна на 1-м кадре) -->
+            <path d="M68 64 Q 74 58, 78 63 T 88 61 T 94 62" class="sgn-flourish" opacity="0.8" />
+            <!-- Перо ручки -->
+            <g class="sgn-pen">
+              <polygon points="0,0 3,-10 7,-7" class="sgn-line" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Подписать PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Ставим подпись на страницы…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('sign')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('sign')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 26. METADATA -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="metadata">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">metadata.svg</span>
+          <span class="text-slate-400 text-[11px]">№26 · Теги</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-metadata">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .mtd-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .mtd-tag { animation: mtd-pulse 2.4s ease-in-out infinite; }
+              @keyframes mtd-pulse {
+                0%, 100% { transform: scale(1); opacity: 0.7; }
+                50% { transform: scale(1.08); opacity: 1; }
+              }
+            </style>
+            <path class="mtd-line" d="M54 22 H86 L94 30 V76 H54 Z" />
+            <path d="M86 22 V30 H94" class="mtd-line" fill="none" />
+            <line x1="62" y1="38" x2="80" y2="38" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <line x1="62" y1="46" x2="84" y2="46" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Бейдж метаданных справа -->
+            <g class="mtd-tag" style="transform-origin: 104px 54px;">
+              <path d="M96 46 H112 L118 54 L112 62 H96 Z" class="mtd-line" />
+              <circle cx="101" cy="54" r="2" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Метаданные</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Обновляем свойства документа…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('metadata')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('metadata')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 27. GRAYSCALE -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="grayscale">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">grayscale.svg</span>
+          <span class="text-slate-400 text-[11px]">№27 · Градации</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-grayscale">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .gry-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .gry-bars rect { animation: gry-fade 2.5s ease-in-out infinite; }
+              @keyframes gry-fade {
+                0%, 100% { opacity: 0.9; }
+                50% { opacity: 0.35; }
+              }
+            </style>
+            <path class="gry-line" d="M60 22 H92 L100 30 V76 H60 Z" />
+            <path d="M92 22 V30 H100" class="gry-line" fill="none" />
+            <!-- 3 полосы разной плотности серого тона -->
+            <g class="gry-bars">
+              <rect x="68" y="38" width="24" height="6" rx="2" fill="#475569" stroke="none" />
+              <rect x="68" y="48" width="24" height="6" rx="2" fill="#94a3b8" stroke="none" />
+              <rect x="68" y="58" width="24" height="6" rx="2" fill="#cbd5e1" stroke="none" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">PDF в оттенки серого</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Переводим страницы в оттенки серого…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('grayscale')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('grayscale')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 28. FLATTEN (Исправлен: чистый 2D без псевдо-3D изометрии, строго по ТЗ) -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="flatten">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">flatten.svg</span>
+          <span class="text-slate-400 text-[11px]">№28 · Сведение слоев</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-flatten">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .flt-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .flt-layer-1 { animation: flt-drop-1 2.4s ease-in-out infinite; }
+              .flt-layer-2 { animation: flt-drop-2 2.4s ease-in-out infinite; }
+              @keyframes flt-drop-1 {
+                0%, 20%, 100% { transform: translateY(0); opacity: 0.6; }
+                50%, 75% { transform: translateY(12px); opacity: 0.2; }
+              }
+              @keyframes flt-drop-2 {
+                0%, 20%, 100% { transform: translateY(0); opacity: 0.8; }
+                50%, 75% { transform: translateY(6px); opacity: 0.4; }
+              }
+            </style>
+            <!-- Базовый документ внизу -->
+            <path class="flt-line" d="M60 36 H92 L100 44 V76 H60 Z" />
+            <!-- Верхний слой 1 -->
+            <g class="flt-layer-1">
+              <rect x="54" y="24" width="38" height="20" rx="3" class="flt-line" stroke-dasharray="3 3" />
+            </g>
+            <!-- Верхний слой 2 -->
+            <g class="flt-layer-2">
+              <rect x="68" y="30" width="38" height="20" rx="3" class="flt-line" stroke-dasharray="3 3" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Выровнять PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Сводим слои и выравниваем PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('flatten')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('flatten')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 29. COMPARE -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="tools" data-slug="compare">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">compare.svg</span>
+          <span class="text-slate-400 text-[11px]">№29 · Сравнение</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-compare">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .cmp2-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .cmp2-beam { animation: cmp2-scan 2.6s ease-in-out infinite; }
+              @keyframes cmp2-scan {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(34px); }
+              }
+            </style>
+            <!-- Левый документ -->
+            <path class="cmp2-line" d="M38 28 H60 L66 34 V72 H38 Z" />
+            <line x1="44" y1="42" x2="56" y2="42" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <line x1="44" y1="50" x2="60" y2="50" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Правый документ -->
+            <path class="cmp2-line" d="M94 28 H116 L122 34 V72 H94 Z" />
+            <line x1="100" y1="42" x2="112" y2="42" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <line x1="100" y1="50" x2="116" y2="50" stroke="currentColor" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+            <!-- Сканирующая перекладина между ними -->
+            <g class="cmp2-beam">
+              <line x1="48" y1="34" x2="112" y2="34" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Сравнить PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Сравниваем документы…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('compare')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('compare')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 30. PROTECT -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="security" data-slug="protect">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">protect.svg</span>
+          <span class="text-slate-400 text-[11px]">№30 · Замок</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-protect">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .prt-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .prt-shackle { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; fill: none; animation: prt-snap 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
+              @keyframes prt-snap {
+                0%, 25% { transform: translateY(-7px); }
+                45%, 85% { transform: translateY(0); }
+                100% { transform: translateY(-7px); }
+              }
+            </style>
+            <!-- Фоновый лист -->
+            <path class="prt-line" d="M62 20 H90 L98 28 V76 H62 Z" opacity="0.6" />
+            <!-- Дужка замка -->
+            <path d="M72 48 V38 C72 32 88 32 88 38 V48" class="prt-shackle" />
+            <!-- Тело замка -->
+            <g class="prt-line">
+              <rect x="65" y="48" width="30" height="26" rx="5" />
+              <circle cx="80" cy="59" r="2.5" fill="currentColor" stroke="none" />
+              <line x1="80" y1="61" x2="80" y2="66" stroke="currentColor" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Защитить PDF</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Ставим пароль на PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('protect')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('protect')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+      <!-- 31. UNLOCK -->
+      <div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="security" data-slug="unlock">
+        <div class="flex items-center justify-between mb-2 text-xs">
+          <span class="font-mono bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-semibold">unlock.svg</span>
+          <span class="text-slate-400 text-[11px]">№31 · Снятие пароля</span>
+        </div>
+        <div class="svg-stage bg-slate-50/50 dark:bg-slate-950/40 rounded-xl mb-3 border border-slate-100 dark:border-slate-800/60">
+          <svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-unlock">
+            <style>
+              @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+              .unl-line { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; fill: #ffffff; }
+              .unl-shackle { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; fill: none; transform-origin: 72px 48px; animation: unl-open 2.4s ease-in-out infinite; }
+              @keyframes unl-open {
+                0%, 25% { transform: translateY(0); }
+                45%, 85% { transform: translateY(-7px) rotate(-26deg); }
+                100% { transform: translateY(0); }
+              }
+            </style>
+            <path class="unl-line" d="M62 20 H90 L98 28 V76 H62 Z" opacity="0.6" />
+            <!-- Распахивающаяся дужка -->
+            <path d="M72 48 V38 C72 32 88 32 88 38 V44" class="unl-shackle" />
+            <g class="unl-line">
+              <rect x="65" y="48" width="30" height="26" rx="5" />
+              <circle cx="80" cy="59" r="2.5" fill="currentColor" stroke="none" />
+              <line x1="80" y1="61" x2="80" y2="66" stroke="currentColor" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+        <div class="text-sm font-semibold text-slate-800 dark:text-slate-100">Снять пароль</div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 mb-3">«Снимаем пароль с PDF…»</div>
+        <div class="mt-auto flex items-center space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+          <button onclick="downloadSvg('unlock')" class="flex-1 text-xs py-1.5 px-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg transition">Скачать .svg</button>
+          <button onclick="copySvg('unlock')" class="text-xs py-1.5 px-3 border border-slate-200 dark:border-slate-700 hover:border-teal-500 rounded-lg text-slate-600 dark:text-slate-300 transition">Код</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Уведомление -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white dark:bg-teal-400 dark:text-slate-950 px-4 py-2.5 rounded-xl shadow-2xl text-xs font-semibold z-50 flex items-center space-x-2">
+    <svg class="w-4 h-4 text-emerald-400 dark:text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+    <span id="toast-text">Действие выполнено</span>
+  </div>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-4 px-8 text-center text-xs text-slate-400">
+    PDFok · Все 32 анимации подготовлены строго по ТЗ: автономный чистый вектор, viewBox 160×100, currentColor, чистый CSS @keyframes, самодостаточный 1-й кадр.
+  </footer>
+
+  <script>
+    // Переключение тем сайта PDFok (#0f766e vs #2dd4bf)
+    function setTheme(theme) {
+      const body = document.body;
+      const btnLight = document.getElementById('btn-light');
+      const btnDark = document.getElementById('btn-dark');
+
+      if (theme === 'dark') {
+        body.classList.remove('theme-light');
+        body.classList.add('theme-dark');
+        btnDark.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-700 text-teal-300 shadow-xs';
+        btnLight.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-400';
+      } else {
+        body.classList.remove('theme-dark');
+        body.classList.add('theme-light');
+        btnLight.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-white text-teal-800 shadow-xs';
+        btnDark.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-600';
+      }
+    }
+
+    // Тест первого кадра (проверка требования ТЗ: у части людей анимация выключена)
+    let isFrozen = false;
+    function toggleFreeze() {
+      isFrozen = !isFrozen;
+      document.body.classList.toggle('freeze-animations', isFrozen);
+      const dot = document.getElementById('freeze-dot');
+      const label = document.getElementById('freeze-label');
+      if (isFrozen) {
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+        label.innerText = 'Возобновить анимацию';
+        showToast('Анимация заморожена: тест статичного 1-го кадра');
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-amber-500';
+        label.innerText = 'Стоп (тест 1-го кадра)';
+        showToast('Анимации возобновлены');
+      }
+    }
+
+    // Фильтрация карточек по категориям
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition';
+      });
+      btn.className = 'filter-btn active px-2.5 py-1 rounded-md font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition';
+
+      const cards = document.querySelectorAll('#cards-container > div');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Извлечение чистого XML-кода SVG
+    function getCleanSvg(slug) {
+      const el = document.getElementById('svg-' + slug);
+      if (!el) return '';
+      return el.outerHTML;
+    }
+
+    // Копирование в буфер обмена
+    function copySvg(slug) {
+      const svgCode = getCleanSvg(slug);
+      if (!svgCode) return;
+
+      const textarea = document.createElement('textarea');
+      textarea.value = svgCode;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Код ' + slug + '.svg скопирован в буфер!');
+      } catch (e) {
+        showToast('Не удалось скопировать код');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // Поштучное скачивание .svg файла
+    function downloadSvg(slug) {
+      const svgCode = getCleanSvg(slug);
+      if (!svgCode) return;
+
+      const blob = new Blob([svgCode], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = slug + '.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Файл ' + slug + '.svg скачан!');
+    }
+
+    // Скачивание ВСЕХ 32 SVG одним ZIP-архивом
+    async function downloadAllZip() {
+      const btn = document.getElementById('btn-zip');
+      const origText = btn.innerHTML;
+      btn.innerHTML = `
+        <svg class="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></line><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+        <span>Упаковка ZIP...</span>
+      `;
+      btn.disabled = true;
+
+      try {
+        const zip = new JSZip();
+        const cards = document.querySelectorAll('#cards-container > div');
+        let count = 0;
+
+        cards.forEach(card => {
+          const slug = card.getAttribute('data-slug');
+          const code = getCleanSvg(slug);
+          if (slug && code) {
+            zip.file(slug + '.svg', code);
+            count++;
+          }
+        });
+
+        // Добавляем файл README с технической справкой для разработчиков
+        zip.file('README.txt', 
+`PDFok · Комплект из ${count} анимированных SVG
+------------------------------------------------------
+Параметры:
+- Холст: viewBox="0 0 160 100" (без width/height)
+- Линии: stroke-width 2-2.5px, stroke-linecap="round"
+- Цвета: stroke="currentColor", fill="currentColor"
+- Бумага: #ffffff
+- Автономный CSS @keyframes в <style>
+- Уникальные префиксы классов и @keyframes по слагам
+- Поддержка prefers-reduced-motion
+`);
+
+        const content = await zip.generateAsync({ type: 'blob' });
+        const url = URL.createObjectURL(content);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'PDFok_all_32_svg_animations.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Все 32 SVG успешно упакованы в ZIP!');
+      } catch (err) {
+        showToast('Ошибка при сборке ZIP-архива');
+      } finally {
+        btn.innerHTML = origText;
+        btn.disabled = false;
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
