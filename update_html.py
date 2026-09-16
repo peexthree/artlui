@@ -87,7 +87,8 @@ modal_html = """
   </div>
 """
 
-html = html.replace('<!-- Уведомление -->', modal_html + '\n  <!-- Уведомление -->')
+if 'id="activation-modal"' not in html:
+    html = html.replace('<!-- Уведомление -->', modal_html + '\n  <!-- Уведомление -->')
 
 # Now rewrite JS script section
 encrypted_js_str = json.dumps(encrypted_data)
