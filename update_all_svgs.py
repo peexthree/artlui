@@ -207,9 +207,9 @@ svgs['split'] = build_svg('split',
 
 # 29. UPLOAD
 svgs['upload'] = build_svg('upload',
-'''.up-arrow{animation:up-fly 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 28px}
+'''.up-arrow{animation:up-fly 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 30px}
 @keyframes up-fly{0%,20%{transform:translateY(0) scale(1)}25%{transform:translateY(6px) scale(0.88)}45%{transform:translateY(-15px) scale(1.25)}65%{transform:translateY(-4px) scale(0.95)}80%,100%{transform:translateY(0) scale(1)}}''',
-'''<path class="up-cloud" d="M12 36a10 10 0 0 1-.2-19.98 14 14 0 0 1 28.4 0A10 10 0 0 1 36 36z" fill="#C4B5FD"/><g class="up-arrow"><path d="M24 42V18M16 26l8-8 8 8" fill="none" stroke="#8B5CF6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>''')
+'''<path class="up-cloud" d="M7 36a8.5 8.5 0 0 1 7.2-13.8 11.5 11.5 0 0 1 19.6 0A8.5 8.5 0 0 1 41 36z" fill="#C4B5FD"/><g class="up-arrow"><path d="M24 42V18M16 26l8-8 8 8" fill="none" stroke="#8B5CF6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>''')
 
 # 30. OCR
 svgs['ocr'] = build_svg('ocr',
