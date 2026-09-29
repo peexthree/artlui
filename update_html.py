@@ -15,7 +15,9 @@ def xor_encrypt(text, key):
 with open('index.html', 'r', encoding='utf-8') as f:
     html = f.read()
 
-# 1. Update card headers and buttons for locked items
+# Clean up any existing activation modals (including duplicates)
+html = re.sub(r'<!-- Модальное окно активации Kwork -->.*?</form>\s*</div>\s*</div>\n?', '', html, flags=re.DOTALL)
+
 unlocked_slugs = {'upload', 'merge', 'compress'}
 
 # Extract SVGs and generate encrypted map
@@ -37,7 +39,6 @@ def modify_card(match):
     slug = slug_match.group(1)
 
     if slug not in unlocked_slugs:
-        # Add lock icon badge to header if not present
         if 'lock-badge' not in full_card:
             full_card = re.sub(
                 r'(<span class="text-slate-400 text-\[11px\]">№\d+ · [^<]+</span>)',
@@ -49,7 +50,7 @@ def modify_card(match):
 card_pattern = r'<div class="preview-card border rounded-2xl p-4 flex flex-col transition" data-cat="[^"]+" data-slug="[^"]+">.*?(?=<div class="preview-card|</div>\s*</main>)'
 html = re.sub(card_pattern, modify_card, html, flags=re.DOTALL)
 
-# Add Modal HTML before Toast
+# Add Modal HTML before Toast if not present
 modal_html = """
   <!-- Модальное окно активации Kwork -->
   <div id="activation-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
@@ -74,7 +75,7 @@ modal_html = """
       <form onsubmit="handleActivation(event)" class="space-y-4">
         <div>
           <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Ключ активации:</label>
-          <input type="text" id="activation-key-input" placeholder="например, PDFOK-PRO-2026" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono tracking-wider uppercase transition">
+          <input type="text" id="activation-key-input" placeholder="например, PDFOK-PRO-2026 или USERDRONOV7" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono tracking-wider uppercase transition">
           <p id="activation-error" class="text-[11px] text-red-500 font-medium mt-1.5 hidden">Неверный ключ активации. Проверьте правильность ввода.</p>
         </div>
 
@@ -90,7 +91,6 @@ modal_html = """
 if 'id="activation-modal"' not in html:
     html = html.replace('<!-- Уведомление -->', modal_html + '\n  <!-- Уведомление -->')
 
-# Now rewrite JS script section
 encrypted_js_str = json.dumps(encrypted_data)
 
 js_replacement = f"""<script>
@@ -144,7 +144,7 @@ js_replacement = f"""<script>
       const val = input.value.trim().toUpperCase();
       const errorEl = document.getElementById('activation-error');
 
-      if (val === 'PDFOK-PRO-2026') {{
+      if (val === 'PDFOK-PRO-2026' || val === 'USERDRONOV7') {{
         sessionStorage.setItem('pdfok_activated', 'true');
         closeModal();
         updateUIState();
@@ -162,7 +162,6 @@ js_replacement = f"""<script>
       }});
     }}
 
-    // Переключение тем сайта PDFok (#0f766e vs #2dd4bf)
     function setTheme(theme) {{
       const body = document.body;
       const btnLight = document.getElementById('btn-light');
@@ -171,17 +170,20 @@ js_replacement = f"""<script>
       if (theme === 'dark') {{
         body.classList.remove('theme-light');
         body.classList.add('theme-dark');
-        btnDark.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-700 text-teal-300 shadow-xs';
-        btnLight.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-400';
+        if (btnDark && btnLight) {{
+          btnDark.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-700 text-teal-300 shadow-xs';
+          btnLight.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-400';
+        }}
       }} else {{
         body.classList.remove('theme-dark');
         body.classList.add('theme-light');
-        btnLight.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-white text-teal-800 shadow-xs';
-        btnDark.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-600';
+        if (btnDark && btnLight) {{
+          btnLight.className = 'px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-white text-teal-800 shadow-xs';
+          btnDark.className = 'px-2.5 py-1 text-xs font-medium rounded-md transition-all text-slate-600';
+        }}
       }}
     }}
 
-    // Тест первого кадра (проверка требования ТЗ: у части людей анимация выключена)
     let isFrozen = false;
     function toggleFreeze() {{
       isFrozen = !isFrozen;
@@ -199,12 +201,13 @@ js_replacement = f"""<script>
       }}
     }}
 
-    // Фильтрация карточек по категориям
     function filterCategory(cat, btn) {{
       document.querySelectorAll('.filter-btn').forEach(b => {{
         b.className = 'filter-btn px-2.5 py-1 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition';
       }});
-      btn.className = 'filter-btn active px-2.5 py-1 rounded-md font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition';
+      if (btn) {{
+        btn.className = 'filter-btn active px-2.5 py-1 rounded-md font-semibold bg-teal-700 text-white dark:bg-teal-400 dark:text-slate-950 transition';
+      }}
 
       const cards = document.querySelectorAll('#cards-container > div');
       cards.forEach(card => {{
@@ -216,7 +219,73 @@ js_replacement = f"""<script>
       }});
     }}
 
-    // Извлечение чистого XML-кода SVG
+    function filterSearch(query) {{
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('#cards-container > div');
+      let visibleCount = 0;
+      cards.forEach(card => {{
+        const text = card.textContent.toLowerCase();
+        const slug = (card.getAttribute('data-slug') || '').toLowerCase();
+        if (!q || text.includes(q) || slug.includes(q)) {{
+          card.style.display = 'flex';
+          visibleCount++;
+        }} else {{
+          card.style.display = 'none';
+        }}
+      }});
+      const countEl = document.getElementById('search-count');
+      if (countEl) countEl.innerText = visibleCount;
+    }}
+
+    function setSpeed(speed, btn) {{
+      document.querySelectorAll('.speed-btn').forEach(b => {{
+        b.className = 'speed-btn px-2 py-0.5 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition';
+      }});
+      if (btn) btn.className = 'speed-btn active px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold shadow-xs transition';
+
+      let styleEl = document.getElementById('speed-style');
+      if (!styleEl) {{
+        styleEl = document.createElement('style');
+        styleEl.id = 'speed-style';
+        document.head.appendChild(styleEl);
+      }}
+      styleEl.innerHTML = `.svg-stage svg * {{ animation-duration: calc(var(--base-dur, 3s) / ${{speed}}) !important; }}`;
+    }}
+
+    function setZoom(zoom, btn) {{
+      document.querySelectorAll('.zoom-btn').forEach(b => {{
+        b.className = 'zoom-btn px-2 py-0.5 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition';
+      }});
+      if (btn) btn.className = 'zoom-btn active px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold shadow-xs transition';
+
+      document.querySelectorAll('.svg-stage svg').forEach(svg => {{
+        svg.style.transform = `scale(${{zoom}})`;
+        svg.style.transformOrigin = 'center center';
+        svg.style.transition = 'transform 0.2s ease';
+      }});
+    }}
+
+    function setStageBg(bg, btn) {{
+      document.querySelectorAll('.bg-btn').forEach(b => {{
+        b.className = 'bg-btn px-2 py-0.5 rounded text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition';
+      }});
+      if (btn) btn.className = 'bg-btn active px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold shadow-xs transition';
+
+      document.querySelectorAll('.svg-stage').forEach(stage => {{
+        stage.style.backgroundColor = '';
+        stage.style.backgroundImage = '';
+        if (bg === 'dark') {{
+          stage.style.backgroundColor = '#020617';
+        }} else if (bg === 'light') {{
+          stage.style.backgroundColor = '#ffffff';
+        }} else if (bg === 'checkerboard') {{
+          stage.style.backgroundColor = '#f1f5f9';
+          stage.style.backgroundImage = 'radial-gradient(#cbd5e1 1px, transparent 1px)';
+          stage.style.backgroundSize = '12px 12px';
+        }}
+      }});
+    }}
+
     function getCleanSvg(slug) {{
       if (UNLOCKED_PILOTS.has(slug)) {{
         const el = document.getElementById('svg-' + slug);
@@ -233,7 +302,6 @@ js_replacement = f"""<script>
       return null;
     }}
 
-    // Копирование в буфер обмена
     function copySvg(slug) {{
       if (!UNLOCKED_PILOTS.has(slug) && !isActivated()) {{
         openModal();
@@ -257,7 +325,6 @@ js_replacement = f"""<script>
       document.body.removeChild(textarea);
     }}
 
-    // Поштучное скачивание .svg файла
     function downloadSvg(slug) {{
       if (!UNLOCKED_PILOTS.has(slug) && !isActivated()) {{
         openModal();
@@ -278,19 +345,20 @@ js_replacement = f"""<script>
       showToast('Файл ' + slug + '.svg скачан!');
     }}
 
-    // Скачивание ВСЕХ 32 SVG одним ZIP-архивом
     async function downloadAllZip() {{
       if (!isActivated()) {{
         openModal();
         return;
       }}
       const btn = document.getElementById('btn-zip');
-      const origText = btn.innerHTML;
-      btn.innerHTML = `
-        <svg class="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-        <span>Упаковка ZIP...</span>
-      `;
-      btn.disabled = true;
+      const origText = btn ? btn.innerHTML : '';
+      if (btn) {{
+        btn.innerHTML = `
+          <svg class="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+          <span>Упаковка ZIP...</span>
+        `;
+        btn.disabled = true;
+      }}
 
       try {{
         const zip = new JSZip();
@@ -332,19 +400,23 @@ js_replacement = f"""<script>
       }} catch (err) {{
         showToast('Ошибка при сборке ZIP-архива');
       }} finally {{
-        btn.innerHTML = origText;
-        btn.disabled = false;
+        if (btn) {{
+          btn.innerHTML = origText;
+          btn.disabled = false;
+        }}
       }}
     }}
 
     function showToast(msg) {{
       const toast = document.getElementById('toast');
       const text = document.getElementById('toast-text');
-      text.innerText = msg;
-      toast.classList.add('show');
-      setTimeout(() => {{
-        toast.classList.remove('show');
-      }}, 2500);
+      if (text && toast) {{
+        text.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => {{
+          toast.classList.remove('show');
+        }}, 2500);
+      }}
     }}
 
     document.addEventListener('DOMContentLoaded', () => {{
@@ -352,7 +424,8 @@ js_replacement = f"""<script>
     }});
   </script>"""
 
-html = re.sub(r'<script>.*?</script>', js_replacement, html, flags=re.DOTALL)
+# Replace only the inline <script> block without src attribute
+html = re.sub(r'<script>(.*?)</script>', js_replacement, html, flags=re.DOTALL)
 
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(html)
