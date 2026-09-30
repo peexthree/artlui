@@ -9,12 +9,6 @@ def build_svg(slug, style_css, inner_content):
     return f'<svg viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg" id="svg-{slug}"><style>@media(prefers-reduced-motion:reduce){{#svg-{slug} *{{animation:none!important}}}}' + style_css + f'</style><g transform="translate(40.4, 10.4) scale(1.65)">' + inner_content + '</g></svg>'
 
 # Keyframes for standard 9 converters (unified scheme)
-# 0-20%: rest
-# 20-30%: source & arrow windup pull back (-4px)
-# 30-45%: arrow energetic flight forward (+12px) to target
-# 42-60%: target document receiving impact with squash/stretch (scale 1.25, 0.75 -> bounce back)
-# 60-80%: hold
-# 80-100%: smooth return
 CONVERTER_CSS_FORWARD = '''.{prefix}-src{{animation:{prefix}-s 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:19.2px 19.2px}}
 .{prefix}-arr{{animation:{prefix}-a 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:32px 32px}}
 .{prefix}-target{{animation:{prefix}-t 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:28.8px 28.8px}}
@@ -77,29 +71,29 @@ svgs['pdf-to-txt'] = build_svg('pdf-to-txt',
 CONVERTER_CSS_REVERSE.format(prefix='ptt'),
 '''<g class="ptt-src"><rect x="7.2" y="4.8" width="24" height="28.8" rx="3.6" fill="#86EFAC"/></g><g class="ptt-target"><rect x="16.8" y="14.4" width="24" height="28.8" rx="3.6" fill="#22C55E"/><path d="M26.974 24c.38 0 .72.236.854.592l.975 2.6.975-2.601a.91.91 0 1 1 1.69.678L29.97 28.76l1.541 3.557a.918.918 0 1 1-1.7.69l-1.008-2.657-1.008 2.656a.92.92 0 1 1-1.703-.692l1.544-3.554-1.5-3.488A.912.912 0 0 1 26.974 24m5.305.893c0 .494.4.894.893.894h1.26v6.93a.883.883 0 0 0 1.765 0v-6.93h1.31a.893.893 0 0 0 0-1.787H33.17c-.492 0-.892.4-.892.893m-13.078 0c0 .494.4.894.894.894h1.26v6.93a.883.883 0 1 0 1.765 0v-6.93h1.31a.893.893 0 0 0 0-1.787h-4.336c-.493 0-.893.4-.893.893" fill="#ffffff"/></g><g class="ptt-arr"><path d="m16.392 13.992-1.789-1.789-4.44-4.44m.693 5.803 5.536.426-.426-5.536" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>''')
 
-# 10. CROP
+# 10. CROP (Blue Group: #3B82F6)
 svgs['crop'] = build_svg('crop',
 '''.cr-f{animation:cr-frame 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes cr-frame{0%,20%{transform:scale(1) translate(0,0)}25%{transform:scale(0.75) translate(4px,4px)}45%{transform:scale(1.28) translate(-6px,-6px)}65%{transform:scale(0.95)}80%,100%{transform:scale(1)}}''',
-'''<path d="M12 4v28a4 4 0 0 0 4 4h28" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/><path d="M36 44V16a4 4 0 0 0-4-4H4" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/><g class="cr-f"><path d="M16 16h16v16H16z" fill="#0EA5E9" opacity="0.35"/><path d="M16 16h16v16H16z" fill="none" stroke="#0EA5E9" stroke-width="3" stroke-dasharray="4 3"/></g>''')
+'''<path d="M12 4v28a4 4 0 0 0 4 4h28" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/><path d="M36 44V16a4 4 0 0 0-4-4H4" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/><g class="cr-f"><path d="M16 16h16v16H16z" fill="#3B82F6" opacity="0.35"/><path d="M16 16h16v16H16z" fill="none" stroke="#3B82F6" stroke-width="3" stroke-dasharray="4 3"/></g>''')
 
-# 11. METADATA
+# 11. METADATA (Purple Group: #8B5CF6 / #C4B5FD)
 svgs['metadata'] = build_svg('metadata',
 '''.md-info{animation:md-pulse 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes md-pulse{0%,20%{transform:translateY(0) scale(1)}25%{transform:translateY(5px) scale(0.85)}45%{transform:translateY(-14px) scale(1.30)}65%{transform:translateY(-4px) scale(0.95)}80%,100%{transform:translateY(0) scale(1)}}''',
-'''<rect x="6" y="8" width="36" height="32" rx="4" fill="none" stroke="#38BDF8" stroke-width="3"/><path d="M12 16h24M12 24h16M12 32h10" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/><g class="md-info"><circle cx="34" cy="32" r="8" fill="#0EA5E9"/><path d="M34 28v2m0 4v2" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="8" width="36" height="32" rx="4" fill="none" stroke="#8B5CF6" stroke-width="3"/><path d="M12 16h24M12 24h16M12 32h10" fill="none" stroke="#C4B5FD" stroke-width="3" stroke-linecap="round"/><g class="md-info"><circle cx="34" cy="32" r="8" fill="#8B5CF6"/><path d="M34 28v2m0 4v2" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
 
-# 12. PAINT
+# 12. PAINT (Creative Group: #F97316 / #FB923C / #FDBA74 / #FED7AA)
 svgs['paint'] = build_svg('paint',
 '''.pnt-pal{animation:pnt-sweep 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes pnt-sweep{0%,20%{transform:rotate(0deg) translate(0,0)}25%{transform:rotate(-16deg) translate(-6px,4px) scale(0.9)}45%{transform:rotate(32deg) translate(10px,-8px) scale(1.2)}65%{transform:rotate(-8deg) translate(-3px,2px) scale(0.98)}80%,100%{transform:rotate(0deg) translate(0,0) scale(1)}}''',
-'''<g class="pnt-pal"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20c2.2 0 4-1.8 4-4 0-1.07-.42-2.03-1.1-2.73-.68-.7-.11-1.27.27-1.27H30c7.73 0 14-6.27 14-14 0-9.94-8.95-18-20-18z" fill="#0EA5E9"/><circle cx="12" cy="20" r="3" fill="#ffffff"/><circle cx="20" cy="12" r="3" fill="#38BDF8"/><circle cx="30" cy="14" r="3" fill="#7DD3FC"/><circle cx="36" cy="22" r="3" fill="#BAE6FD"/></g>''')
+'''<g class="pnt-pal"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20c2.2 0 4-1.8 4-4 0-1.07-.42-2.03-1.1-2.73-.68-.7-.11-1.27.27-1.27H30c7.73 0 14-6.27 14-14 0-9.94-8.95-18-20-18z" fill="#F97316"/><circle cx="12" cy="20" r="3" fill="#ffffff"/><circle cx="20" cy="12" r="3" fill="#FB923C"/><circle cx="30" cy="14" r="3" fill="#FDBA74"/><circle cx="36" cy="22" r="3" fill="#FED7AA"/></g>''')
 
-# 13. EDIT-PDF
+# 13. EDIT-PDF (Creative Group: #F97316 / #FB923C / #FED7AA)
 svgs['edit-pdf'] = build_svg('edit-pdf',
 '''.ep-pen{animation:ep-write 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes ep-write{0%,20%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-8px,-8px) rotate(-16deg)}45%{transform:translate(16px,12px) rotate(28deg)}65%{transform:translate(4px,3px) rotate(-4deg)}80%,100%{transform:translate(0,0) rotate(0deg)}}''',
-'''<rect x="6" y="4" width="36" height="40" rx="4" fill="none" stroke="#FDBA74" stroke-width="3"/><path d="M12 12h16M12 20h24M12 28h18M12 36h12" fill="none" stroke="#FDBA74" stroke-width="3" stroke-linecap="round"/><g class="ep-pen"><path d="M38.5 6.5l3 3-18 18H20.5v-3l18-18z" fill="#F97316"/><path d="M38.5 6.5l3 3" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="4" width="36" height="40" rx="4" fill="none" stroke="#F97316" stroke-width="3"/><path d="M12 12h16M12 20h24M12 28h18M12 36h12" fill="none" stroke="#FED7AA" stroke-width="3" stroke-linecap="round"/><g class="ep-pen"><path d="M38.5 6.5l3 3-18 18H20.5v-3l18-18z" fill="#F97316"/><path d="M38.5 6.5l3 3" fill="none" stroke="#FB923C" stroke-width="2" stroke-linecap="round"/></g>''')
 
 # 14. EDIT-TEXT
 svgs['edit-text'] = build_svg('edit-text',
@@ -159,29 +153,29 @@ svgs['flatten'] = build_svg('flatten',
 @keyframes fl-press{0%,20%{transform:translateY(0) scale(1)}25%{transform:translateY(-12px) scale(1.05)}45%{transform:translateY(14px) scale(1.30,0.65)}65%{transform:translateY(3px) scale(0.95,1.05)}80%,100%{transform:translateY(0) scale(1)}}''',
 '''<g class="fl-top"><path d="M40.429 4H7.57C5.6 4 4 4.798 4 6.5S5.599 9 7.571 9H40.43C42.4 9 44 8.202 44 6.5S42.401 4 40.429 4m0 9H7.57C5.6 13 4 13.797 4 15.5S5.599 18 7.571 18H40.43c1.97 0 3.57-.797 3.57-2.5S42.401 13 40.429 13m0 9H7.57C5.6 22 4 22.797 4 24.5S5.599 27 7.571 27H40.43c1.97 0 3.57-.797 3.57-2.5S42.401 22 40.429 22" fill="#C4B5FD"/><path d="M16.5 30v6.5M19 33l-2.5 3.5L14 33m18.5-3v6.5M35 33l-2.5 3.5L30 33" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M41.222 39H6.778C5.244 39 4 40.755 4 42.5S5.244 46 6.778 46h34.444C42.756 46 44 44.245 44 42.5S42.756 39 41.222 39" fill="#8B5CF6"/>''')
 
-# 22. EXTRACT-PAGES
+# 22. EXTRACT-PAGES (Blue Group: #3B82F6 / #BFDBFE)
 svgs['extract-pages'] = build_svg('extract-pages',
 '''.xp-leaf{animation:xp-pull 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes xp-pull{0%,20%{transform:translate(0,0) scale(1)}25%{transform:translate(-5px,-5px) scale(0.9)}45%{transform:translate(14px,-14px) scale(1.22)}65%{transform:translate(3px,-3px) scale(1)}80%,100%{transform:translate(0,0) scale(1)}}''',
-'''<rect x="6" y="10" width="28" height="34" rx="3" fill="#DDD6FE"/><g class="xp-leaf"><rect x="14" y="4" width="28" height="34" rx="3" fill="#8B5CF6"/><path d="M20 12h16M20 20h16M20 28h10" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="10" width="28" height="34" rx="3" fill="#BFDBFE"/><g class="xp-leaf"><rect x="14" y="4" width="28" height="34" rx="3" fill="#3B82F6"/><path d="M20 12h16M20 20h16M20 28h10" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
 
-# 23. ORGANIZE
+# 23. ORGANIZE (Blue Group: #3B82F6 / #93C5FD)
 svgs['organize'] = build_svg('organize',
 '''.og-swap{animation:og-flip 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes og-flip{0%,20%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-15deg) scale(0.88)}45%{transform:rotate(180deg) scale(1.22)}65%{transform:rotate(175deg) scale(0.98)}80%,100%{transform:rotate(180deg) scale(1)}}''',
-'''<g class="og-swap"><rect x="4" y="8" width="18" height="32" rx="3" fill="#8B5CF6"/><rect x="26" y="8" width="18" height="32" rx="3" fill="#C4B5FD"/><path d="M10 16h6M10 24h6M32 16h6M32 24h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g>''')
+'''<g class="og-swap"><rect x="4" y="8" width="18" height="32" rx="3" fill="#3B82F6"/><rect x="26" y="8" width="18" height="32" rx="3" fill="#93C5FD"/><path d="M10 16h6M10 24h6M32 16h6M32 24h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g>''')
 
-# 24. PROTECT
+# 24. PROTECT (Protect Group: #EF4444 / #FCA5A5)
 svgs['protect'] = build_svg('protect',
 '''.pr-shackle{animation:pr-lock 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 16px}
 @keyframes pr-lock{0%,20%{transform:translateY(-10px)}25%{transform:translateY(-13px)}45%{transform:translateY(0px)}65%{transform:translateY(-2px)}80%,100%{transform:translateY(-10px)}}''',
-'''<g class="pr-shackle"><path d="M14 18V12a10 10 0 0 1 20 0v6" fill="none" stroke="#8B5CF6" stroke-width="3.5" stroke-linecap="round"/></g><rect x="8" y="18" width="32" height="24" rx="4" fill="#8B5CF6"/><circle cx="24" cy="28" r="3" fill="#ffffff"/><path d="M24 31v4" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>''')
+'''<g class="pr-shackle"><path d="M14 18V12a10 10 0 0 1 20 0v6" fill="none" stroke="#EF4444" stroke-width="3.5" stroke-linecap="round"/></g><rect x="8" y="18" width="32" height="24" rx="4" fill="#EF4444"/><circle cx="24" cy="28" r="3" fill="#FCA5A5"/><path d="M24 31v4" fill="none" stroke="#FCA5A5" stroke-width="2.5" stroke-linecap="round"/>''')
 
-# 25. DELETE
+# 25. DELETE (Delete Group: #64748B / #94A3B8)
 svgs['delete'] = build_svg('delete',
 '''.del-lid{animation:del-open 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 12px}
 @keyframes del-open{0%,20%{transform:rotate(0deg) translateY(0)}25%{transform:rotate(-8deg) translateY(-3px)}45%{transform:rotate(-32deg) translateY(-12px)}65%{transform:rotate(-4deg) translateY(-2px)}80%,100%{transform:rotate(0deg) translateY(0)}}''',
-'''<g class="del-lid"><path d="M14 12V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4M8 12h32" fill="none" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/></g><path d="M11 12l2.5 26a3 3 0 0 0 3 2.8h15a3 3 0 0 0 3-2.8l2.5-26" fill="none" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/><path d="M19 18v16M24 18v16M29 18v16" fill="none" stroke="#FCA5A5" stroke-width="2.5" stroke-linecap="round"/>''')
+'''<g class="del-lid"><path d="M14 12V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4M8 12h32" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round"/></g><path d="M11 12l2.5 26a3 3 0 0 0 3 2.8h15a3 3 0 0 0 3-2.8l2.5-26" fill="none" stroke="#64748B" stroke-width="3" stroke-linecap="round"/><path d="M19 18v16M24 18v16M29 18v16" fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>''')
 
 # 26. REPAIR
 svgs['repair'] = build_svg('repair',
@@ -189,45 +183,45 @@ svgs['repair'] = build_svg('repair',
 @keyframes rp-turn{0%,20%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-15deg) scale(0.88)}45%{transform:rotate(60deg) scale(1.25)}65%{transform:rotate(55deg) scale(0.98)}80%,100%{transform:rotate(0deg) scale(1)}}''',
 '''<g class="rp-key"><path d="M27 17l10-10a4.24 4.24 0 0 1 6 6L33 23M27 17l-12 12-6-2 2 6-2 2h-4v-4l2-2-2-6 12-12z" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>''')
 
-# 27. MERGE
+# 27. MERGE (Blue Group: #3B82F6 / #BFDBFE)
 svgs['merge'] = build_svg('merge',
 '''.mg-left{animation:mg-l 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:12px 24px}
 .mg-right{animation:mg-r 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:36px 24px}
 @keyframes mg-l{0%,20%{transform:translateX(0)}25%{transform:translateX(-5px)}45%{transform:translateX(11px)}65%{transform:translateX(2px)}80%,100%{transform:translateX(0)}}
 @keyframes mg-r{0%,20%{transform:translateX(0)}25%{transform:translateX(5px)}45%{transform:translateX(-11px)}65%{transform:translateX(-2px)}80%,100%{transform:translateX(0)}}''',
-'''<g class="mg-left"><rect x="2" y="8" width="20" height="32" rx="3" fill="#C4B5FD"/><path d="M6 16h12M6 24h12M6 32h8" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/></g><g class="mg-right"><rect x="26" y="8" width="20" height="32" rx="3" fill="#8B5CF6"/><path d="M30 16h12M30 24h12M30 32h8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g>''')
+'''<g class="mg-left"><rect x="2" y="8" width="20" height="32" rx="3" fill="#BFDBFE"/><path d="M6 16h12M6 24h12M6 32h8" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/></g><g class="mg-right"><rect x="26" y="8" width="20" height="32" rx="3" fill="#3B82F6"/><path d="M30 16h12M30 24h12M30 32h8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g>''')
 
-# 28. SPLIT
+# 28. SPLIT (Blue Group: #3B82F6 / #93C5FD)
 svgs['split'] = build_svg('split',
 '''.sp-l{animation:sp-left 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:12px 24px}
 .sp-r{animation:sp-right 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:36px 24px}
 @keyframes sp-left{0%,20%{transform:translateX(0)}25%{transform:translateX(3px)}45%{transform:translateX(-12px)}65%{transform:translateX(-3px)}80%,100%{transform:translateX(0)}}
 @keyframes sp-right{0%,20%{transform:translateX(0)}25%{transform:translateX(-3px)}45%{transform:translateX(12px)}65%{transform:translateX(3px)}80%,100%{transform:translateX(0)}}''',
-'''<g class="sp-l"><rect x="4" y="8" width="18" height="32" rx="3" fill="#8B5CF6"/><path d="M8 16h10M8 24h10M8 32h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g><g class="sp-r"><rect x="26" y="8" width="18" height="32" rx="3" fill="#8B5CF6"/><path d="M30 16h10M30 24h10M30 32h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g><path d="M24 4v40" fill="none" stroke="#C4B5FD" stroke-width="2" stroke-dasharray="3 3"/>''')
+'''<g class="sp-l"><rect x="4" y="8" width="18" height="32" rx="3" fill="#3B82F6"/><path d="M8 16h10M8 24h10M8 32h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g><g class="sp-r"><rect x="26" y="8" width="18" height="32" rx="3" fill="#3B82F6"/><path d="M30 16h10M30 24h10M30 32h6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></g><path d="M24 4v40" fill="none" stroke="#93C5FD" stroke-width="2" stroke-dasharray="3 3"/>''')
 
-# 29. UPLOAD
+# 29. UPLOAD (Service Group: #64748B / #94A3B8)
 svgs['upload'] = build_svg('upload',
 '''.up-arrow{animation:up-fly 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 30px}
 @keyframes up-fly{0%,20%{transform:translateY(0) scale(1)}25%{transform:translateY(6px) scale(0.88)}45%{transform:translateY(-15px) scale(1.25)}65%{transform:translateY(-4px) scale(0.95)}80%,100%{transform:translateY(0) scale(1)}}''',
-'''<path class="up-cloud" d="M7 36a8.5 8.5 0 0 1 7.2-13.8 11.5 11.5 0 0 1 19.6 0A8.5 8.5 0 0 1 41 36z" fill="#C4B5FD"/><g class="up-arrow"><path d="M24 42V18M16 26l8-8 8 8" fill="none" stroke="#8B5CF6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>''')
+'''<path class="up-cloud" d="M7 36a8.5 8.5 0 0 1 7.2-13.8 11.5 11.5 0 0 1 19.6 0A8.5 8.5 0 0 1 41 36z" fill="#94A3B8"/><g class="up-arrow"><path d="M24 42V18M16 26l8-8 8 8" fill="none" stroke="#64748B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>''')
 
-# 30. OCR
+# 30. OCR (Purple Group: #8B5CF6 / #C4B5FD)
 svgs['ocr'] = build_svg('ocr',
 '''.oc-beam{animation:oc-scan 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes oc-scan{0%,20%{transform:translateY(-14px)}25%{transform:translateY(-16px)}50%{transform:translateY(14px)}65%{transform:translateY(10px)}80%,100%{transform:translateY(-14px)}}''',
-'''<rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="#8B5CF6" stroke-width="3"/><path d="M12 14h24M12 22h24M12 30h16" fill="none" stroke="#C4B5FD" stroke-width="2.5" stroke-linecap="round"/><g class="oc-beam"><path d="M4 24h40" fill="none" stroke="#EF4444" stroke-width="3" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="#8B5CF6" stroke-width="3"/><path d="M12 14h24M12 22h24M12 30h16" fill="none" stroke="#C4B5FD" stroke-width="2.5" stroke-linecap="round"/><g class="oc-beam"><path d="M4 24h40" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round"/></g>''')
 
-# 31. ADD-FILE
+# 31. ADD-FILE (Service Group: #475569 / #94A3B8)
 svgs['add-file'] = build_svg('add-file',
 '''.af-p{animation:af-spin 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes af-spin{0%,20%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-20deg) scale(0.85)}45%{transform:rotate(90deg) scale(1.30)}65%{transform:rotate(90deg) scale(0.95)}80%,100%{transform:rotate(0deg) scale(1)}}''',
-'''<rect x="6" y="4" width="36" height="40" rx="4" fill="#C4B5FD"/><path d="M12 12h24M12 20h16" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/><g class="af-p"><circle cx="32" cy="32" r="10" fill="#8B5CF6"/><path d="M32 26v12M26 32h12" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="4" width="36" height="40" rx="4" fill="#94A3B8"/><path d="M12 12h24M12 20h16" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/><g class="af-p"><circle cx="32" cy="32" r="10" fill="#475569"/><path d="M32 26v12M26 32h12" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></g>''')
 
-# 32. COMPARE
+# 32. COMPARE (Purple Group: #8B5CF6 / #C4B5FD)
 svgs['compare'] = build_svg('compare',
 '''.cmp-glass{animation:cmp-scan 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:28px 28px}
 @keyframes cmp-scan{0%,20%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-5px,-5px) rotate(-12deg)}45%{transform:translate(12px,-10px) rotate(22deg) scale(1.25)}65%{transform:translate(3px,-2px) rotate(-3deg)}80%,100%{transform:translate(0,0) rotate(0deg)}}''',
-'''<rect x="4" y="6" width="18" height="32" rx="3" fill="#C4B5FD"/><rect x="26" y="6" width="18" height="32" rx="3" fill="#8B5CF6"/><g class="cmp-glass"><circle cx="28" cy="24" r="9" fill="none" stroke="#38BDF8" stroke-width="3"/><path d="M34 30l6 6" fill="none" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/></g>''')
+'''<rect x="4" y="6" width="18" height="32" rx="3" fill="#C4B5FD"/><rect x="26" y="6" width="18" height="32" rx="3" fill="#8B5CF6"/><g class="cmp-glass"><circle cx="28" cy="24" r="9" fill="none" stroke="#8B5CF6" stroke-width="3"/><path d="M34 30l6 6" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round"/></g>''')
 
 # 33. COMPRESS
 svgs['compress'] = build_svg('compress',
@@ -239,11 +233,11 @@ svgs['compress'] = build_svg('compress',
 @keyframes cp-squash{0%,20%{transform:scale(1,1)}25%{transform:scale(0.92,1.08)}45%{transform:scale(1.28,0.50)}65%{transform:scale(0.95,1.08)}80%,100%{transform:scale(1,1)}}''',
 '''<g class="cp-top"><path d="M37.714 4H10.286C9.023 4 8 4.895 8 6s1.023 2 2.286 2h27.428C38.977 8 40 7.105 40 6s-1.023-2-2.286-2" fill="#C4B5FD"/><path d="M24 7v8.467m-4-3.2L24 16l4-3.733" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><g class="cp-mid"><path d="M40.667 20H7.333C5.493 20 4 21.343 4 23v2c0 1.657 1.492 3 3.333 3h33.334C42.507 28 44 26.657 44 25v-2c0-1.657-1.492-3-3.333-3" fill="#8B5CF6"/></g><g class="cp-bot"><path d="M37.714 40H10.286C9.023 40 8 40.895 8 42s1.023 2 2.286 2h27.428C38.977 44 40 43.105 40 42s-1.023-2-2.286-2" fill="#C4B5FD"/><path d="M24 41v-9m4 3.733L24 32l-4 3.733" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>''')
 
-# 34. DELETE-PAGES
+# 34. DELETE-PAGES (Blue Group: #3B82F6 / #BFDBFE)
 svgs['delete-pages'] = build_svg('delete-pages',
 '''.dp-del{animation:dp-s 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes dp-s{0%,20%{transform:scale(1) rotate(0deg)}25%{transform:scale(0.85) rotate(-8deg)}45%{transform:scale(1.30) rotate(15deg)}65%{transform:scale(0.95)}80%,100%{transform:scale(1) rotate(0deg)}}''',
-'''<rect x="6" y="4" width="36" height="40" rx="4" fill="#FCA5A5"/><g class="dp-del"><circle cx="24" cy="24" r="12" fill="#EF4444"/><path d="M18 18l12 12M30 18l-12 12" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></g>''')
+'''<rect x="6" y="4" width="36" height="40" rx="4" fill="#BFDBFE"/><g class="dp-del"><circle cx="24" cy="24" r="12" fill="#3B82F6"/><path d="M18 18l12 12M30 18l-12 12" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></g>''')
 
 # 35. GRAYSCALE
 svgs['grayscale'] = build_svg('grayscale',
@@ -251,17 +245,17 @@ svgs['grayscale'] = build_svg('grayscale',
 @keyframes gs-s{0%,20%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-20deg) scale(0.88)}45%{transform:rotate(180deg) scale(1.25)}65%{transform:rotate(175deg) scale(0.95)}80%,100%{transform:rotate(180deg) scale(1)}}''',
 '''<g class="gs-spin"><circle cx="24" cy="24" r="18" fill="none" stroke="#64748B" stroke-width="3"/><path d="M24 6a18 18 0 0 1 0 36z" fill="#64748B"/></g>''')
 
-# 36. ROTATE
+# 36. ROTATE (Blue Group: #3B82F6 / #BFDBFE)
 svgs['rotate'] = build_svg('rotate',
 '''.rt-arr{animation:rt-s 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 24px}
 @keyframes rt-s{0%,20%{transform:rotate(0deg) scale(1)}25%{transform:rotate(-20deg) scale(0.88)}45%{transform:rotate(90deg) scale(1.28)}65%{transform:rotate(85deg) scale(0.95)}80%,100%{transform:rotate(90deg) scale(1)}}''',
-'''<rect x="10" y="10" width="28" height="28" rx="3" fill="#C4B5FD"/><g class="rt-arr"><path d="M24 4v8M24 4l-4 4M24 4l4 4" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 24a14 14 0 1 1-14-14" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round"/></g>''')
+'''<rect x="10" y="10" width="28" height="28" rx="3" fill="#BFDBFE"/><g class="rt-arr"><path d="M24 4v8M24 4l-4 4M24 4l4 4" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 24a14 14 0 1 1-14-14" fill="none" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/></g>''')
 
-# 37. UNLOCK
+# 37. UNLOCK (Protect Group: #EF4444 / #FCA5A5)
 svgs['unlock'] = build_svg('unlock',
 '''.ul-shackle{animation:ul-open 3s cubic-bezier(0.34,1.4,0.64,1) infinite;transform-origin:24px 16px}
 @keyframes ul-open{0%,20%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(3px) rotate(-5deg)}45%{transform:translateY(-14px) rotate(-24deg)}65%{transform:translateY(-10px) rotate(-20deg)}80%,100%{transform:translateY(0) rotate(0deg)}}''',
-'''<g class="ul-shackle"><path d="M14 18V12a10 10 0 0 1 20 0" fill="none" stroke="#22C55E" stroke-width="3.5" stroke-linecap="round"/></g><rect x="8" y="18" width="32" height="24" rx="4" fill="#22C55E"/><circle cx="24" cy="28" r="3" fill="#ffffff"/><path d="M24 31v4" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>''')
+'''<g class="ul-shackle"><path d="M14 18V12a10 10 0 0 1 20 0" fill="none" stroke="#EF4444" stroke-width="3.5" stroke-linecap="round"/></g><rect x="8" y="18" width="32" height="24" rx="4" fill="#EF4444"/><circle cx="24" cy="28" r="3" fill="#FCA5A5"/><path d="M24 31v4" fill="none" stroke="#FCA5A5" stroke-width="2.5" stroke-linecap="round"/>''')
 
 print("Defined SVGs count:", len(svgs))
 assert len(svgs) == 37, f"Expected 37 SVGs, got {len(svgs)}"
